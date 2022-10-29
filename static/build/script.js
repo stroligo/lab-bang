@@ -45,7 +45,7 @@ function settingUpGame(game) {
   var allCardsBack = document.querySelectorAll(".cardBack");
   allCardsBack.forEach(function (cardBack) {
     return cardBack.addEventListener("click", function (event) {
-      return game.flipCard(event, "jj");
+      return game.flipCard(event);
     });
   });
 } // CLASSE
@@ -66,7 +66,7 @@ var MemoryGame = /*#__PURE__*/function () {
     var carta7 = new deck(7, 3, "./assets/img/projetar.svg", "projetar");
     var carta8 = new deck(8, 4, "./assets/img/refletir.svg", "refletir");
     this.deck = [carta1, carta2, carta3, carta4, carta5, carta6, carta7, carta8];
-    this.verso = "./assets/fe.svg";
+    this.verso = "./assets/img/fe.svg";
     var pointsHTML = document.getElementById("points");
     pointsHTML.innerText = this.points; // setando o numero de tentativos no meu html
 

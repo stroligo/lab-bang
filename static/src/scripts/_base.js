@@ -14,7 +14,6 @@ addEventListener("submit", () => {
   startScreen.classList.add("hide");
   // mostrar o gameScore
   gameScore.className = "show";
-
   game.renderDeck();
 
   settingUpGame(game);
@@ -26,6 +25,6 @@ function settingUpGame(game) {
   const allCardsBack = document.querySelectorAll(".cardBack");
 
   allCardsBack.forEach((cardBack) =>
-    cardBack.addEventListener("click", (event) => game.flipCard(event, "jj"))
+    cardBack.addEventListener("click", (event) => game.flipCard(event))
   );
 }

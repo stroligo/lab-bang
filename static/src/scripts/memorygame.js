@@ -21,7 +21,7 @@ class MemoryGame {
       carta7,
       carta8,
     ];
-    this.verso = "./assets/fe.svg";
+    this.verso = "./assets/img/fe.svg";
     const pointsHTML = document.getElementById("points");
     pointsHTML.innerText = this.points; // setando o numero de tentativos no meu html
     playerName.innerText = this.player; // setando o nome do jogador no meu html
