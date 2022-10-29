@@ -4,7 +4,7 @@
 
 Devs Responsaveis:
 
-Anderson - https://github.com/nosderson
+Anderson Rodrigues - https://github.com/nosderson
 Gabriel Stroligo - https://github.com/stroligo
 
 Apos clone rodar - npm install
