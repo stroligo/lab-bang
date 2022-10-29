@@ -21,8 +21,7 @@
   },
   "scripts": {
     "watch": "node ./node_modules/gulp/bin/gulp.js",
-    "build": "node ./node_modules/gulp/bin/gulp.js build",
-    "tailwind": "npx tailwindcss -i ./src/less/style.less -o ./build/style.css --watch"
+    "build": "node ./node_modules/gulp/bin/gulp.js build"
   },
   "browserslist": [
     "defaults",
