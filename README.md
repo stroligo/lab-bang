@@ -6,3 +6,6 @@ Devs Responsaveis:
 
 Anderson - https://github.com/nosderson
 Gabriel Stroligo - https://github.com/stroligo
+
+Apos clone rodar - npm install
+Para rogar o gulp - npm run watch
