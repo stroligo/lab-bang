@@ -1,6 +1,6 @@
 //capturando todos os elementos de html
 const startScreen = document.getElementById("startScreen");
-const inputName = document.getElementById("inputName");
+const inputName = document.getElementById("inputName1");
 const gameScreen = document.getElementById("gameScreen");
 const gameScore = document.getElementById("gameScore");
 const playerName = document.getElementById("name");
