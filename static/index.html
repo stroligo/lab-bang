@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt_br">
-  <head>
-    <link rel="stylesheet" href="./build/style.css" />
-  </head>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- linkando o css -->
+<link rel="stylesheet" href="./build/style.css">
+<title>Memory Game - ENAP</title>
+</head>
 
-  <body>
-    <h1>TESTE</h1>
+<body>
+  <article id="startScreen" class="startScreen">
+    <h1>Jogo da Memória</h1>
 
-    <div class="modelo">MODELO</div>
-  </body>
+    <div>
+      <form onsubmit="return false">
+        <fieldset>
+          <label>Qual é o seu nome?</label>
+          <input type="text" autocomplete="off" required autofocus aria-label="Digite seu nome" placeholder="Digite o seu nome" id="inputName">
+          <button type="submit" id="btnStart">Jogar!!</button>
+        </fieldset>
+      </form>
+    </div>
+  </article>
+
+  <article id="gameScreen">
+    <section id="gameScore" class="hide">
+      <p>Olá, <span id="name">nomeDoJogador</span></p>
+      <p>Você tem <span id="points">xxx</span> tentativas!</p>
+    </section>
+
+    <div id="board" class="board"></div>
+  </article>
+
+  <!-- linkando meus scripts -> js -->
+  <script src="./build/script.js"></script>
+</body>
+
 </html>
