@@ -1,0 +1,10 @@
+.vscode/
+.DS_Store
+package-lock.json
+node_modules/
+
+static/.vscode/
+static/.DS_Store
+static/package-lock.json
+static/node_modules/
+

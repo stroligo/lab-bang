@@ -1,0 +1,30 @@
+{
+  "name": "BabelLessConcatUglify",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "autoprefixer": "latest",
+    "cssnano": "latest",
+    "fancy-log": "latest",
+    "gulp": "^3.9.1",
+    "gulp-concat": "latest",
+    "gulp-less": "latest",
+    "gulp-postcss": "latest",
+    "gulp-uglify": "latest"
+  },
+  "dependencies": {
+    "gulp-babel": "^8.0.0",
+    "postcss": "^8.3.0"
+  },
+  "scripts": {
+    "watch": "node ./node_modules/gulp/bin/gulp.js",
+    "build": "node ./node_modules/gulp/bin/gulp.js build"
+  },
+  "browserslist": [
+    "defaults",
+    "last 2 versions",
+    "> 5%",
+    "Firefox ESR"
+  ]
+}
