@@ -3,24 +3,19 @@ class MemoryGame {
   constructor(player, points) {
     this.player = player;
     this.points = points;
-    const carta1 = new deck(1, 1, "./assets/img/harmonia.svg", "harmonia");
-    const carta2 = new deck(2, 2, "./assets/img/poder.svg", "poder");
-    const carta3 = new deck(3, 3, "./assets/img/projetar.svg", "projetar");
-    const carta4 = new deck(4, 4, "./assets/img/refletir.svg", "refletir");
-    const carta5 = new deck(5, 1, "./assets/img/harmonia.svg", "harmonia");
-    const carta6 = new deck(6, 2, "./assets/img/poder.svg", "poder");
-    const carta7 = new deck(7, 3, "./assets/img/projetar.svg", "projetar");
-    const carta8 = new deck(8, 4, "./assets/img/refletir.svg", "refletir");
+    const carta1 = new deck(1, 1, "./assets/img/harmonia.svg", "xerife");
+    const carta2 = new deck(2, 2, "./assets/img/poder.svg", "renegado");
+    const carta3 = new deck(3, 3, "./assets/img/projetar.svg", "foradalei");
+    const carta4 = new deck(4, 3, "./assets/img/refletir.svg", "foradalei");
     this.deck = [
       carta1,
       carta2,
       carta3,
-      carta4,
-      carta5,
-      carta6,
-      carta7,
-      carta8,
+      carta4
     ];
+    if (inputName5.value) {const carta5 = new deck(5, 4, "./assets/img/harmonia.svg", "vice"); this.deck.push (carta5)}
+    if (inputName6.value) {const carta6 = new deck(6, 3, "./assets/img/poder.svg", "foradalei"); this.deck.push (carta6)}
+    if (inputName7.value) {const carta7 = new deck(7, 4, "./assets/img/projetar.svg", "vice"); this.deck.push (carta7)}
     this.verso = "./assets/img/fe.svg";
     const pointsHTML = document.getElementById("points");
     pointsHTML.innerText = this.points; // setando o numero de tentativos no meu html
