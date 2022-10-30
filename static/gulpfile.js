@@ -7,7 +7,8 @@ const gulp = require("gulp"),
   babel = require("gulp-babel"),
   concat = require("gulp-concat"),
   log = require("fancy-log"),
-  uglify = require("gulp-uglify");
+  uglify = require("gulp-uglify"),
+  tailwindcss = require("tailwindcss");
 
 var themePath = ".";
 
@@ -40,20 +41,31 @@ gulp.task("concatJS", function () {
     });
 });
 gulp.task("lessCSS", function () {
-  return gulp
-    .src(themePath + "/src/less/style.less")
-    .pipe(less())
-    .on("end", function () {
-      log("Less: Copilado");
-    })
-    .pipe(postcss([autoprefixer() /*cssnano()*/]))
-    .on("end", function () {
-      log("Js: Copilado!");
-    })
-    .pipe(gulp.dest(themePath + "/build"))
-    .on("end", function () {
-      log("Tudo ok!");
-    });
+  return (
+    gulp
+      // COPILA LESS
+      .src(themePath + "/src/less/style.less")
+      .pipe(less())
+      .on("end", function () {
+        log("Less: Copilado");
+      })
+      // COPILA TAILWIND
+      .pipe(
+        postcss([tailwindcss("tailwind.config.js"), require("autoprefixer")])
+      )
+      .on("end", function () {
+        log("Tailwind: Copilado!");
+      })
+      // COPILA JS
+      .pipe(postcss([autoprefixer() /*cssnano()*/]))
+      .on("end", function () {
+        log("Js: Copilado!");
+      })
+      .pipe(gulp.dest(themePath + "/build"))
+      .on("end", function () {
+        log("Tudo ok!");
+      })
+  );
 });
 
 gulp.task(
@@ -68,7 +80,4 @@ gulp.task(
   })
 );
 
-gulp.task(
-  "build",
-  gulp.series("lessCSS", "babelJS", /*"uglifyJS",*/ "concatJS")
-);
+gulp.task("build", gulp.series("lessCSS", "babelJS", "concatJS"));
