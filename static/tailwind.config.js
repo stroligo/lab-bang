@@ -4,7 +4,8 @@ module.exports = {
     "./src/**/*.{html,js,less}",
     "./src/*.{html,js,less}",
     "./build/*.{html,js,less}",
-    "./*",
+    "./index.html",
+    "./teste.html",
   ],
   theme: {
     extend: {},
