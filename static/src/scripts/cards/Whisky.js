@@ -1,3 +1,4 @@
+//WHISKY.JS
 class Whisky extends CardAction {
   constructor(name, id) {
     super(name, id);

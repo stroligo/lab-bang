@@ -1,3 +1,4 @@
+//CARD.JS
 class Card {
   constructor(name, classe, id) {
     this.name = name;

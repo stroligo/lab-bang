@@ -1,3 +1,4 @@
+//CARDPLAYER.JS
 class CardPlayer extends Card {
   constructor(name, hp, range, pseudoname, id) {
     super(name, "player", id);
