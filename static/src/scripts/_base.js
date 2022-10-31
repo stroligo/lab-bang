@@ -1,3 +1,4 @@
+//_BASE.JS
 //capturando todos os elementos de html
 const gameScreen = document.getElementById("gameScreen");
 const gameScore = document.getElementById("gameScore");
