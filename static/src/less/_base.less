@@ -3,57 +3,11 @@
 @tailwind utilities;
 
 body {
-  background-color: blue;
+  font-size: 16px !important;
 }
 * {
   margin: 0;
   padding: 0;
-}
-
-#board {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.startScreen {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.startScreen > h1 {
-  font-size: 3rem;
-  padding-bottom: 60px;
-  text-align: center;
-}
-
-.startScreen > div > form > fieldset {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-
-  border-radius: 18px;
-  background: #e0e0e0;
-  box-shadow: 8px 8px 5px #bebebe, -8px -8px 5px #ffffff;
-
-  padding: 40px;
-}
-
-input {
-  width: 50vw;
-  padding: 6px !important;
-}
-
-#btnStart {
-  padding: 10px;
-  border-radius: 5px;
-  border: 0;
-  background-color: rgb(53, 53, 53);
-  color: white;
 }
 
 #btnStart:hover {
@@ -87,4 +41,23 @@ fieldset {
 }
 
 .action {
+}
+
+// CODIGO SITE
+#logo {
+  width: 84px;
+  height: 50px;
+  background: url(../assets/bang/theme/logo.png);
+  background-size: cover;
+}
+#header {
+}
+#hero {
+  //margin-top: 60px;
+  background: url(../assets/bang/theme/back_.png);
+  background-size: cover;
+  height: 95vh;
+}
+#footer {
+  height: 5vh;
 }

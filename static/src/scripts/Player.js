@@ -1,6 +1,6 @@
 //CARDPLAYER.JS
 class Player extends Card {
-  constructor(name, pseudoname, id, hp =5, range = 1) {
+  constructor(name, pseudoname, id, hp = 5, range = 1) {
     super(name, "player", id);
     this.range = range;
     this.pseudoname = pseudoname;
@@ -9,12 +9,6 @@ class Player extends Card {
   }
 
   setHP(value) {
-    this.hp=this.hp+value;
- }
-
-
-
-
-
-
+    this.hp = this.hp + sd;
+  }
 }

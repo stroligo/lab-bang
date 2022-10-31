@@ -52,9 +52,7 @@ class Table {
     const idCarta = event.currentTarget["id"];
     console.log(idCarta);
     if (
-      document
-        .getElementById(idCarta)
-        .classList.contains("turn", "selecionado")
+      document.getElementById(idCarta).classList.contains("turn", "selecionado")
     ) {
       console.log("Carta já foi selecionada");
     } else {
@@ -75,8 +73,8 @@ class Table {
       }
     }
   }
-//nessa etapa iremos configurar os turnos de cada jogador
-//ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
+  //nessa etapa iremos configurar os turnos de cada jogador
+  //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
   turn() {
     //const carta1 = this.deck.find(element => element.selecionado);
     //const carta2 = this.deck.findLast(element => element.selecionado);
@@ -92,8 +90,7 @@ class Table {
     ) {
       console.log("Cartas são iguais!!");
       // criar um indicador de que as cartas já foram viradas
-      for (let i of cartasId)
-        document.getElementById(i).classList.add("turn");
+      for (let i of cartasId) document.getElementById(i).classList.add("turn");
 
       // checar o status do jogo
       this.checkStatus();

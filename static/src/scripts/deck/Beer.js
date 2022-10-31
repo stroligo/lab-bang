@@ -1,5 +1,5 @@
 //BEER.JS
-class Beer extends Weapon {
+class Beer extends Card {
   constructor(name, id) {
     super(name, id);
     this.atack = 1;
@@ -8,5 +8,4 @@ class Beer extends Weapon {
   buscarAlvos() {
     return super.buscarAlvoSiProprio();
   }
-
 }

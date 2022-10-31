@@ -1,150 +1,16 @@
-//BANG.JS
-class Bang extends Weapon {
-  constructor(name, id) {
-    super(name, id);
-    this.atack = 1;
-  }
-
-  buscarAlvos() {
-    return super.buscarAlvoSiProprio();
-  }
-
-}
-
-if (typeof module !== 'undefined') {
-  module.exports = {
-    Bang
-  };
-};
-//BEER.JS
-class Beer extends Weapon {
-  constructor(name, id) {
-    super(name, id);
-    this.atack = 1;
-  }
-
-  buscarAlvos() {
-    return super.buscarAlvoSiProprio();
-  }
-
-}
-
-//CARD.JS
-class Card {
-  constructor(name, classe, id) {
-    this.name = name;
-    this.alt = name;
-    this.id = id;
-  }
-
-  buscarAlvosProximos() {
-    const spot = document.querySelector(".selecionado").id;
-    const proximo = (spot % 4) + 1;
-    let anterior;
-    spot == 1 ? (anterior = 4) : (anterior = spot - 1);
-    return [anterior, proximo];
-  }
-
-  buscarAlvoSiProprio() {
-    return document.querySelector(".selecionado").id;
-  }
-
-  buscarAlvoTodos() {
-    const spot = document.getElementsByClassName("player selecionado")[0].id;
-    return [...document.getElementsByClassName("player")]
-      .map((element) => element.id)
-      .filter((element) => element != spot);
-  }
-
-  selecionarAlvos([...array]) {
-    for (let i of array) {
-      document.getElementById(i).classList.add("alvos");
-    }
-  }
-
-
-}
-
-//ESQUIVA.JS
-class Esquiva extends Weapon {
-  constructor(name, id) {
-    super(name, id);
-    this.atack = 1;
-  }
-
-  buscarAlvos() {
-    return super.buscarAlvoSiProprio();
-  }
-}
-
-
-//CARDPLAYER.JS
-class Roles extends Card {
-  constructor(name, pseudoname, id, hp =5, range = 1) {
-    super(name, "player", id);
-    this.range = range;
-    this.pseudoname = pseudoname;
-    this.hp = hp;
-    this.rand = rand;
-  }
-
-  setHP(value) {
-    this.hp=this.hp+value;
- }
-
-
-
-
-
-
-}
-
-//WEAPON.JS
-class Weapon extends Card {
-  constructor(name, id, atack) {
-    super(name, "action", id);
-    this.atack = atack;
-  }
-
-  getAtack() {
-    return this.atack;
-  }
-
-  buscarAlvosProximos() {
-    const spot = document.querySelector(".selecionado").id;
-    const proximo = (spot % 4) + 1;
-    let anterior;
-    spot == 1 ? (anterior = 4) : (anterior = spot - 1);
-    return [anterior, proximo];
-  }
-
-  buscarAlvoSiProprio() {
-    return document.querySelector(".selecionado").id;
-  }
-
-  buscarAlvoTodos() {
-    const spot = document.getElementsByClassName("player selecionado")[0].id;
-    return [...document.getElementsByClassName("player")]
-      .map((element) => element.id)
-      .filter((element) => element != spot);
-  }
-
-  selecionarAlvos([...array]) {
-    for (let i of array) {
-      document.getElementById(i).classList.add("alvos");
-    }
-  }
-
-  
-}
-
-if (typeof module !== 'undefined') {
-  module.exports = {
-    Weapon
-  };
-};
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -163,6 +29,7 @@ var Table = /*#__PURE__*/function () {
     this.name = name;
     var jogadores = [document.getElementById("player1").innerHTML = document.getElementById("inputName1").value, document.getElementById("player2").innerHTML = document.getElementById("inputName2").value, document.getElementById("player3").innerHTML = document.getElementById("inputName3").value, document.getElementById("player4").innerHTML = document.getElementById("inputName4").value];
     renderDeck(jogadores);
+    cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
     var carta1 = new Xerife("xerife", jogadores[0], "carta1");
     //const carta2 = new renegado("renegado", 5 ,1 , jogadores[1]);
@@ -216,9 +83,11 @@ var Table = /*#__PURE__*/function () {
         }
       }
     }
+    //nessa etapa iremos configurar os turnos de cada jogador
+    //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
   }, {
-    key: "checkPair",
-    value: function checkPair() {
+    key: "turn",
+    value: function turn() {
       var _this = this;
       //const carta1 = this.deck.find(element => element.selecionado);
       //const carta2 = this.deck.findLast(element => element.selecionado);
@@ -296,6 +165,7 @@ var Table = /*#__PURE__*/function () {
         }
       }, 1500);
     }
+    //chacar jogadores se alguem morreu, se alguem morreu e definir vencedodr
   }, {
     key: "checkStatus",
     value: function checkStatus() {
@@ -422,6 +292,97 @@ function renderDeck(array) {
     return Math.random() - 0.5;
   });
 }
+
+//CARDPLAYER.JS
+var Player = /*#__PURE__*/function (_Card) {
+  _inherits(Player, _Card);
+  var _super = _createSuper(Player);
+  function Player(name, pseudoname, id) {
+    var _this2;
+    var hp = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
+    var range = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
+    _classCallCheck(this, Player);
+    _this2 = _super.call(this, name, "player", id);
+    _this2.range = range;
+    _this2.pseudoname = pseudoname;
+    _this2.hp = hp;
+    _this2.rand = rand;
+    return _this2;
+  }
+  _createClass(Player, [{
+    key: "setHP",
+    value: function setHP(value) {
+      this.hp = this.hp + sd;
+    }
+  }]);
+  return Player;
+}(Card); //WEAPON.JS
+var Target = /*#__PURE__*/function (_Card2) {
+  _inherits(Target, _Card2);
+  var _super2 = _createSuper(Target);
+  function Target(name, id, atack) {
+    var _this3;
+    _classCallCheck(this, Target);
+    _this3 = _super2.call(this, name, "action", id);
+    _this3.atack = atack;
+    return _this3;
+  }
+  _createClass(Target, [{
+    key: "getAtack",
+    value: function getAtack() {
+      return this.atack;
+    }
+  }, {
+    key: "buscarAlvosProximos",
+    value: function buscarAlvosProximos() {
+      var spot = document.querySelector(".selecionado").id;
+      var proximo = spot % 4 + 1;
+      var anterior;
+      spot == 1 ? anterior = 4 : anterior = spot - 1;
+      return [anterior, proximo];
+    }
+  }, {
+    key: "buscarAlvoSiProprio",
+    value: function buscarAlvoSiProprio() {
+      return document.querySelector(".selecionado").id;
+    }
+  }, {
+    key: "buscarAlvoTodos",
+    value: function buscarAlvoTodos() {
+      var spot = document.getElementsByClassName("player selecionado")[0].id;
+      return _toConsumableArray(document.getElementsByClassName("player")).map(function (element) {
+        return element.id;
+      }).filter(function (element) {
+        return element != spot;
+      });
+    }
+  }, {
+    key: "selecionarAlvos",
+    value: function selecionarAlvos(_ref) {
+      var _ref2 = _toArray(_ref),
+        array = _ref2.slice(0);
+      var _iterator4 = _createForOfIteratorHelper(array),
+        _step4;
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var i = _step4.value;
+          document.getElementById(i).classList.add("alvos");
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+    }
+  }]);
+  return Target;
+}(Card);
+if (typeof module !== 'undefined') {
+  module.exports = {
+    Weapon: Weapon
+  };
+}
+;
 //_BASE.JS
 //capturando todos os elementos de html
 var gameScreen = document.getElementById("gameScreen");
