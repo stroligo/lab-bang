@@ -4,7 +4,6 @@ class Esquiva extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio()
+    return super.buscarAlvoSiProprio();
   }
-
 }

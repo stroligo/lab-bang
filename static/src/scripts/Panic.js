@@ -3,7 +3,7 @@ class Panic extends CardAction {
     super(name, id);
   }
 
-   buscarAlvos() {
-    return super.buscarAlvosProximos()
+  buscarAlvos() {
+    return super.buscarAlvosProximos();
   }
 }

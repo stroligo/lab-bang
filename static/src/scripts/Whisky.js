@@ -4,7 +4,6 @@ class Whisky extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio()
+    return super.buscarAlvoSiProprio();
   }
-
 }

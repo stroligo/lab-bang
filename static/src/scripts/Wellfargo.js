@@ -4,7 +4,6 @@ class Wellfargo extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio()
+    return super.buscarAlvoSiProprio();
   }
-
 }

@@ -4,7 +4,6 @@ class Beer extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio()
+    return super.buscarAlvoSiProprio();
   }
-
 }

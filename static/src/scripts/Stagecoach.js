@@ -3,8 +3,7 @@ class Stagecoach extends CardAction {
     super(name, id);
   }
 
-buscarAlvos() {
-    return super.buscarAlvoSiProprio()
+  buscarAlvos() {
+    return super.buscarAlvoSiProprio();
   }
-
 }

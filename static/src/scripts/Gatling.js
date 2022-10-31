@@ -4,8 +4,6 @@ class Gatling extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoTodos()
+    return super.buscarAlvoTodos();
   }
-
-
 }

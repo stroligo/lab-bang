@@ -4,7 +4,6 @@ class Bang extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvosProximos()
+    return super.buscarAlvosProximos();
   }
 }
-

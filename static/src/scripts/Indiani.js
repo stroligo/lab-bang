@@ -4,6 +4,6 @@ class Indiani extends CardAction {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoTodos()
+    return super.buscarAlvoTodos();
   }
 }
