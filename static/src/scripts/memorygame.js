@@ -3,6 +3,7 @@ class MemoryGame {
   constructor(player, points) {
     this.player = player;
     this.points = points;
+
     const carta1 = new deck(1, 1, "./assets/img/harmonia.svg", "harmonia");
     const carta2 = new deck(2, 2, "./assets/img/poder.svg", "poder");
     const carta3 = new deck(3, 3, "./assets/img/projetar.svg", "projetar");
@@ -130,7 +131,7 @@ class MemoryGame {
   checkStatus() {
     // checar o status do jogo
     console.log(
-      "Checando se o jogador ainda tem pontos OU se ele venceu o jogo!!"
+      "checando se o jogador ainda tem pontos OU se ele venceu o jogo!!"
     );
     console.log(this.points);
     // se o jogador ainda tem pontos -> perdeu

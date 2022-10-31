@@ -19,7 +19,7 @@ gulp.task("babelJS", function () {
     .pipe(babel({ presets: ["@babel/env"] }))
     .pipe(gulp.dest(themePath + "/build"))
     .on("end", function () {
-      log("Babel!");
+      //log("Babel!");
     });
 });
 gulp.task("uglifyJS", function () {
@@ -28,18 +28,20 @@ gulp.task("uglifyJS", function () {
     .pipe(uglify())
     .pipe(gulp.dest(themePath + "/build"))
     .on("end", function () {
-      log("Ugly!");
+      // log("Ugly!");
     });
 });
+
 gulp.task("concatJS", function () {
   return gulp
     .src([themePath + "/src/scripts/plugins/*.js", themePath + "/build/*.js"])
     .pipe(concat("script.js"))
     .pipe(gulp.dest(themePath + "/build"))
     .on("end", function () {
-      log("Concat!");
+      log("JS: copilado");
     });
 });
+
 gulp.task("lessCSS", function () {
   return (
     gulp
@@ -47,23 +49,23 @@ gulp.task("lessCSS", function () {
       .src(themePath + "/src/less/style.less")
       .pipe(less())
       .on("end", function () {
-        log("Less: Copilado");
+        //log("Less: Copilado");
       })
       // COPILA TAILWIND
       .pipe(
         postcss([tailwindcss("tailwind.config.js"), require("autoprefixer")])
       )
       .on("end", function () {
-        log("Tailwind: Copilado!");
+        //log("Tailwind: Copilado!");
       })
       // COPILA JS
       .pipe(postcss([autoprefixer() /*cssnano()*/]))
       .on("end", function () {
-        log("Js: Copilado!");
+        //log("Postcss: Copilado!");
       })
       .pipe(gulp.dest(themePath + "/build"))
       .on("end", function () {
-        log("Tudo ok!");
+        log("CSS / Less / Tailwind: copilados");
       })
   );
 });
@@ -80,4 +82,4 @@ gulp.task(
   })
 );
 
-gulp.task("build", gulp.series("lessCSS", "babelJS", "concatJS"));
+gulp.task("build", gulp.series("lessCSS", "babelJS", "uglifyJS", "concatJS"));
