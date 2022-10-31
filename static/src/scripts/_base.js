@@ -1,15 +1,15 @@
 //capturando todos os elementos de html
-const startScreen = document.getElementById("startScreen");
-const inputName = document.getElementById("inputName1");
 const gameScreen = document.getElementById("gameScreen");
 const gameScore = document.getElementById("gameScore");
 const playerName = document.getElementById("name");
 const board = document.getElementById("board");
 
+
 //adicionar o event listener do submit
 addEventListener("submit", () => {
-  //instanciar a minha classe
-  const game = new MemoryGame(inputName.value, 5);
+
+ //instanciar a minha classe
+  const game = new Table('mesa1');
   // startScreen desapareça
   startScreen.classList.add("hide");
   // mostrar o gameScore
@@ -20,6 +20,7 @@ addEventListener("submit", () => {
 });
 
 function settingUpGame(game) {
+
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
   const allCardsBack = document.querySelectorAll(".cardBack");

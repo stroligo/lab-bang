@@ -1,4 +1,5 @@
 // CLASSE
+<<<<<<< HEAD
 class MemoryGame {
   constructor(player, points) {
     this.player = player;
@@ -26,6 +27,28 @@ class MemoryGame {
     const pointsHTML = document.getElementById("points");
     pointsHTML.innerText = this.points; // setando o numero de tentativos no meu html
     playerName.innerText = this.player; // setando o nome do jogador no meu html
+=======
+
+class Table {
+  constructor(name) {
+    this.name = name;
+    const jogadores = [
+      document.getElementById("player1").innerHTML = document.getElementById("inputName1").value,
+      document.getElementById("player2").innerHTML = document.getElementById("inputName2").value,
+      document.getElementById("player3").innerHTML = document.getElementById("inputName3").value,
+      document.getElementById("player4").innerHTML = document.getElementById("inputName4").value
+    ]
+    renderDeck(jogadores)
+    const carta1 = new Xerife2('xerife', 5, 1, jogadores[0], 'carta1');
+    //const carta2 = new renegado("renegado", 5 ,1 , jogadores[1]);
+    //const carta3 = new foradalei("foradalei", 5 ,1 , jogadores[2]);
+    //const carta4 = new foradalei("foradalei", 5 ,1 , 4, jogadores[3]);
+    this.player = [carta1, carta1, carta1, carta1];
+    const carta5 = new Bang2('bang', 'carta5');
+    this.deck = [carta1, carta5, carta1, carta5];
+  
+
+>>>>>>> e5c4b45f72aac0b2f42c9ef0ea9afdebc1616642
   }
 
   renderDeck() {
@@ -43,16 +66,17 @@ class MemoryGame {
     this.deck.forEach((element) => {
       const imgBack = document.createElement("img"); // <img />
       imgBack.id = element.id;
-      imgBack.src = this.verso; // <img src="./assets/fe.svg" />
+      imgBack.src = element.verso
       imgBack.alt = "carta virada";
       imgBack.className = "show cardBack";
       board.appendChild(imgBack);
+      document.getElementById(element.id).classList.add(element.classe)
     });
   }
 
   flipCard(event) {
-    const idCarta = event.currentTarget["id"] * 1;
-    console.log(event);
+    const idCarta = event.currentTarget["id"];
+    console.log(idCarta);
     if (
       document.getElementById(idCarta).classList.contains("turn", "selecionado")
     ) {
@@ -98,8 +122,8 @@ class MemoryGame {
     } else {
       console.log("Cartas são diferentes!");
       // remover ponto do jogador
-      this.points--;
-      points.innerText = this.points;
+      //this.points--;
+      //points.innerText = this.points;
       // desvirar as duas cartas
       setTimeout(() => {
         console.log("Fechando as cartas selecionadas");
@@ -152,12 +176,127 @@ class MemoryGame {
   }
 }
 
+
+class Card2 {
+  constructor(name, classe, id, verso = `../../static/assets/img/fe.svg `) {
+    this.name = name;
+    this.classe = classe
+    this.id = id
+    this.verso = verso
+    this.source = `../../static/assets/img/${name}.svg `
+  
+ }
+
+  buscarAlvosProximos() {
+    const spot = document.querySelector('.selecionado').id
+    const proximo = spot % 4 + 1
+    let anterior;
+    spot == 1 ? anterior = 4 : anterior = spot - 1
+    return ([anterior, proximo])
+  }
+
+  buscarAlvoSiProprio() {
+    return document.querySelector('.selecionado').id
+  }
+
+  buscarAlvoTodos() {
+    const spot = document.getElementsByClassName('player selecionado')[0].id
+    return [...document.getElementsByClassName('player')].map(element => element.id).filter(element => element != spot)
+  }
+
+  selecionarAlvos([...array]) {
+    for (let i of array) {
+      document.getElementById(i).classList.add("alvos");
+    }
+  }
+
+  atacar([array]) {
+  }
+
+}
+class CardPlayer2 extends Card2 {
+  constructor(name, hp, range, pseudoname, id) {
+    super(name, 'player', id)
+    this.hp = hp;
+    this.range = range;
+    this.pseudoname = pseudoname;
+  }
+
+}
+class Xerife2 extends CardPlayer2 {
+  constructor(name, hp, range, pseudoname, id) {
+    super(name, hp, range, pseudoname, id)
+  }
+}
+
+
+function renderDeck(array) {
+  console.log("randomizar o deck ->> EMBARALHAR -> shufle");
+  array.sort(() => {
+    return Math.random() - 0.5;
+  });
+}
+
+
+
+class CardAction2 extends Card2 {
+  constructor(name, id) {
+    super(name, 'action', id)
+  }
+
+  buscarAlvosProximos() {
+    const spot = document.querySelector('.selecionado').id
+    const proximo = spot % 4 + 1
+    let anterior;
+    spot == 1 ? anterior = 4 : anterior = spot - 1
+    return ([anterior, proximo])
+  }
+
+  buscarAlvoSiProprio() {
+    return document.querySelector('.selecionado').id
+  }
+
+  buscarAlvoTodos() {
+    const spot = document.getElementsByClassName('player selecionado')[0].id
+    return [...document.getElementsByClassName('player')].map(element => element.id).filter(element => element != spot)
+  }
+
+  selecionarAlvos([...array]) {
+    for (let i of array) {
+      document.getElementById(i).classList.add("alvos");
+    }
+  }
+
+  atacar([array]) {
+  }
+
+}
+
+class Bang2 extends CardAction2 {
+  constructor(name, id) {
+    super(name, id);
+  }
+
+  buscarAlvos() {
+    return super.buscarAlvosProximos()
+  }
+}
+
+
 // CLASSE
-class deck {
+/*class deck {
   constructor(id, tipo, source, alt) {
     this.id = id;
     this.tipo = tipo;
     this.source = source;
     this.alt = alt;
   }
-}
+}*/
+
+
+
+
+
+
+
+
