@@ -31,5 +31,5 @@ class Card {
     }
   }
 
-  atacar([array]) {}
+
 }

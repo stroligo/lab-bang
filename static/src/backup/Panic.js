@@ -1,10 +1,13 @@
-//CATBALOU.JS
-class Catbalou extends CardAction {
+//PANIC.JS
+class Panic extends Weapon {
   constructor(name, id) {
     super(name, id);
+    this.atack = 1
   }
 
   buscarAlvos() {
     return super.buscarAlvosProximos();
   }
+
+  //pegarCartadoAlvo
 }

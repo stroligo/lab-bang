@@ -1,34 +1,5 @@
 // CLASSE
 // HEAD
-class MemoryGame {
-  constructor(player, points) {
-    this.player = player;
-    this.points = points;
-
-    const carta1 = new deck(1, 1, "./assets/img/harmonia.svg", "harmonia");
-    const carta2 = new deck(2, 2, "./assets/img/poder.svg", "poder");
-    const carta3 = new deck(3, 3, "./assets/img/projetar.svg", "projetar");
-    const carta4 = new deck(4, 4, "./assets/img/refletir.svg", "refletir");
-    const carta5 = new deck(5, 1, "./assets/img/harmonia.svg", "harmonia");
-    const carta6 = new deck(6, 2, "./assets/img/poder.svg", "poder");
-    const carta7 = new deck(7, 3, "./assets/img/projetar.svg", "projetar");
-    const carta8 = new deck(8, 4, "./assets/img/refletir.svg", "refletir");
-    this.deck = [
-      carta1,
-      carta2,
-      carta3,
-      carta4,
-      carta5,
-      carta6,
-      carta7,
-      carta8,
-    ];
-    this.verso = "./assets/img/fe.svg";
-    const pointsHTML = document.getElementById("points");
-    pointsHTML.innerText = this.points; // setando o numero de tentativos no meu html
-    playerName.innerText = this.player; // setando o nome do jogador no meu html
-  }
-}
 class Table {
   constructor(name) {
     this.name = name;
@@ -43,7 +14,9 @@ class Table {
         document.getElementById("inputName4").value),
     ];
     renderDeck(jogadores);
-    const carta1 = new Xerife("xerife", 5, 1, jogadores[0], "carta1");
+    cemytery = []; //toda carta usada vai para o cemiterio
+    //(name, pseudoname, id)
+    const carta1 = new Xerife("xerife", jogadores[0], "carta1");
     //const carta2 = new renegado("renegado", 5 ,1 , jogadores[1]);
     //const carta3 = new foradalei("foradalei", 5 ,1 , jogadores[2]);
     //const carta4 = new foradalei("foradalei", 5 ,1 , 4, jogadores[3]);
@@ -102,8 +75,9 @@ class Table {
       }
     }
   }
-
-  checkPair() {
+//nessa etapa iremos configurar os turnos de cada jogador
+//ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
+  turn() {
     //const carta1 = this.deck.find(element => element.selecionado);
     //const carta2 = this.deck.findLast(element => element.selecionado);
     let cartasId = [...document.querySelectorAll(".selecionado")].map(
@@ -155,7 +129,7 @@ class Table {
         document.getElementById(i).classList.remove("selecionado");
     }, 1500);
   }
-
+  //chacar jogadores se alguem morreu, se alguem morreu e definir vencedodr
   checkStatus() {
     // checar o status do jogo
     console.log(

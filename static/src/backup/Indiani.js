@@ -1,7 +1,8 @@
-//GATINS.JS
-class Gatling extends CardAction {
+//INDIANI.JS
+class Indiani extends Weapon {
   constructor(name, id) {
     super(name, id);
+    this.atack = 1;
   }
 
   buscarAlvos() {

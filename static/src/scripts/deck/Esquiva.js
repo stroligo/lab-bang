@@ -1,7 +1,8 @@
-//WELLFARGO
-class Wellfargo extends CardAction {
+//ESQUIVA.JS
+class Esquiva extends Weapon {
   constructor(name, id) {
     super(name, id);
+    this.atack = 1;
   }
 
   buscarAlvos() {

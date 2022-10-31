@@ -1,7 +1,12 @@
-//CARDACTION.JS
-class CardAction extends Card {
-  constructor(name, id) {
+//WEAPON.JS
+class Target extends Card {
+  constructor(name, id, atack) {
     super(name, "action", id);
+    this.atack = atack;
+  }
+
+  getAtack() {
+    return this.atack;
   }
 
   buscarAlvosProximos() {
@@ -29,7 +34,11 @@ class CardAction extends Card {
     }
   }
 
-  atacar([array]) {}
+  
 }
 
-//constructor (id, nome, tipo, ataque, defesa, hp, source, ncards, teste){
+if (typeof module !== 'undefined') {
+  module.exports = {
+    Weapon
+  };
+};

@@ -1,7 +1,8 @@
 //WHISKY.JS
-class Whisky extends CardAction {
+class Whisky extends Weapon {
   constructor(name, id) {
     super(name, id);
+    this.atack = 2;
   }
 
   buscarAlvos() {
