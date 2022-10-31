@@ -34,7 +34,7 @@ gulp.task("uglifyJS", function () {
 
 gulp.task("concatJS", function () {
   return gulp
-    .src([themePath + "/src/scripts/**/*.js", themePath + "/build/*.js"])
+    .src([themePath + "/src/scripts/cards/*.js", themePath + "/build/*.js"])
     .pipe(concat("script.js"))
     .pipe(gulp.dest(themePath + "/build"))
     .on("end", function () {
