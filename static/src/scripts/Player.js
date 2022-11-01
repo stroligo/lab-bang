@@ -1,7 +1,8 @@
 //APLAYER.JS
-class APlayer extends ACard {
+// @ts-check
+class Player extends Card {
   constructor(name, pseudoname, id, hp = 5, range = 1) {
-    super(name, "player", id);
+    super(name, "roles", id);
     this.range = range;
     this.pseudoname = pseudoname;
     this.hp = hp;
@@ -9,6 +10,6 @@ class APlayer extends ACard {
   }
 
   setHP(value) {
-    this.hp = this.hp + sd;
+    this.hp = this.hp;
   }
 }

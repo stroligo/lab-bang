@@ -1,7 +1,8 @@
 //ESQUIVA.JS
-class Esquiva extends ACard {
+// @ts-check
+class Missed extends Card {
   constructor(name, id) {
-    super(name, id);
+    super(name, 'cards', id);
     this.atack = 1;
   }
 

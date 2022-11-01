@@ -1,7 +1,7 @@
 //GATINS.JS
-class Gatling extends Weapon {
-  constructor(name, id) {
-    super(name, id);
+class Gatling extends Card {
+  constructor(name, classe, id) {
+    super(name, 'cards', id);
     this.atack = 1;
   }
 

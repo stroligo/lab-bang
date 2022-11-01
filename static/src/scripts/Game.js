@@ -1,58 +1,54 @@
 // CLASSE
 // HEAD
+// @ts-check
 class Game {
   constructor(name) {
     this.name = name;
+    
     const jogadores = [
+      // @ts-ignore
       (document.getElementById("player1").innerHTML =
+        // @ts-ignore
         document.getElementById("inputName1").value),
       (document.getElementById("player2").innerHTML =
+        // @ts-ignore
         document.getElementById("inputName2").value),
+      // @ts-ignore
       (document.getElementById("player3").innerHTML =
         document.getElementById("inputName3").value),
+      // @ts-ignore
       (document.getElementById("player4").innerHTML =
-        document.getElementById("inputName4").value),
+        document.getElementById("inputName4").value)
     ];
+    
     renderDeck(jogadores);
-
+    
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
-    const carta1 = new Sheriff("xerife", jogadores[0], "1");
-    const carta2 = new Renegade("renegado", jogadores[1], "2");
-    const carta3 = new Outlaw("foradalei", jogadores[2], "3");
-    const carta4 = new Outlaw("foradalei", jogadores[3], "4");
-    this.player = [carta1, carta2, carta3, carta4];
-    renderDeck(this.player);
-    this.deck = []
-    for (let i=5; i <=31; i++) {
-      this.deck.push = new Bang("bang", i);
-      this.deck.push = new Bang("beer", i)
-      this.deck.push = new Bang("esquiva", i)
-    }
-  }
+    
+    const player1 = new Sheriff("sheriff", jogadores[0], "1");
+    const player2 = new Renegade("renegade", jogadores[1], "2");
+    const player3 = new Outlaw("outlaw", jogadores[2], "3");
+    const player4 = new Outlaw("outlaw", jogadores[3], "4");
+    this.roles = [player1, player2, player3, player4];
+    renderDeck(this.roles);
 
+    this.deck=[];
+   
+    for (let i=5; i <=30; i++) {
+      this.deck.push(new Bang("bang", i));
+      this.deck.push(new Beer("beer", i+1));
+      this.deck.push(new Missed("missed", i+2));
+        }
+        console.log(this.deck);
+  }
+ 
   renderDeck() {
     console.log("randomizar o deck ->> EMBARALHAR -> shufle");
     this.deck.sort(() => {
       return Math.random() - 0.5;
     });
-
-    //capturar o board
-    const board = document.getElementById("board");
-
-    console.log(
-      "iterar pela array do deck e criar as minhas cartas viradas para baixo"
-    );
-    this.deck.forEach((element) => {
-      const imgBack = document.createElement("img"); // <img />
-      imgBack.id = element.id;
-      imgBack.src = element.verso;
-      imgBack.alt = "carta virada";
-      imgBack.className = "show cardBack";
-      board.appendChild(imgBack);
-      document.getElementById(element.id).classList.add(element.classe);
-    });
-  }
+     }
 
   flipCard(event) {
     const idCarta = event.currentTarget["id"];
@@ -129,6 +125,7 @@ class Game {
     //this.deck.forEach(element, index => element.selecionado = false)
     setTimeout((event) => {
       for (let i of cartasId)
+        // @ts-ignore
         document.getElementById(i).classList.remove("selecionado");
     }, 1500);
   }
@@ -152,7 +149,7 @@ class Game {
     const cardsTurn = document.querySelectorAll(".turn");
     if (cardsTurn.length === this.deck.length) {
       console.log("Venceu!!");
-      alert(`${this.player} você venceu!!`);
+  //    alert(`${this.player} você venceu!!`);
     }
   }
 }

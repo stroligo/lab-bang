@@ -89,16 +89,16 @@
               <fieldset>
                 <input
                   class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="inputName1" type="text" placeholder="Digite o nome do primeiro jogador" />
+                  id="inputName1" required type="text" placeholder="Digite o nome do primeiro jogador" />
                 <input
                   class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="inputName2" type="text" placeholder="Digite o nome do segundo jogador" />
+                  id="inputName2" required type="text" placeholder="Digite o nome do segundo jogador" />
                 <input
                   class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="inputName3" type="text" placeholder="Digite o nome do terceiro jogador" />
+                  id="inputName3" required type="text" placeholder="Digite o nome do terceiro jogador" />
                 <input
                   class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="inputName4" type="text" placeholder="Digite o nome do quarto jogador" />
+                  id="inputName4" required type="text" placeholder="Digite o nome do quarto jogador" />
 
                 <button class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400" type="submit"
                   id="btnStart">
@@ -134,8 +134,19 @@
       </div>
     </div>
   </footer>
+  <script src="./src/scripts/Card.js"></script>
+  <script src="./src/scripts/Player.js"></script>
+  <script src="./src/scripts/Game.js"></script>
+  <script src="./src/scripts/selector.js"></script>
+  <script src="./src/scripts/roles/Sheriff.js"></script>
+  <script src="./src/scripts/roles/Renegade.js"></script>
+  <script src="./src/scripts/roles/Outlaw.js"></script>
+  <script src="./src/scripts/deck/Bang.js"></script>
+  <script src="./src/scripts/deck/Beer.js"></script>
+  <script src="./src/scripts/deck/Missed.js"></script>
+  <script src="./src/scripts/Target.js"></script>
+  
 
-  <script src="./build/script.js"></script>
 </body>
 
 </html>
