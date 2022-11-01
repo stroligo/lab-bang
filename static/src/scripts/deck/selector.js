@@ -1,4 +1,4 @@
-//_BASE.JS
+//SELECTOR.JS
 //capturando todos os elementos de html
 const gameScreen = document.getElementById("gameScreen");
 const gameScore = document.getElementById("gameScore");
@@ -6,10 +6,10 @@ const playerName = document.getElementById("name");
 const board = document.getElementById("board");
 //adicionar o event listener do submit
 addEventListener("submit", () => {
-  const game = new Table("mesa1");
+  const game = new Game("game");
   // startScreen desapareça
   startScreen.classList.add("hide");
-  // mostrar o gameScore
+  // mostrar o gameScores
   gameScore.className = "show";
   game.renderDeck();
   settingUpGame(game);

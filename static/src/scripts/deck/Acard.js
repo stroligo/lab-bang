@@ -1,8 +1,9 @@
-//CARD.JS
-class Card {
+//ACARD.JS
+class ACard {
   constructor(name, classe, id) {
     this.name = name;
     this.alt = name;
+    this.class = classe;
     this.id = id;
   }
 

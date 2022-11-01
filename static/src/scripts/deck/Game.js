@@ -1,6 +1,6 @@
 // CLASSE
 // HEAD
-class Table {
+class Game {
   constructor(name) {
     this.name = name;
     const jogadores = [
@@ -14,15 +14,21 @@ class Table {
         document.getElementById("inputName4").value),
     ];
     renderDeck(jogadores);
-    cemytery = []; //toda carta usada vai para o cemiterio
+
+    this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
-    const carta1 = new Xerife("xerife", jogadores[0], "carta1");
-    //const carta2 = new renegado("renegado", 5 ,1 , jogadores[1]);
-    //const carta3 = new foradalei("foradalei", 5 ,1 , jogadores[2]);
-    //const carta4 = new foradalei("foradalei", 5 ,1 , 4, jogadores[3]);
-    this.player = [carta1, carta1, carta1, carta1];
-    const carta5 = new Bang("bang", "carta5");
-    this.deck = [carta1, carta5, carta1, carta5];
+    const carta1 = new Sheriff("xerife", jogadores[0], "1");
+    const carta2 = new Renegade("renegado", jogadores[1], "2");
+    const carta3 = new Outlaw("foradalei", jogadores[2], "3");
+    const carta4 = new Outlaw("foradalei", jogadores[3], "4");
+    this.player = [carta1, carta2, carta3, carta4];
+    renderDeck(this.player);
+    this.deck = []
+    for (let i=5; i <=31; i++) {
+      this.deck.push = new Bang("bang", i);
+      this.deck.push = new Bang("beer", i)
+      this.deck.push = new Bang("esquiva", i)
+    }
   }
 
   renderDeck() {

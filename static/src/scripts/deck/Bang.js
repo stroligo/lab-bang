@@ -1,17 +1,11 @@
 //BANG.JS
-class Bang extends Card {
+class Bang extends ACard {//rever exteds de card
   constructor(name, id) {
     super(name, id);
     this.atack = 1;
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio();
+    return super.buscarAlvosProximos();
   }
-}
-
-if (typeof module !== "undefined") {
-  module.exports = {
-    Bang,
-  };
 }

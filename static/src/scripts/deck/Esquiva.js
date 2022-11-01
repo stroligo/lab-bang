@@ -1,5 +1,5 @@
 //ESQUIVA.JS
-class Esquiva extends Card {
+class Esquiva extends ACard {
   constructor(name, id) {
     super(name, id);
     this.atack = 1;

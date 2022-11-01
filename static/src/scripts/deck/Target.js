@@ -1,5 +1,7 @@
-//WEAPON.JS
-class Target extends Card {
+//TARGET.JS
+//recebe posicao,  analisar o range, ver posicao do alvos, usa carta
+//buscar na mesa
+class Target extends ACard {
   constructor(name, id, atack) {
     super(name, "action", id);
     this.atack = atack;
@@ -32,13 +34,6 @@ class Target extends Card {
     for (let i of array) {
       document.getElementById(i).classList.add("alvos");
     }
-  }
-
-  
+  }  
 }
 
-if (typeof module !== 'undefined') {
-  module.exports = {
-    Weapon
-  };
-};
