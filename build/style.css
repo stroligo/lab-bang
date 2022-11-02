@@ -7644,10 +7644,14 @@ fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 .player .hand ul li {
   cursor: pointer;
   margin-right: 2px;
+  max-width: 77px !important;
 }
 .player.numero1 {
   top: 5%;
