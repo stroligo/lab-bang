@@ -4,51 +4,75 @@
 class Game {
   constructor(name) {
     this.name = name;
-    
+
     const jogadores = [
       // @ts-ignore
-      (document.getElementById("player1").innerHTML =
-        // @ts-ignore
-        document.getElementById("inputName1").value),
-      (document.getElementById("player2").innerHTML =
-        // @ts-ignore
-        document.getElementById("inputName2").value),
-      // @ts-ignore
-      (document.getElementById("player3").innerHTML =
-        document.getElementById("inputName3").value),
-      // @ts-ignore
-      (document.getElementById("player4").innerHTML =
-        document.getElementById("inputName4").value)
+      (document.getElementById("nameplayer1").innerHTML = document.getElementById("inputName1").value),
+      (document.getElementById("nameplayer2").innerHTML = document.getElementById("inputName2").value),
+      (document.getElementById("nameplayer3").innerHTML = document.getElementById("inputName3").value),
+      (document.getElementById("nameplayer4").innerHTML = document.getElementById("inputName4").value)
     ];
-    
+
     renderDeck(jogadores);
-    
+
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
-    
-    const player1 = new Sheriff("sheriff", jogadores[0], "1");
-    const player2 = new Renegade("renegade", jogadores[1], "2");
-    const player3 = new Outlaw("outlaw", jogadores[2], "3");
-    const player4 = new Outlaw("outlaw", jogadores[3], "4");
+
+    const player1 = new Sheriff("sheriff", jogadores[0], "player1");
+    const player2 = new Renegade("renegade", jogadores[1], "player2");
+    const player3 = new Outlaw("outlaw", jogadores[2], "player3");
+    const player4 = new Outlaw("outlaw", jogadores[3], "player4");
     this.roles = [player1, player2, player3, player4];
     renderDeck(this.roles);
+    
+    this.deck = [];
 
-    this.deck=[];
-   
-    for (let i=5; i <=30; i++) {
+    this.roles.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
+
+    for (let i = 5; i <= 30; i = i + 3) {
       this.deck.push(new Bang("bang", i));
-      this.deck.push(new Beer("beer", i+1));
-      this.deck.push(new Missed("missed", i+2));
-        }
-        console.log(this.deck);
+      this.deck.push(new Beer("beer", i + 1));
+      this.deck.push(new Missed("missed", i + 2));
+    }
+
+    renderDeck(this.deck)
+    //compra inicial de cartas
+
+    this.roles.forEach(element => {
+         element.ComprarCartas(this.deck.shift(),0)
+    });
+
+    this.roles.forEach(element => {
+      //element.ComprarCartas(this.roles.shift(),0)
+      for (let i = 0; i < element.hp; i++)
+        element.ComprarCartas(this.deck.shift(),2)
+    });
+
+    console.log("Cartas Foram distribuidas")
+
+
+    const inicio = this.roles[0].id
+    console.log(this.roles[0].pseudoname);
+    console.log("Selecionado");
+    document.getElementById(inicio).classList.add("selecionado");
+
+
+
+
+
+
+
+
+
+
   }
- 
+
   renderDeck() {
     console.log("randomizar o deck ->> EMBARALHAR -> shufle");
     this.deck.sort(() => {
       return Math.random() - 0.5;
     });
-     }
+  }
 
   flipCard(event) {
     const idCarta = event.currentTarget["id"];
@@ -149,7 +173,7 @@ class Game {
     const cardsTurn = document.querySelectorAll(".turn");
     if (cardsTurn.length === this.deck.length) {
       console.log("Venceu!!");
-  //    alert(`${this.player} você venceu!!`);
+      //    alert(`${this.player} você venceu!!`);
     }
   }
 }

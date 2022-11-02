@@ -7,6 +7,6 @@ class Missed extends Card {
   }
 
   buscarAlvos() {
-    return super.buscarAlvoSiProprio();
+    //return super.buscarAlvoSiProprio();
   }
 }

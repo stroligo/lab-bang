@@ -44,6 +44,14 @@ fieldset {
 #footer {
   height: 5vh;
 }
+li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+.player {
+  border: 3px solid blue;
+}
 /* ! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com */
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
