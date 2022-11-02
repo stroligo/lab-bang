@@ -52,6 +52,9 @@ li {
 .player {
   border: 3px solid blue;
 }
+.target {
+  border: 10px solid red;
+}
 /* ! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com */
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)

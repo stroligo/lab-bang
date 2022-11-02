@@ -1,12 +1,11 @@
 //BEER.JS
 // @ts-check
 class Beer extends Card {
-  constructor(name, id) {
-    super(name, 'cards', id);
-    this.atack = 1;
+  constructor(name, id, atack = 0, defesa =0, vida = 1) {
+    super(name, 'cards', id, atack, defesa, vida);
   }
 
-  buscarAlvos() {
-    //return super.buscarAlvoSiProprio();
+  buscarAlvos(spot) {
+    return buscarAlvoSiProprio(spot);
   }
 }

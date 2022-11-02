@@ -22,7 +22,9 @@ addEventListener("submit", () => {
 function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
-  const allCardsBack = document.querySelectorAll(".cardFront");
+  const turn = document.querySelectorAll(".turn");
+  
+  turn.forEach(turn => turn.addEventListener("click", event => game.turn(event)));
 
-  allCardsBack.forEach(cardBack => cardBack.addEventListener("click", event => game.flipCard(event)));
+  
 }

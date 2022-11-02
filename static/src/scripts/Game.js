@@ -1,7 +1,8 @@
 // CLASSE
 // HEAD
-// @ts-check
+
 class Game {
+
   constructor(name) {
     this.name = name;
 
@@ -13,7 +14,7 @@ class Game {
       (document.getElementById("nameplayer4").innerHTML = document.getElementById("inputName4").value)
     ];
 
-    renderDeck(jogadores);
+    //renderDeck(jogadores);
 
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
@@ -22,12 +23,17 @@ class Game {
     const player2 = new Renegade("renegade", jogadores[1], "player2");
     const player3 = new Outlaw("outlaw", jogadores[2], "player3");
     const player4 = new Outlaw("outlaw", jogadores[3], "player4");
-    this.roles = [player1, player2, player3, player4];
-    renderDeck(this.roles);
+    this.deck = [player1, player2, player3, player4];
+    //renderDeck(this.deck);
+    this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
     
-    this.deck = [];
+    this.role = [player1, player2, player3, player4];
 
-    this.roles.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
+    this.role.forEach(element => {
+      element.ComprarCartas(this.deck.shift(), 2)
+    });
+
+    this.deck = []
 
     for (let i = 5; i <= 30; i = i + 3) {
       this.deck.push(new Bang("bang", i));
@@ -38,32 +44,20 @@ class Game {
     renderDeck(this.deck)
     //compra inicial de cartas
 
-    this.roles.forEach(element => {
-         element.ComprarCartas(this.deck.shift(),0)
-    });
 
-    this.roles.forEach(element => {
+    this.role.forEach(element => {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
-        element.ComprarCartas(this.deck.shift(),2)
+        element.ComprarCartas(this.deck.shift(), 0)
     });
 
     console.log("Cartas Foram distribuidas")
 
-
-    const inicio = this.roles[0].id
-    console.log(this.roles[0].pseudoname);
+    //iniciando a partida
+    const inicio = this.role[0].id
+    console.log(this.role[0].pseudoname);
     console.log("Selecionado");
-    document.getElementById(inicio).classList.add("selecionado");
-
-
-
-
-
-
-
-
-
+    document.getElementById(inicio).classList.add("turn");
 
   }
 
@@ -74,8 +68,8 @@ class Game {
     });
   }
 
-  flipCard(event) {
-    const idCarta = event.currentTarget["id"];
+  partida() {
+    //const idCarta = event.currentTarget["id"];
     console.log(idCarta);
     if (
       document.getElementById(idCarta).classList.contains("turn", "selecionado")
@@ -99,12 +93,46 @@ class Game {
       }
     }
   }
+
   //nessa etapa iremos configurar os turnos de cada jogador
   //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
-  turn() {
+  turn(event) {
+    //const game1 = new Game("game");
+ 
+    const idCarta = event.currentTarget["id"];
+    alert(idCarta+"Selecionada");
+    let objeto;
+    if (idCarta == "player1") objeto=this.role[0]
+    if (idCarta == "player2") objeto=this.role[1]
+    if (idCarta == "player3") objeto=this.role[2]
+    if (idCarta == "player4") objeto=this.role[3]
+    if (idCarta == "player5") objeto=this.role[4]
+    if (idCarta == "player6") objeto=this.role[5]
+    if (idCarta == "player7") objeto=this.role[6]
+   
+     
+    objeto.ComprarCartas(this.deck.shift(), 0)
+    objeto.ComprarCartas(this.deck.shift(), 0) 
+   
+
+    //const spot1 = this.role[0].getStpot(idCarta, this.role) //trocar para metodo estatico futuramente
+    const spot = objeto.spot    
+    const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
+    //buscando cartas da mão
+
+   
+    li.childNodes.forEach((element, index) => {
+      if (index != 0)  //primeiro elemento é text, depois começa os li
+        li.children[index - 1].classList.add("turn")
+    });
+
+       
+    //selecionarAlvos(buscarAlvosProximos(spot))
+   
+
     //const carta1 = this.deck.find(element => element.selecionado);
     //const carta2 = this.deck.findLast(element => element.selecionado);
-    let cartasId = [...document.querySelectorAll(".selecionado")].map(
+    /*let cartasId = [...document.querySelectorAll(".selecionado")].map(
       (element) => element.id
     );
     const idCarta1 = cartasId[0];
@@ -270,9 +298,11 @@ class Game {
 
       buscarAlvos() {
         return super.buscarAlvosProximos();
-      }
-    }
-  */
+      }*/
+  }
+
+}
+
 
 function renderDeck(array) {
   console.log("randomizar o deck ->> EMBARALHAR -> shufle");
