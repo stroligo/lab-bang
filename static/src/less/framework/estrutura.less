@@ -1,0 +1,167 @@
+/* Estrutura */
+// Base //
+* {
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  font-size: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+// Scroll //
+::-webkit-scrollbar {
+  width: 8px;
+  background: none;
+}
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: @principal;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: @principal;
+}
+
+// Grid //
+/// Wrap ///
+.wrap {
+  margin: 0 auto;
+}
+
+// Posições //
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.sticky {
+  position: sticky;
+}
+
+// Aparências //
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.table {
+  display: table;
+}
+.flex {
+  display: flex;
+}
+.oh {
+  overflow: hidden;
+}
+.vh {
+  visibility: hidden;
+}
+
+/// Flex ///
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.shrink {
+  flex-shrink: 0;
+}
+.flex-center {
+  justify-content: center;
+}
+.flex-middle {
+  align-items: center;
+}
+
+@media only screen and (min-width: 48em) {
+  .flex-row-sm {
+    flex-direction: row;
+  }
+  .flex-column-sm {
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 62em) {
+  .flex-row-md {
+    flex-direction: row;
+  }
+  .flex-column-md {
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .flex-row-lg {
+    flex-direction: row;
+  }
+  .flex-column-lg {
+    flex-direction: column;
+  }
+}
+
+// Alinhamento //
+.center-block {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.centro-vertical > * {
+  vertical-align: middle;
+}
+
+// Tamanho //
+/// Largura ///
+.wt100 {
+  width: 100%;
+}
+.wt50 {
+  width: 50%;
+}
+
+/// Altura ///
+.ht100 {
+  height: 100%;
+}
+.ht50 {
+  height: 50%;
+}
+
+// z-index //
+.z0 {
+  z-index: 0;
+}
+.z1 {
+  z-index: 9;
+}
+.z2 {
+  z-index: 99;
+}
+.z3 {
+  z-index: 999;
+}
+.z4 {
+  z-index: 9999;
+}
+.z5 {
+  z-index: 99999;
+}
+.z6 {
+  z-index: 999999;
+}

@@ -8,10 +8,14 @@ class Game {
 
     const jogadores = [
       // @ts-ignore
-      (document.getElementById("nameplayer1").innerHTML = document.getElementById("inputName1").value),
-      (document.getElementById("nameplayer2").innerHTML = document.getElementById("inputName2").value),
-      (document.getElementById("nameplayer3").innerHTML = document.getElementById("inputName3").value),
-      (document.getElementById("nameplayer4").innerHTML = document.getElementById("inputName4").value)
+      (document.getElementById("nameplayer1").innerHTML =
+        document.getElementById("inputName1").value),
+      (document.getElementById("nameplayer2").innerHTML =
+        document.getElementById("inputName2").value),
+      (document.getElementById("nameplayer3").innerHTML =
+        document.getElementById("inputName3").value),
+      (document.getElementById("nameplayer4").innerHTML =
+        document.getElementById("inputName4").value),
     ];
 
     //renderDeck(jogadores);
@@ -23,6 +27,14 @@ class Game {
     const player2 = new Renegade("renegade", jogadores[1], "player2");
     const player3 = new Outlaw("outlaw", jogadores[2], "player3");
     const player4 = new Outlaw("outlaw", jogadores[3], "player4");
+<<<<<<< HEAD
+    this.roles = [player1, player2, player3, player4];
+    renderDeck(this.roles);
+
+    this.deck = [];
+
+    this.roles.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
+=======
     this.deck = [player1, player2, player3, player4];
     //renderDeck(this.deck);
     this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
@@ -34,6 +46,7 @@ class Game {
     });
 
     this.deck = []
+>>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
 
     for (let i = 5; i <= 30; i = i + 3) {
       this.deck.push(new Bang("bang", i));
@@ -41,24 +54,42 @@ class Game {
       this.deck.push(new Missed("missed", i + 2));
     }
 
-    renderDeck(this.deck)
+    renderDeck(this.deck);
     //compra inicial de cartas
 
+<<<<<<< HEAD
+    this.roles.forEach((element) => {
+      element.ComprarCartas(this.deck.shift(), 0);
+    });
+
+    this.roles.forEach((element) => {
+      //element.ComprarCartas(this.roles.shift(),0)
+      for (let i = 0; i < element.hp; i++)
+        element.ComprarCartas(this.deck.shift(), 2);
+=======
 
     this.role.forEach(element => {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
         element.ComprarCartas(this.deck.shift(), 0)
+>>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
     });
 
-    console.log("Cartas Foram distribuidas")
+    console.log("Cartas Foram distribuidas");
 
+<<<<<<< HEAD
+    const inicio = this.roles[0].id;
+    console.log(this.roles[0].pseudoname);
+    console.log("Selecionado");
+    document.getElementById(inicio).classList.add("selecionado");
+=======
     //iniciando a partida
     const inicio = this.role[0].id
     console.log(this.role[0].pseudoname);
     console.log("Selecionado");
     document.getElementById(inicio).classList.add("turn");
 
+>>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
   }
 
   renderDeck() {
@@ -176,8 +207,8 @@ class Game {
     // setar todas cartas como não selecionadas
     //this.deck.forEach(element, index => element.selecionado = false)
     setTimeout((event) => {
+      // @ts-ignore
       for (let i of cartasId)
-        // @ts-ignore
         document.getElementById(i).classList.remove("selecionado");
     }, 1500);
   }
@@ -309,4 +340,7 @@ function renderDeck(array) {
   array.sort(() => {
     return Math.random() - 0.5;
   });
+}
+function teste() {
+  console.log("BANNNG!!!");
 }

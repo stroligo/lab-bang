@@ -1,0 +1,96 @@
+/* Funções */
+/* Auxiliares */
+.br(@r: 0.5rem;) {
+  border-radius: @r;
+}
+.bs(@string: 1px 2px 3px rgba(0,0,0,0.3) ) {
+  box-shadow: @string;
+}
+.delay (@delay: 0) {
+  animation-delay: @delay;
+}
+.delayloop (@i,@time) when (@i > 0) {
+  &:nth-child(@{i}) {
+    .delay(@i * @time);
+  }
+  .delayloop(@i - 1,@time);
+}
+.transition (@t:0.1s, @a: all, @e: ease-in-out) {
+  transition: @a @t @e;
+}
+.notransition() {
+  transition: none;
+}
+.rotate(@z: -90deg) {
+  transform-origin: 50%;
+  transform: rotate(@z);
+}
+.scale(@factor) {
+  transform: scale(@factor);
+}
+.translate(@x, @y:0) {
+  transform: translate(@x, @y);
+}
+
+/* Tamanho da fonte */
+.fluid(@min-font:18, @max-font:18,@base-font: 18px,@min-screen: 500px, @max-screen: 1440px) {
+  @min: unit((@min-font / @base-font), em);
+  @max: unit((@max-font / @base-font), em);
+  @dif: unit(@max - @min);
+  @minsx: unit((@min-screen / @base-font), em);
+  @maxsx: unit((@max-screen / @base-font), em);
+  @difsx: unit(@maxsx - @minsx);
+
+  font-size: @min;
+  @media screen and (min-width: @minsx) {
+    font-size: calc(@min + (@dif * ((100vw - @minsx) / @difsx)));
+  }
+  @media screen and (min-width: @maxsx) {
+    font-size: @max;
+  }
+}
+
+/* Animacoes */
+.animated(@name, @duration: 700ms, @ease: ease, @fill: both) {
+  animation: @name @duration @ease @fill;
+}
+.noAnimation() {
+  animation-name: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

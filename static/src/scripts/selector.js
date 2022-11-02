@@ -26,5 +26,11 @@ function settingUpGame(game) {
   
   turn.forEach(turn => turn.addEventListener("click", event => game.turn(event)));
 
+<<<<<<< HEAD
+  allCardsBack.forEach((cardBack) =>
+    cardBack.addEventListener("click", (event) => game.flipCard(event))
+  );
+=======
   
+>>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
 }

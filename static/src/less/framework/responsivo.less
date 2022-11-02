@@ -1,0 +1,58 @@
+/* Responsive */
+
+.visible-sm,
+.visible-md,
+.visible-lg {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 48em) {
+  .visible-sm {
+    display: block;
+  }
+  .invisible-sm {
+    display: none;
+  }
+  .block-sm {
+    display: block;
+  }
+  .inline-block-sm {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 62em) {
+  .visible-md {
+    display: block;
+  }
+  .invisible-md {
+    display: none;
+  }
+
+  .block-md {
+    display: block;
+  }
+  .inline-block-md {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .visible-lg {
+    display: block;
+  }
+  .block-lg {
+    display: block;
+  }
+  .inline-block-lg {
+    display: inline-block;
+  }
+}
