@@ -125,14 +125,14 @@ class Game {
 
     //const spot1 = this.role[0].getStpot(idCarta, this.role) //trocar para metodo estatico futuramente
     const spot = objeto.spot
-    const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
+    //const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
     //buscando cartas da mão
 
 
-    li.childNodes.forEach((element, index) => {
-      if (index != 0)  //primeiro elemento é text, depois começa os li
-        li.children[index - 1].classList.add("turn")
-    });
+    //li.childNodes.forEach((element, index) => {
+      //if (index != 0)  //primeiro elemento é text, depois começa os li
+        //li.children[index - 1].classList.add("turn")
+    //});
 
 
     //selecionarAlvos(buscarAlvosProximos(spot))
@@ -199,7 +199,7 @@ class Game {
     // se o jogador ainda tem pontos -> perdeu
     if (this.points === 0) {
       console.log("Você perdeu por pontos");
-      alert(`${this.player}, você não tem mais pontos! Tente novamente`);
+      alert(`${this.numero}, você não tem mais pontos! Tente novamente`);
 
       const board = document.querySelector("#board");
       board.classList.add("hide");
@@ -209,7 +209,7 @@ class Game {
     const cardsTurn = document.querySelectorAll(".turn");
     if (cardsTurn.length === this.deck.length) {
       console.log("Venceu!!");
-      //    alert(`${this.player} você venceu!!`);
+      //    alert(`${this.numero} você venceu!!`);
     }
   }
 }
@@ -237,8 +237,8 @@ class Game {
 
       buscarAlvoTodos() {
         const spot =
-          document.getElementsByClassName("player selecionado")[0].id;
-        return [...document.getElementsByClassName("player")]
+          document.getElementsByClassName("numero selecionado")[0].id;
+        return [...document.getElementsByClassName("numero")]
           .map((element) => element.id)
           .filter((element) => element != spot);
       }
@@ -251,15 +251,15 @@ class Game {
 
       atacar([array]) {}
     }
-    class CardPlayer2 extends Card2 {
+    class Cardnumero2 extends Card2 {
       constructor(name, hp, range, pseudoname, id) {
-        super(name, "player", id);
+        super(name, "numero", id);
         this.hp = hp;
         this.range = range;
         this.pseudoname = pseudoname;
       }
     }
-    class Xerife2 extends CardPlayer2 {
+    class Xerife2 extends Cardnumero2 {
       constructor(name, hp, range, pseudoname, id) {
         super(name, hp, range, pseudoname, id);
       }
@@ -284,8 +284,8 @@ class Game {
 
       buscarAlvoTodos() {
         const spot =
-          document.getElementsByClassName("player selecionado")[0].id;
-        return [...document.getElementsByClassName("player")]
+          document.getElementsByClassName("numero selecionado")[0].id;
+        return [...document.getElementsByClassName("numero")]
           .map((element) => element.id)
           .filter((element) => element != spot);
       }

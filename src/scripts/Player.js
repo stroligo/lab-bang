@@ -20,7 +20,7 @@ class Player extends Card {
     if (tipo == 2) { //role
 
       document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("li"))
-      document.getElementsByClassName(this.id)[0].children[0].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true))
+      document.getElementsByClassName(this.id)[0].children[0].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden")
       document.getElementById(carta.id).remove()
     }
 
@@ -28,7 +28,7 @@ class Player extends Card {
     if (tipo == 0) {
       // document.getElementById(carta.id).className = "apagar"
       document.getElementsByClassName(this.id)[0].children[1].appendChild(document.createElement("li"))
-      document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true))
+      document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden")
       //document.getElementsByClassName("apagar")[0].remove();
       document.getElementById(carta.id).remove()
     }

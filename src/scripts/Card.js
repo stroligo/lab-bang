@@ -16,7 +16,7 @@ class Card {
     imgFront.src = this.frente;
     imgFront.className = "show cardFront";
     board.appendChild(imgFront);
-    document.getElementById(this.id).classList.add(this.classe,"card");
+    document.getElementById(this.id).classList.add(this.classe,"card" , "hidden");
   }
 
   getId() {

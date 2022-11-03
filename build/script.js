@@ -61,7 +61,7 @@ var Card = /*#__PURE__*/function () {
     imgFront.src = this.frente;
     imgFront.className = "show cardFront";
     board.appendChild(imgFront);
-    document.getElementById(this.id).classList.add(this.classe, "card");
+    document.getElementById(this.id).classList.add(this.classe, "card", "hidden");
   }
   _createClass(Card, [{
     key: "getId",
@@ -89,7 +89,16 @@ var Card = /*#__PURE__*/function () {
     }
   }]);
   return Card;
-}(); // CLASSE
+}(); // IMPRIMIR NO CONSOLE GAME
+var consoleGame = document.getElementById("console");
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+
+// CLASSE
 // HEAD
 var Game = /*#__PURE__*/function () {
   function Game(name) {
@@ -107,8 +116,15 @@ var Game = /*#__PURE__*/function () {
     var numero2 = new Renegade("renegade", jogadores[1], "numero2");
     var numero3 = new Outlaw("outlaw", jogadores[2], "numero3");
     var numero4 = new Outlaw("outlaw", jogadores[3], "numero4");
+    this.roles = [numero1, numero2, numero3, numero4];
+    //renderDeck(this.roles);
+
+    this.deck = [];
+    this.roles.forEach(function (element, index) {
+      return element.setSpot(index + 1);
+    }); //.setSpot())
+
     this.deck = [numero1, numero2, numero3, numero4];
-    //renderDeck(this.deck);
     this.deck.forEach(function (element, index) {
       return element.setSpot(index + 1);
     }); //.setSpot())
@@ -130,7 +146,7 @@ var Game = /*#__PURE__*/function () {
     this.role.forEach(function (element) {
       //element.ComprarCartas(this.roles.shift(),0)
       for (var _i = 0; _i < element.hp; _i++) {
-        element.ComprarCartas(_this.deck.shift(), 2);
+        element.ComprarCartas(_this.deck.shift(), 0);
       }
     });
     console.log("Cartas Foram distribuidas");
@@ -142,6 +158,14 @@ var Game = /*#__PURE__*/function () {
     document.getElementById(inicio).classList.add("turn");
   }
   _createClass(Game, [{
+    key: "renderDeck",
+    value: function renderDeck() {
+      console.log("randomizar o deck ->> EMBARALHAR -> shufle");
+      this.deck.sort(function () {
+        return Math.random() - 0.5;
+      });
+    }
+  }, {
     key: "partida",
     value: function partida() {
       //const idCarta = event.currentTarget["id"];
@@ -187,14 +211,13 @@ var Game = /*#__PURE__*/function () {
 
       //const spot1 = this.role[0].getStpot(idCarta, this.role) //trocar para metodo estatico futuramente
       var spot = objeto.spot;
-      var li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
+      //const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
       //buscando cartas da mão
 
-      li.childNodes.forEach(function (element, index) {
-        if (index != 0)
-          //primeiro elemento é text, depois começa os li
-          li.children[index - 1].classList.add("turn");
-      });
+      //li.childNodes.forEach((element, index) => {
+      //if (index != 0)  //primeiro elemento é text, depois começa os li
+      //li.children[index - 1].classList.add("turn")
+      //});
 
       //selecionarAlvos(buscarAlvosProximos(spot))
 
@@ -254,7 +277,7 @@ var Game = /*#__PURE__*/function () {
       // se o jogador ainda tem pontos -> perdeu
       if (this.points === 0) {
         console.log("Você perdeu por pontos");
-        alert(`${this.player}, você não tem mais pontos! Tente novamente`);
+        alert(`${this.numero}, você não tem mais pontos! Tente novamente`);
           const board = document.querySelector("#board");
         board.classList.add("hide");
       }
@@ -262,7 +285,7 @@ var Game = /*#__PURE__*/function () {
       const cardsTurn = document.querySelectorAll(".turn");
       if (cardsTurn.length === this.deck.length) {
         console.log("Venceu!!");
-        //    alert(`${this.player} você venceu!!`);
+        //    alert(`${this.numero} você venceu!!`);
       }
       }
       }
@@ -287,8 +310,8 @@ var Game = /*#__PURE__*/function () {
         }
           buscarAlvoTodos() {
           const spot =
-            document.getElementsByClassName("player selecionado")[0].id;
-          return [...document.getElementsByClassName("player")]
+            document.getElementsByClassName("numero selecionado")[0].id;
+          return [...document.getElementsByClassName("numero")]
             .map((element) => element.id)
             .filter((element) => element != spot);
         }
@@ -299,15 +322,15 @@ var Game = /*#__PURE__*/function () {
         }
           atacar([array]) {}
       }
-      class CardPlayer2 extends Card2 {
+      class Cardnumero2 extends Card2 {
         constructor(name, hp, range, pseudoname, id) {
-          super(name, "player", id);
+          super(name, "numero", id);
           this.hp = hp;
           this.range = range;
           this.pseudoname = pseudoname;
         }
       }
-      class Xerife2 extends CardPlayer2 {
+      class Xerife2 extends Cardnumero2 {
         constructor(name, hp, range, pseudoname, id) {
           super(name, hp, range, pseudoname, id);
         }
@@ -328,8 +351,8 @@ var Game = /*#__PURE__*/function () {
         }
           buscarAlvoTodos() {
           const spot =
-            document.getElementsByClassName("player selecionado")[0].id;
-          return [...document.getElementsByClassName("player")]
+            document.getElementsByClassName("numero selecionado")[0].id;
+          return [...document.getElementsByClassName("numero")]
             .map((element) => element.id)
             .filter((element) => element != spot);
         }
@@ -350,7 +373,19 @@ var Game = /*#__PURE__*/function () {
     }
   }]);
   return Game;
-}(); //APLAYER.JS
+}();
+function onMouseenterOrMouseleaveCard(e) {
+  var _$this = $(this);
+  if (windowWidth < 1000 || _$this.hasClass('reverse-clicked')) {
+    return;
+  }
+  if (e.type === 'mouseenter') {
+    _$this.addClass('reverse');
+    return;
+  }
+  _$this.removeClass('reverse');
+}
+//APLAYER.JS
 var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
@@ -377,13 +412,13 @@ var Player = /*#__PURE__*/function (_Card) {
         //role
 
         document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("li"));
-        document.getElementsByClassName(this.id)[0].children[0].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true));
+        document.getElementsByClassName(this.id)[0].children[0].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden");
         document.getElementById(carta.id).remove();
       }
       if (tipo == 0) {
         // document.getElementById(carta.id).className = "apagar"
         document.getElementsByClassName(this.id)[0].children[1].appendChild(document.createElement("li"));
-        document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true));
+        document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden");
         //document.getElementsByClassName("apagar")[0].remove();
         document.getElementById(carta.id).remove();
       }
