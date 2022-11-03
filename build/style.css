@@ -7524,6 +7524,11 @@ fieldset {
       -ms-flex-pack: center;
           justify-content: center;
 }
+@media only screen and (max-width: 47em) {
+  #area {
+    background: none;
+  }
+}
 #mesa {
   border-radius: 10px;
   height: 50vh;
@@ -7558,6 +7563,15 @@ fieldset {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
+@media only screen and (max-width: 47em) {
+  #deck {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+  }
+}
 #cemitery {
   width: 100px;
   height: 160px;
@@ -7567,12 +7581,26 @@ fieldset {
 #cemitery.vazio {
   background: rgba(0, 0, 0, 0.5);
 }
-#players {
-  position: absolute;
-  top: 0;
-  left: auto;
-  width: 100%;
-  height: 100vh;
+@media only screen and (max-width: 47em) {
+  #cemitery {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    top: 1rem;
+    left: 6rem;
+  }
+  #players {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 .player {
   padding: 1rem;
@@ -7580,6 +7608,12 @@ fieldset {
   position: absolute;
   width: 30%;
   background: rgba(255, 255, 255, 0.8);
+}
+@media only screen and (max-width: 47em) {
+  .player {
+    position: relative;
+    margin-bottom: 1rem;
+  }
 }
 .player .infos {
   display: -webkit-box;
@@ -7592,6 +7626,11 @@ fieldset {
 .player .infos .foto {
   width: 100px;
   position: relative;
+}
+@media only screen and (max-width: 47em) {
+  .player .infos .foto {
+    width: 75px;
+  }
 }
 .player .infos .badge {
   opacity: 0;
@@ -7669,6 +7708,11 @@ fieldset {
   height: 118px;
   background: transparent;
 }
+@media only screen and (max-width: 47em) {
+  .player .hand .card-wrapper {
+    height: 75px;
+  }
+}
 .player .hand .card-wrapper.hide {
   display: none;
 }
@@ -7729,17 +7773,53 @@ fieldset {
   top: 5%;
   left: 35%;
 }
+@media only screen and (max-width: 47em) {
+  .player.numero1 {
+    top: 5%;
+    position: relative;
+    width: 85%;
+    left: 2rem;
+    right: 2rem;
+  }
+}
 .player.numero2 {
   top: 35%;
   right: 5%;
+}
+@media only screen and (max-width: 47em) {
+  .player.numero2 {
+    top: 5%;
+    position: relative;
+    width: 85%;
+    left: 2rem;
+    right: 2rem;
+  }
 }
 .player.numero3 {
   bottom: 5%;
   left: 35%;
 }
+@media only screen and (max-width: 47em) {
+  .player.numero3 {
+    top: 5%;
+    position: relative;
+    width: 85%;
+    left: 2rem;
+    right: 2rem;
+  }
+}
 .player.numero4 {
   top: 35%;
   left: 5%;
+}
+@media only screen and (max-width: 47em) {
+  .player.numero4 {
+    top: 5%;
+    position: relative;
+    width: 85%;
+    left: 2rem;
+    right: 2rem;
+  }
 }
 .turn {
   -webkit-transition: all 0.1s ease-in-out;
@@ -7749,6 +7829,12 @@ fieldset {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   z-index: 10;
+}
+@media only screen and (max-width: 47em) {
+  .turn {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 .turn:hover {
   z-index: 9999;
@@ -7760,6 +7846,11 @@ fieldset {
   cursor: pointer;
   margin-top: 3rem;
   margin-bottom: 1rem;
+}
+@media only screen and (max-width: 47em) {
+  .turn .hand {
+    margin-top: 1.5rem;
+  }
 }
 .turn .hand:hover .card .front,
 .turn .hand.focus .card .front {
@@ -7824,6 +7915,14 @@ fieldset {
 @media screen and (min-width: 80em) {
   #console {
     font-size: 0.77777778em;
+  }
+}
+@media only screen and (max-width: 47em) {
+  #console {
+    width: 45%;
+    top: 14px;
+    right: 1.5rem;
+    height: 81px;
   }
 }
 #console textarea {

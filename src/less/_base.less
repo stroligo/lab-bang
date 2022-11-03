@@ -2486,7 +2486,6 @@ fieldset {
 #header {
 }
 #hero {
-  //margin-top: 60px;
   background: url(../assets/bang/theme/back_.png);
   background-size: cover;
   height: 95vh;
@@ -2494,7 +2493,6 @@ fieldset {
 #game {
   .tcpreto;
   min-height: 100vh;
-  //background: url(../assets/bang/theme/back_.png) no-repeat bottom;
   background-size: 100%;
   background-position-y: bottom;
 }
@@ -2507,6 +2505,9 @@ fieldset {
   display: flex;
   align-items: center;
   justify-content: center;
+  @media @breakpoint-mobile-max {
+    background: none;
+  }
 }
 #mesa {
   border-radius: 10px;
@@ -2532,6 +2533,13 @@ fieldset {
     .transition;
     transform: scale(1.2);
   }
+  @media @breakpoint-mobile-max {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+  }
 }
 #cemitery {
   width: 100px;
@@ -2541,18 +2549,34 @@ fieldset {
   &.vazio {
     background: rgba(0, 0, 0, 0.5);
   }
+  @media @breakpoint-mobile-max {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    top: 1rem;
+    left: 6rem;
+  }
 }
 #players {
-  position: absolute;
-  top: 0;
-  left: auto;
-  width: 100%;
-  height: 100vh;
+  @media @breakpoint-mobile-max {
+    display: flex;
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: auto;
+
+    flex-wrap: wrap;
+  }
 }
 .player {
   .p1;
   border-radius: 10px;
   position: absolute;
+  @media @breakpoint-mobile-max {
+    position: relative;
+    margin-bottom: 1rem;
+  }
 
   width: 30%;
   background: rgba(255, 255, 255, 0.8);
@@ -2562,6 +2586,9 @@ fieldset {
     .foto {
       width: 100px;
       position: relative;
+      @media @breakpoint-mobile-max {
+        width: 75px;
+      }
     }
     .badge {
       opacity: 0;
@@ -2622,6 +2649,9 @@ fieldset {
     .card-wrapper {
       width: 75px;
       height: 118px;
+      @media @breakpoint-mobile-max {
+        height: 75px;
+      }
       background: transparent;
 
       &.hide {
@@ -2668,18 +2698,46 @@ fieldset {
   &.numero1 {
     top: 5%;
     left: 35%;
+    @media @breakpoint-mobile-max {
+      top: 5%;
+      position: relative;
+      width: 85%;
+      left: 2rem;
+      right: 2rem;
+    }
   }
   &.numero2 {
     top: 35%;
     right: 5%;
+    @media @breakpoint-mobile-max {
+      top: 5%;
+      position: relative;
+      width: 85%;
+      left: 2rem;
+      right: 2rem;
+    }
   }
   &.numero3 {
     bottom: 5%;
     left: 35%;
+    @media @breakpoint-mobile-max {
+      top: 5%;
+      position: relative;
+      width: 85%;
+      left: 2rem;
+      right: 2rem;
+    }
   }
   &.numero4 {
     top: 35%;
     left: 5%;
+    @media @breakpoint-mobile-max {
+      top: 5%;
+      position: relative;
+      width: 85%;
+      left: 2rem;
+      right: 2rem;
+    }
   }
 }
 .turn {
@@ -2687,6 +2745,9 @@ fieldset {
   background: rgb(218, 218, 218);
   border: 4px solid @marrom;
   transform: scale(1.2);
+  @media @breakpoint-mobile-max {
+    transform: scale(1);
+  }
   z-index: 10;
   &:hover {
     z-index: 9999;
@@ -2697,7 +2758,11 @@ fieldset {
   .hand {
     .pointer;
     margin-top: 3rem;
+    @media @breakpoint-mobile-max {
+      margin-top: 1.5rem;
+    }
     margin-bottom: 1rem;
+
     &:hover,
     &.focus {
       .card .front {
@@ -2750,6 +2815,12 @@ fieldset {
   width: 200px;
   height: 100px;
   border-radius: 10px;
+  @media @breakpoint-mobile-max {
+    width: 45%;
+    top: 14px;
+    right: 1.5rem;
+    height: 81px;
+  }
   textarea {
     .p1;
   }
