@@ -27,14 +27,14 @@ class Game {
     const player2 = new Renegade("renegade", jogadores[1], "player2");
     const player3 = new Outlaw("outlaw", jogadores[2], "player3");
     const player4 = new Outlaw("outlaw", jogadores[3], "player4");
-<<<<<<< HEAD
+
     this.roles = [player1, player2, player3, player4];
     renderDeck(this.roles);
 
     this.deck = [];
 
     this.roles.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
-=======
+
     this.deck = [player1, player2, player3, player4];
     //renderDeck(this.deck);
     this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
@@ -46,7 +46,6 @@ class Game {
     });
 
     this.deck = []
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
 
     for (let i = 5; i <= 30; i = i + 3) {
       this.deck.push(new Bang("bang", i));
@@ -57,7 +56,6 @@ class Game {
     renderDeck(this.deck);
     //compra inicial de cartas
 
-<<<<<<< HEAD
     this.roles.forEach((element) => {
       element.ComprarCartas(this.deck.shift(), 0);
     });
@@ -66,30 +64,30 @@ class Game {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
         element.ComprarCartas(this.deck.shift(), 2);
-=======
+
 
     this.role.forEach(element => {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
         element.ComprarCartas(this.deck.shift(), 0)
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
+
     });
 
     console.log("Cartas Foram distribuidas");
 
-<<<<<<< HEAD
+
     const inicio = this.roles[0].id;
     console.log(this.roles[0].pseudoname);
     console.log("Selecionado");
     document.getElementById(inicio).classList.add("selecionado");
-=======
+
     //iniciando a partida
     const inicio = this.role[0].id
     console.log(this.role[0].pseudoname);
     console.log("Selecionado");
     document.getElementById(inicio).classList.add("turn");
 
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
+
   }
 
   renderDeck() {
@@ -343,4 +341,21 @@ function renderDeck(array) {
 }
 function teste() {
   console.log("BANNNG!!!");
+}
+
+
+function onMouseenterOrMouseleaveCard(e) {
+  var _$this = $(this);
+
+  if (windowWidth < 1000 || _$this.hasClass('reverse-clicked')) {
+    return;
+  }
+
+  if (e.type === 'mouseenter') {
+    _$this.addClass('reverse');
+
+    return;
+  }
+  
+  _$this.removeClass('reverse');
 }

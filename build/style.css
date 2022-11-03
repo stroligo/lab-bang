@@ -7589,8 +7589,8 @@ fieldset {
 }
 .player .infos .badge {
   font-weight: 800;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: white;
   border: 1px solid #35220e;
   border-radius: 50%;
@@ -7604,12 +7604,29 @@ fieldset {
       -ms-flex-align: center;
           align-items: center;
   position: absolute;
-  bottom: -10px;
+  bottom: 20px;
   left: 0;
+}
+.player .infos .badge.sheriff {
+  background: url(../assets/bang/roles/p_sheriff.png);
+  background-size: cover;
+}
+.player .infos .badge.outlaw {
+  background: url(../assets/bang/roles/p_outlaw.png);
+  background-size: cover;
+}
+.player .infos .badge.renegade {
+  background: url(../assets/bang/roles/p_renegade.png);
+  background-size: cover;
+}
+.player .infos .badge.deputy {
+  background: url(../assets/bang/roles/p_deputy.png);
+  background-size: cover;
 }
 .player .infos .name {
   font-size: 1.55555556em;
   font-weight: 800;
+  text-align: right;
   border-bottom: 3px solid #f19103;
 }
 @media screen and (min-width: 27.77777778em) {
@@ -7640,6 +7657,56 @@ fieldset {
 .player .hand {
   margin-top: 1rem;
 }
+.player .hand .card-wrapper {
+  width: 75px;
+  height: 118px;
+  background: transparent;
+}
+.player .hand .card-wrapper.hide {
+  display: none;
+}
+.player .hand .card-wrapper .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75px;
+  height: 118px;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  position: relative;
+}
+.player .hand .card-wrapper .card .front {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 700ms;
+  transition: -webkit-transform 700ms;
+  transition: transform 700ms;
+  transition: transform 700ms, -webkit-transform 700ms;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: rotateY(0) translateX(-50%);
+          transform: rotateY(0) translateX(-50%);
+}
+.player .hand .card-wrapper .card .back {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 700ms;
+  transition: -webkit-transform 700ms;
+  transition: transform 700ms;
+  transition: transform 700ms, -webkit-transform 700ms;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: rotateY(180deg) translateX(-50%);
+          transform: rotateY(180deg) translateX(-50%);
+}
 .player .hand ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7649,9 +7716,7 @@ fieldset {
           justify-content: flex-end;
 }
 .player .hand ul li {
-  cursor: pointer;
-  margin-right: 2px;
-  max-width: 77px !important;
+  margin-right: 5px;
 }
 .player.numero1 {
   top: 5%;
@@ -7682,6 +7747,16 @@ fieldset {
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
+.turn .hand:hover .card .front,
+.turn .hand.focus .card .front {
+  -webkit-transform: rotateY(-180deg) translateX(-50%);
+          transform: rotateY(-180deg) translateX(-50%);
+}
+.turn .hand:hover .card .back,
+.turn .hand.focus .card .back {
+  -webkit-transform: rotateY(0) translateX(-50%);
+          transform: rotateY(0) translateX(-50%);
+}
 .turn .hand ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7698,10 +7773,20 @@ fieldset {
 }
 .target {
   cursor: pointer;
-  background: green;
+}
+.target::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 0;
+  left: 0;
+  background-image: url(../assets/bang/theme/target.png);
+  background-size: 200px;
+  background-repeat: no-repeat;
 }
 .target:hover {
-  background: #11347e;
+  background: #850909;
 }
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
