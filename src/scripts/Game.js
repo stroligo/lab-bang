@@ -7,10 +7,15 @@ class Game {
     this.name = name;
 
     const jogadores = [
-      document.getElementById("inputName1").innerText,
-      document.getElementById("inputName2").innerText,
-      document.getElementById("inputName3").innerText,
-      document.getElementById("inputName4").innerText
+      "jogador1",
+      "jogador2",
+      "jogador3",
+      "jogador4"
+
+      //document.getElementById("inputName1").value,
+      //document.getElementById("inputName2").value,
+      //document.getElementById("inputName3").value,
+      //document.getElementById("inputName4").value
     ];
 
     //this.renderDeck();
@@ -118,12 +123,9 @@ class Game {
 
   beer(event) {
     this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
-    element.ComprarCartas(this.deck.shift(), 0)
+   
   }
 
-  alvos(event) {
-    alert("selecionado")
-  }
 
   bang(event) {
     const playerAtual = document.getElementsByClassName("turn")[0].id;
@@ -135,8 +137,21 @@ class Game {
     document.getElementById("players").children[anterior - 1].classList.add("target");
     document.getElementById("players").children[proximo - 1].classList.add("target");
     console.log("selecione um alvo")
-    const alvos = document.getElementsByClassName("target");
+    const alvos = document.querySelectorAll(".target");
+    alvos.forEach(alvos => alvos.addEventListener("click", event => this.alvosAction(event)));
+
   }
+
+  alvosAction(event) {
+    const id=(event.currentTarget["id"])
+    if (document.querySelector(`#${id} .missed`))
+        console.log("usando missed")
+    else (
+      buscaObjeto(id).setHP(-1)
+    )
+
+  }
+
 
   missed(event) {
 
@@ -159,9 +174,9 @@ class Game {
     if (playerAtual == "player6") objeto = this.role[5]
     if (playerAtual == "player7") objeto = this.role[6]
 
-    console.log("comprando");
-    objeto.ComprarCartas(this.deck.shift(), 0)
-    objeto.ComprarCartas(this.deck.shift(), 0)
+    //console.log("comprando");
+    //objeto.ComprarCartas(this.deck.shift(), 0)
+    //objeto.ComprarCartas(this.deck.shift(), 0)
   
   }
 
