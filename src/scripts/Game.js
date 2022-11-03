@@ -23,8 +23,16 @@ class Game {
     const numero2 = new Renegade("renegade", jogadores[1], "numero2");
     const numero3 = new Outlaw("outlaw", jogadores[2], "numero3");
     const numero4 = new Outlaw("outlaw", jogadores[3], "numero4");
+
+    this.roles = [numero1, numero2, numero3, numero4];
+    //renderDeck(this.roles);
+    
+    this.deck = [];
+
+    this.roles.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
+
     this.deck = [numero1, numero2, numero3, numero4];
-    //renderDeck(this.deck);
+   
     this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
 
     this.role = [numero1, numero2, numero3, numero4];
@@ -44,10 +52,11 @@ class Game {
    // renderDeck(this.deck);
     //compra inicial de cartas
 
-    this.role.forEach((element) => {
+
+    this.role.forEach(element => {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
-        element.ComprarCartas(this.deck.shift(), 2);
+        element.ComprarCartas(this.deck.shift(), 0)
     });
 
     console.log("Cartas Foram distribuidas");
@@ -58,6 +67,13 @@ class Game {
     console.log("Selecionado");
     document.getElementById(inicio).classList.add("turn");
 
+  }
+
+  renderDeck() {
+    console.log("randomizar o deck ->> EMBARALHAR -> shufle");
+    this.deck.sort(() => {
+      return Math.random() - 0.5;
+    });
   }
 
   partida() {
@@ -296,3 +312,20 @@ class Game {
 }
 
 
+
+
+function onMouseenterOrMouseleaveCard(e) {
+  var _$this = $(this);
+
+  if (windowWidth < 1000 || _$this.hasClass('reverse-clicked')) {
+    return;
+  }
+
+  if (e.type === 'mouseenter') {
+    _$this.addClass('reverse');
+
+    return;
+  }
+  
+  _$this.removeClass('reverse');
+}
