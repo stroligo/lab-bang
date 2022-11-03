@@ -26,160 +26,136 @@
   </head>
   <body class="base">
     <div id="mainContent" data-page="">
-      <!-- MENU BASE
-      <header class="top-bar" id="topBar">
-        <nav class="container-fluid wrap">
-          <div class="tcbranco w800">Bang!</div>
-
-          <input type="checkbox" class="btn-menu" id="menu-icon" />
-
-          <div class="top-links visible-responsive">
-            <div class="menu-resp">
-              <ul>
-                <li>Duvidas?</li>
-                <li>Sair do Jogo</li>
-              </ul>
-            </div>
-          </div>
-          <div class="invisible-responsive">
-            <ul class="top-links" id="menu-links">
-              <li>Home</li>
-              <li>Regras</li>
-              <li>
-                <a href="https://ludopedia.com.br/jogo/bang" target="_blank"
-                  >O Jogo Original</a
-                >
-              </li>
-              <li>Contato</li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-    -->
       <main id="game">
         <div id="background">
           <div class="container-fluid wrap">
             <!-- MESA -->
             <div id="area">
               <div id="mesa">
-                <div id="deck">deck</div>
-                <div id="cemitery">cemiterio</div>
+                <div class="active" id="deck"></div>
+                <div class="vazio" id="cemitery">
+                  <!--CARTA ADICIONADA AO CEMITERIO -->
+                  <img src="./assets/bang/cards/beer.png" />
+                </div>
+              </div>
+              <div id="">
+                <textarea id="console" rows="3"> </textarea>
               </div>
             </div>
             <!-- FIM MESA -->
 
             <!-- ADICIONAR PLAYER -->
-            <div class="player numero1" id="player1">
-              <div class="infos">
-                <div class="flex flex-col foto">
-                  <img src="./assets/bang/profile_picture/1.png" />
+            <div id="players">
+              <div class="player numero1" id="player1">
+                <div class="infos">
+                  <div class="flex flex-col foto">
+                    <img src="./assets/bang/profile_picture/1.png" />
 
-                  <div class="badge">X</div>
-                </div>
+                    <div class="badge outlaw"></div>
+                  </div>
 
-                <div class="flex flex-col">
-                  <div class="name">Paul Regret</div>
-                  <div class="status">
-                    <ul class="hp">
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                    </ul>
+                  <div class="flex flex-col">
+                    <div class="name">Paul Regent</div>
+                    <div class="status">
+                      <ul class="hp">
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="hand">
-                <ul>
-                </ul>
-              </div>
-            </div>
-
-            <div class="player numero2" id="player2">
-              <div class="infos">
-                <div class="flex flex-col foto">
-                  <img src="./assets/bang/profile_picture/2.png" />
-
-                  <div class="badge">X</div>
+                <div class="hand">
+                  <ul>
+                  </ul>
                 </div>
+              </div>
 
-                <div class="flex flex-col">
-                  <div class="name">Slab the Killer</div>
-                  <div class="status">
-                    <ul class="hp">
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                    </ul>
+              <div class="player numero2 turn" id="player2">
+                <div class="infos">
+                  <div class="flex flex-col foto">
+                    <img src="./assets/bang/profile_picture/2.png" />
+
+                    <div class="badge renegade"></div>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <div class="name">Slab the Killer</div>
+                    <div class="status">
+                      <ul class="hp">
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="hand">
-                <ul>
-                  <li onclick="teste()">
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="player numero3" id="player3">
-              <div class="infos">
-                <div class="flex flex-col foto">
-                  <img src="./assets/bang/profile_picture/3.png" />
-
-                  <div class="badge">X</div>
+                <div class="hand">
+                  <ul>
+                  </ul>
                 </div>
+              </div>
 
-                <div class="flex flex-col">
-                  <div class="name">Vulture Sam</div>
-                  <div class="status">
-                    <ul class="hp">
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                    </ul>
+              <div class="player numero3 target" id="player3">
+                <div class="infos">
+                  <div class="flex flex-col foto">
+                    <img src="./assets/bang/profile_picture/3.png" />
+
+                    <div class="badge sheriff"></div>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <div class="name">Vulture Sam</div>
+                    <div class="status">
+                      <ul class="hp">
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="hand">
-                <ul>
-                </ul>
-              </div>
-            </div>
-
-            <div class="player numero4" id="player4">
-              <div class="infos">
-                <div class="flex flex-col foto">
-                  <img src="./assets/bang/profile_picture/4.png" />
-
-                  <div class="badge">X</div>
+                <div class="hand">
+                  <ul>
+                  </ul>
                 </div>
+              </div>
 
-                <div class="flex flex-col">
-                  <div class="name">Jack the Bill</div>
-                  <div class="status">
-                    <ul class="hp">
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                    </ul>
+              <div class="player numero4" id="player4">
+                <div class="infos">
+                  <div class="flex flex-col foto">
+                    <img src="./assets/bang/profile_picture/4.png" />
+
+                    <div class="badge deputy"></div>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <div class="name">Jack the Bill</div>
+                    <div class="status">
+                      <ul class="hp">
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="hand">
-                <ul>
-                </ul>
+                <div class="hand">
+                  <ul>
+                  </ul>
+                </div>
               </div>
             </div>
             <!-- FIM ADICIONAR PLAYER -->
@@ -187,40 +163,13 @@
         </div>
       </main>
     </div>
-
-    <!-- 
-    <footer id="footer">
-
-      <div class="bgmarrom tcbranco t14 ff2">
-        <div class="container-fluid wrap">
-          <div class="row">
-            <div class="col-xs-12 col-md-6 pt1 pb1 invisible-responsive">
-              © Bang! O jogo
-            </div>
-            <div class="col-xs-12 pt1 tc mb1 visible-responsive">
-              © Bang! O jogo
-            </div>
-           
-            <div class="col-xs-12 col-md-6 pt1 pb1 tr invisible-responsive">
-              Design e code por Anderson e Gabriel
-            </div>
-            <div class="col-xs-12 pb1 tc visible-responsive">
-              Design e code por Anderson e Gabriel
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    -->
-
     <form onsubmit="return false">
       <button type="submit" class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400" type="submit"
                         id="btnStart">
                         Jogar!!
                       </button>
     </form>
-           
-    
+    <script src="./src/scripts/gabriel.js"></script>
     <script src="./src/scripts/Card.js"></script>
     <script src="./src/scripts/Player.js"></script>
     <script src="./src/scripts/Game.js"></script>
@@ -231,6 +180,5 @@
     <script src="./src/scripts/deck/Bang.js"></script>
     <script src="./src/scripts/deck/Beer.js"></script>
     <script src="./src/scripts/deck/Missed.js"></script>
-    <script src="./src/scripts/target.js"></script>
   </body>
 </html>

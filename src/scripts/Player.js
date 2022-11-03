@@ -56,21 +56,21 @@ class Player extends Card {
     this.spot = value;
   }
 
-  getSpot(value) {
+  getSpot() {
     return this.spot;
   }
 
 
   setHP(value) {
     this.hp += value;
-      const vida = document.getElementsByClassName("turn")[0].children[0].children[1].children[1].children[0].children[0]
+      const vida = document.querySelector(".turn .hp")
 
     if (value < 0) {
       vida.children[0].remove()
       console.log("Voce foi atingido")
       }  
     if (value > 0) {
-      const node = vida.lastChild;
+      const node = vida.children[0];
      const clone = node.cloneNode(true);
       vida.appendChild(clone);
         }    
