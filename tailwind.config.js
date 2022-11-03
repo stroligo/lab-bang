@@ -3,9 +3,10 @@ module.exports = {
   content: [
     "./src/**/*.{html,js,less}",
     "./src/*.{html,js,less}",
+    "./src/less/*.{html,js,less}",
     "./build/*.{html,js,less}",
     "./index.html",
-    "./index2.html",
+    "./game.html",
   ],
   theme: {
     extend: {},

@@ -1826,7 +1826,7 @@ section {
       .flex;
       .mb1;
       .mt1;
-      .between-xs;
+
       .t14;
       .type {
         .uppercase;
@@ -2255,158 +2255,6 @@ section {
 }
 
 // VARIATIONS
-
-/* The Modal (background) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  // padding-top: 10vh;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(0, 0, 0, 0.8);
-
-  &.active {
-    display: flex;
-  }
-  /* Modal Content */
-  .modal-content {
-    position: relative;
-    margin: auto;
-    padding: 0;
-    // width: 60%;
-    max-width: 1200px;
-    .mySlides {
-      display: none;
-
-      /* NUMBER SLIDE */
-      .numbertext {
-        .tcbranco;
-        .t14;
-        .w700;
-        .pl1;
-        .pt05;
-        .absolute;
-        top: 0;
-      }
-      figure {
-        max-width: 100%;
-        height: 80vh;
-        // min-height: 600px;
-        position: relative;
-        overflow: hidden;
-        img {
-          .w100;
-          .w100;
-          // .transition;
-          object-fit: cover;
-          // position: absolute;
-        }
-      }
-      .sharoxo {
-        .bgpreto;
-        width: 100%;
-        top: 100%;
-        bottom: auto;
-      }
-    }
-  }
-
-  /* CONTROLERS */
-  .controlers {
-    .close {
-      cursor: pointer;
-      position: absolute;
-      top: 0;
-      right: -3rem;
-    }
-    .prev,
-    .next {
-      cursor: pointer;
-      position: absolute;
-      top: 20%;
-      bottom: 20%;
-      height: 60%;
-
-      transition: 0.6s ease;
-      user-select: none;
-
-      .flex;
-      align-items: center;
-
-      /* On hover, add a preto background color with a little bit see-through */
-      &:hover,
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
-    }
-    .prev {
-      left: -3rem;
-    }
-    .next {
-      right: -3rem;
-    }
-  }
-  /* NAVIGATION BAR */
-  .navigation {
-    .p05;
-    .flex;
-    justify-content: center;
-    .dot {
-      .m05;
-      svg {
-        fill: @branco;
-      }
-      &.active {
-        svg {
-          fill: @laranja;
-          transform: scale(1.5);
-        }
-      }
-    }
-  }
-
-  &.modal-people {
-    .modal-content {
-      width: 80% !important;
-      .card {
-        li {
-          padding-top: 5%;
-          padding-bottom: 5%;
-          padding-right: 3%;
-          .card-infos .card-more {
-            opacity: 1;
-          }
-          &:hover,
-          &:focus {
-            background-color: transparent !important;
-            .card-infos {
-              color: #000;
-            }
-          }
-        }
-      }
-      .btn.fpreto,
-      .btn.fpreto:hover {
-        background-color: transparent !important;
-        color: #000 !important;
-        border: 2px solid #000 !important;
-      }
-    }
-    .person-bio {
-      overflow-y: scroll;
-      @media @breakpoint-mobile-max {
-        max-height: 35vh;
-      }
-      @media @breakpoint-mobile {
-        max-height: 70vh;
-      }
-    }
-  }
-}
 
 // single page //
 
@@ -2880,4 +2728,42 @@ section {
 
 .roles2 {
   display: none;
+}
+// MODAL
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

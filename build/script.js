@@ -1,5 +1,5 @@
 //OUTLAW.JS
-// @ts-check
+
 class Outlaw extends Player {
   constructor(name, classe,  id, pseudoname) {
     super(name, classe, id, pseudoname);
@@ -7,7 +7,7 @@ class Outlaw extends Player {
 }
 
 //RENEAGADE.JS
-// @ts-check
+
 class Renegade extends Player {
   constructor(name, classe,  id, pseudoname) {
     super(name, classe, id, pseudoname);
@@ -15,7 +15,7 @@ class Renegade extends Player {
   }
 
 //SHERIFF.JS
-// @ts-check
+
 class Sheriff extends Player {
   constructor(name, classe,  id, pseudoname) {
     super(name, classe, id, pseudoname);
@@ -68,13 +68,7 @@ var Game = /*#__PURE__*/function () {
     var _this = this;
     _classCallCheck(this, Game);
     this.name = name;
-    var jogadores = ["jogador1", "jogador2", "jogador3", "jogador4"
-
-    //document.getElementById("inputName1").value,
-    //document.getElementById("inputName2").value,
-    //document.getElementById("inputName3").value,
-    //document.getElementById("inputName4").value
-    ];
+    var jogadores = [document.getElementById("inputName1").value, document.getElementById("inputName2").value, document.getElementById("inputName3").value, document.getElementById("inputName4").value];
 
     //this.renderDeck();
 
@@ -92,7 +86,9 @@ var Game = /*#__PURE__*/function () {
     this.role.forEach(function (element, index) {
       return element.setSpot(index + 1);
     }); //.setSpot())
-
+    this.role.forEach(function (element) {
+      return element.setAnteriorProximo();
+    });
     this.deck = [numero1, numero2, numero3, numero4];
     this.deck.forEach(function (element, index) {
       return element.setSpot(index + 1);
@@ -108,9 +104,7 @@ var Game = /*#__PURE__*/function () {
       this.deck.push(new Beer("cards", "beer", i + 1));
       this.deck.push(new Missed("cards", "missed", i + 2));
     }
-
-    // renderDeck(this.deck);
-    //compra inicial de cartas
+    this.renderDeck(this.deck); //compra inicial de cartas
 
     this.role.forEach(function (element) {
       //element.ComprarCartas(this.roles.shift(),0)
@@ -118,17 +112,16 @@ var Game = /*#__PURE__*/function () {
         element.ComprarCartas(_this.deck.shift(), 0);
       }
     });
-    console.log("Cartas Foram distribuidas");
-
+    document.getElementById("console").value += "Cartas Foram distribuidas\n";
     //iniciando a partida
-    var inicio = this.role[1].id;
+    var inicio = this.role[2].id;
     console.log(this.role[1].id);
     console.log(this.role[1]);
     document.getElementById(inicio).classList.add("turn");
   }
   _createClass(Game, [{
     key: "renderDeck",
-    value: function renderDeck() {
+    value: function renderDeck(values) {
       console.log("randomizar o deck ->> EMBARALHAR -> shufle");
       this.deck.sort(function () {
         return Math.random() - 0.5;
@@ -178,14 +171,10 @@ var Game = /*#__PURE__*/function () {
     key: "bang",
     value: function bang(event) {
       var _this2 = this;
-      var playerAtual = document.getElementsByClassName("turn")[0].id;
-      var spot = this.buscaObjeto(playerAtual).getSpot();
-      var totalPlayers = document.getElementsByClassName("player").length;
-      var proximo = spot % totalPlayers + 1;
-      var anterior;
-      spot == 1 ? anterior = total : anterior = spot - 1;
-      document.getElementById("players").children[anterior - 1].classList.add("target");
-      document.getElementById("players").children[proximo - 1].classList.add("target");
+      var atual = this.buscaObjeto(document.querySelector(".turn").id);
+      document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
+        return element.classList.add("target");
+      });
       console.log("selecione um alvo");
       var alvos = document.querySelectorAll(".target");
       alvos.forEach(function (alvos) {
@@ -193,16 +182,19 @@ var Game = /*#__PURE__*/function () {
           return _this2.alvosAction(event);
         });
       });
+      document.getElementById("console").value += "Selecione um alvo\n";
     }
   }, {
     key: "alvosAction",
     value: function alvosAction(event) {
       var id = event.currentTarget["id"];
-      if (document.querySelector("#".concat(id, " .missed"))) console.log("usando missed");else buscaObjeto(id).setHP(-1);
+      if (document.querySelector("#".concat(id, " .missed"))) document.getElementById("console").value += "Voce escapou por pouco\n";else {
+        buscaObjeto(id).setHP(-1);
+        document.getElementById("console").value += "Voce foi baleado\n";
+      }
+      document.querySelector(".target").classList.remove("target");
+      document.querySelector(".target").classList.remove("target");
     }
-  }, {
-    key: "missed",
-    value: function missed(event) {}
 
     //nessa etapa iremos configurar os turnos de cada jogador
     //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
@@ -248,16 +240,27 @@ var Player = /*#__PURE__*/function (_Card) {
     var hp = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 5;
     var range = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
     var spot = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
+    var anterior = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 0;
+    var proximo = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 0;
     _classCallCheck(this, Player);
     _this3 = _super.call(this, name, classe, id);
     _this3.pseudoname = pseudoname;
     _this3.hp = hp;
     _this3.range = range;
     _this3.spot = spot;
+    _this3.anterior = anterior;
+    _this3.proximo = proximo;
     _this3.hand = [];
     return _this3;
   }
   _createClass(Player, [{
+    key: "setAnteriorProximo",
+    value: function setAnteriorProximo() {
+      var totalPlayers = document.getElementsByClassName("player").length;
+      this.proximo = this.spot % totalPlayers + 1;
+      this.spot == 1 ? this.anterior = totalPlayers : this.anterior = this.spot - 1;
+    }
+  }, {
     key: "ComprarCartas",
     value: function ComprarCartas(carta, tipo) {
       var copia = carta;
@@ -309,18 +312,18 @@ var Player = /*#__PURE__*/function (_Card) {
       var vida = document.querySelector(".turn .hp");
       if (value < 0) {
         vida.children[0].remove();
-        console.log("Voce foi atingido");
+        document.getElementById("console").value += "Voce foi atingido\n";
       }
       if (value > 0) {
         var node = vida.children[0];
         var clone = node.cloneNode(true);
         vida.appendChild(clone);
+        document.getElementById("console").value += "Voce ganhou vida\n";
       }
     }
   }]);
   return Player;
-}(Card); // IMPRIMIR NO CONSOLE GAME
-//SELECTOR.JS
+}(Card); //SELECTOR.JS
 //capturando todos os elementos de html
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
