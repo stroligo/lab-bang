@@ -35,7 +35,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-//ACARD.JS
+//CARD.JS
 var Card = /*#__PURE__*/function () {
   function Card(name, classe, id, ataque, defesa, vida) {
     _classCallCheck(this, Card);
@@ -61,23 +61,20 @@ var Card = /*#__PURE__*/function () {
     }
   }]);
   return Card;
-}(); // IMPRIMIR NO CONSOLE GAME
-var consoleGame = document.getElementById("console");
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-
-// CLASSE
+}(); // CLASSE
 // HEAD
 var Game = /*#__PURE__*/function () {
   function Game(name) {
     var _this = this;
     _classCallCheck(this, Game);
     this.name = name;
-    var jogadores = [document.getElementsByClassName("name")[0].innerText, document.getElementsByClassName("name")[1].innerText, document.getElementsByClassName("name")[2].innerText, document.getElementsByClassName("name")[3].innerText];
+    var jogadores = ["jogador1", "jogador2", "jogador3", "jogador4"
+
+    //document.getElementById("inputName1").value,
+    //document.getElementById("inputName2").value,
+    //document.getElementById("inputName3").value,
+    //document.getElementById("inputName4").value
+    ];
 
     //this.renderDeck();
 
@@ -176,16 +173,11 @@ var Game = /*#__PURE__*/function () {
     key: "beer",
     value: function beer(event) {
       this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
-      element.ComprarCartas(this.deck.shift(), 0);
-    }
-  }, {
-    key: "alvos",
-    value: function alvos(event) {
-      alert("selecionado");
     }
   }, {
     key: "bang",
     value: function bang(event) {
+      var _this2 = this;
       var playerAtual = document.getElementsByClassName("turn")[0].id;
       var spot = this.buscaObjeto(playerAtual).getSpot();
       var totalPlayers = document.getElementsByClassName("player").length;
@@ -195,7 +187,18 @@ var Game = /*#__PURE__*/function () {
       document.getElementById("players").children[anterior - 1].classList.add("target");
       document.getElementById("players").children[proximo - 1].classList.add("target");
       console.log("selecione um alvo");
-      var alvos = document.getElementsByClassName("target");
+      var alvos = document.querySelectorAll(".target");
+      alvos.forEach(function (alvos) {
+        return alvos.addEventListener("click", function (event) {
+          return _this2.alvosAction(event);
+        });
+      });
+    }
+  }, {
+    key: "alvosAction",
+    value: function alvosAction(event) {
+      var id = event.currentTarget["id"];
+      if (document.querySelector("#".concat(id, " .missed"))) console.log("usando missed");else buscaObjeto(id).setHP(-1);
     }
   }, {
     key: "missed",
@@ -217,9 +220,10 @@ var Game = /*#__PURE__*/function () {
       if (playerAtual == "player5") objeto = this.role[4];
       if (playerAtual == "player6") objeto = this.role[5];
       if (playerAtual == "player7") objeto = this.role[6];
-      console.log("comprando");
-      objeto.ComprarCartas(this.deck.shift(), 0);
-      objeto.ComprarCartas(this.deck.shift(), 0);
+
+      //console.log("comprando");
+      //objeto.ComprarCartas(this.deck.shift(), 0)
+      //objeto.ComprarCartas(this.deck.shift(), 0)
     }
   }]);
   return Game;
@@ -240,18 +244,18 @@ var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
   function Player(name, classe, id, pseudoname) {
-    var _this2;
+    var _this3;
     var hp = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 5;
     var range = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
     var spot = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
     _classCallCheck(this, Player);
-    _this2 = _super.call(this, name, classe, id);
-    _this2.pseudoname = pseudoname;
-    _this2.hp = hp;
-    _this2.range = range;
-    _this2.spot = spot;
-    _this2.hand = [];
-    return _this2;
+    _this3 = _super.call(this, name, classe, id);
+    _this3.pseudoname = pseudoname;
+    _this3.hp = hp;
+    _this3.range = range;
+    _this3.spot = spot;
+    _this3.hand = [];
+    return _this3;
   }
   _createClass(Player, [{
     key: "ComprarCartas",
@@ -302,72 +306,21 @@ var Player = /*#__PURE__*/function (_Card) {
     key: "setHP",
     value: function setHP(value) {
       this.hp += value;
-      var vida = document.getElementsByClassName("turn")[0].children[0].children[1].children[1].children[0].children[0];
+      var vida = document.querySelector(".turn .hp");
       if (value < 0) {
         vida.children[0].remove();
         console.log("Voce foi atingido");
       }
       if (value > 0) {
-        var node = vida;
+        var node = vida.children[0];
         var clone = node.cloneNode(true);
         vida.appendChild(clone);
       }
     }
   }]);
   return Player;
-<<<<<<< HEAD
-}(Card); //TARGET.JS
-//recebe posicao,  analisar o range, ver posicao do alvos, usa carta
-//buscar na mesa
-function buscarAlvosProximos(spot) {
-  // @ts-ignore
-  //const spot = (document.querySelector(".selecionado").id)*1;
-  var total = document.getElementsByClassName("player").length;
-  var proximo = spot % 4 + 1;
-  var anterior;
-  spot == 1 ? anterior = total : anterior = spot - 1;
-  var anterior2 = document.getElementById("players").children[anterior - 1].children[0];
-  var proximo2 = document.getElementById("players").children[proximo - 1].children[0];
-  return [anterior2, proximo2];
-}
-
-// @ts-ignore
-function buscarAlvoSiProprio(spot) {
-  // @ts-ignore
-  return spot;
-}
-
-//function buscarAlvoTodos(spot) {
-// const spot = document.getElementsByClassName("player selecionado")[0].id;
-// return [...document.getElementsByClassName("player")]
-// .map((element) => element.id)
-//.filter((element) => element != spot);
-//}
-
-function selecionarAlvos(pos) {
-  //marcar anterior e proximo
-  pos[0].childNodes.forEach(function (element, index) {
-    if (index != 0)
-      //primeiro elemento é text, depois começa os li
-      pos[0].children[index - 1].classList.add("target turn");
-  });
-  pos[1].childNodes.forEach(function (element, index) {
-    if (index != 0)
-      //primeiro elemento é text, depois começa os li
-      pos[1].children[index - 1].classList.add("target turn");
-  });
-}
-
-// IMPRIMIR NO CONSOLE GAME
-
-var consoleGame = document.querySelectorAll("#player2 .hp li");
-consoleGame[1].innerHTML = "valendo";
-console.log(consoleGame[1].innerHTML);
-
+}(Card); // IMPRIMIR NO CONSOLE GAME
 //SELECTOR.JS
-=======
-}(Card); //SELECTOR.JS
->>>>>>> a1da02ab301b200ee0636304873510d16e9456f0
 //capturando todos os elementos de html
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
@@ -385,7 +338,6 @@ function settingUpGame(game) {
   var card = document.querySelectorAll(".card");
   var beer = document.querySelectorAll(".beer");
   var bang = document.querySelectorAll(".bang");
-  var missed = document.querySelectorAll(".missed");
   card.forEach(function (card) {
     return card.addEventListener("click", function (event) {
       return game.turn(event);
@@ -399,11 +351,6 @@ function settingUpGame(game) {
   bang.forEach(function (bang) {
     return bang.addEventListener("click", function (event) {
       return game.bang(event);
-    });
-  });
-  missed.forEach(function (missed) {
-    return missed.addEventListener("click", function (event) {
-      return game.missed(event);
     });
   });
 }
