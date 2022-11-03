@@ -1,227 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_br">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="language" content="pt-br" />
+    <title>BANG!</title>
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+    <link href="./assets/images/favicon.png" rel="shortcut icon" />
+    <link rel="stylesheet" href="./build/style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>BANG</title>
-  <meta name="description" content="Simple landind page">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="./build/style.css">
-  <!--Replace with your tailwind.css once created-->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&family=Sora:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://use.fontawesome.com/b2a7cc2637.js"></script>
+  </head>
+  <body>
+    <div id="mainContent" data-page="">
+      <header class="top-bar" id="topBar">
+        <nav class="container-fluid wrap">
+          <div class="logo">
+            <img src="./assets/bang/theme/logo.png" />
+          </div>
 
-<body class="leading-normal tracking-normal text-black">
-  <!--Nav-->
-  <nav id="header" class="fixed w-full z-30 top-0 bg-white">
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-      <div class="pl-4 flex items-center">
-        <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-          <div id="logo"></div>
-        </a>
-      </div>
-      <div class="block lg:hidden pr-4">
-        <button id="nav-toggle"
-          class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-          <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
-      </div>
-      <div
-        class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
-        id="nav-content">
-        <ul class="list-reset lg:flex justify-end flex-1 items-center">
-          <li class="mr-3">
-            <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-              href="#">link</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-              href="#">link</a>
-          </li>
-        </ul>
-        <button id="navAction"
-          class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-          Action
-        </button>
-      </div>
-    </div>
-    <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
-  </nav>
-  <!--Hero-->
-  <div class="pt-60 text-white" id="hero">
-    <article id="startScreen" class="startScreen">
-      <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <!--Left Col-->
-        <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p class="uppercase tracking-loose w-full">What business are you?</p>
-          <h1 class="my-4 text-5xl font-bold leading-tight">
-            Main Hero Message to sell yourself!
-          </h1>
-          <p class="leading-normal text-2xl mb-8">
-            Sub-hero message, not too long and not too short. Make it just
-            right!
-          </p>
-          <button
-            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Subscribe
-          </button>
-        </div>
-        <!--Right Col-->
-        <div class="w-full md:w-3/5 py-6 text-center">
-          <div class="container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-            <!-- Add margin if you want to see some of the overlay behind the modal-->
-            <div class="content py-4 text-left px-6 text-black">
-              <!--Title-->
-              <div class="flex justify-between items-center pb-3">
-                <p class="text-2xl font-bold">Quantos Jogadores?</p>
+          <!-- RESPONSIVE MENU -->
+
+          <input type="checkbox" class="btn-menu" id="menu-icon" />
+
+          <div class="top-links visible-responsive">
+            <div class="menu-resp">
+              <h5 class="mt2 tclaranja mb2">MENU</h5>
+              <ul>
+                <li> <a href="index.html" target="_blank"></a>Home</li>
+                <li>  <a href="quemfez.html" target="_blank">Quem fez?</a></li>
+                <li>
+                  <a href="https://ludopedia.com.br/jogo/bang" target="_blank">O Jogo Original</a>
+                </li>
+                <li> <a href="regras.html" target="_blank">Regras</li>
+                <li> <a href="contato.html" target="_blank">Contato</li>
+                <li class="btn-jogar"><a href="game.html" target="_blank"></a>JOGAR!</li>
+              </ul>
+            </div>
+          </div>
+          <!-- DEFAULT -->
+          <div class="invisible-responsive">
+            <ul class="top-links" id="menu-links">
+              <li> <a href="index.html" target="_blank"></a>Home</li>
+              <li>  <a href="quemfez.html" target="_blank">Quem fez?</a></li>
+              <li>
+                <a href="https://ludopedia.com.br/jogo/bang" target="_blank">O Jogo Original</a>
+              </li>
+              <li> <a href="regras.html" target="_blank">Regras</li>
+              <li> <a href="contato.html" target="_blank">Contato</li>
+              <li class="btn-jogar"><a href="game.html" target="_blank"></a>JOGAR!</li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <main class="post">
+        <section class="intro home tcbege">
+          <div class="container-fluid wrap">
+            <div class="row">
+              <div class="col-xs-12 col-md-6"></div>
+              <div class="col-xs-12 col-md-6 bgbege tcmarrom p2">
+                <h2 class="mb1 pr2">
+                  Um jogo no velho oeste onde o seu objetivo é sobreviver!
+                </h2>
+                <p class="big mb2">
+                  No Velho Oeste os Foras da Lei caçam o Xerife e o Renegado age
+                  em silêncio, pronto para dar o tiro final.
+                </p>
+
+                <p class="big mb2">
+                  E logo as balas começam a voar. Você está disposto a se
+                  sacrificar pelo Xerife? Ou aceitaria ter que mata-lo por uma
+                  boa recompensa?
+                </p>
+                <div class="btn mr1 mb1">Quem fez?</div>
+                <a href="game.html" class="btn outline mb1">JOGAR AGORA!</a>
               </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <footer id="footer">
+      <!-- Footer Conteudo -->
+      <section class="bgbege tcmarrom">
+        <div class="container-fluid wrap">
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <h3 class="mb2">Desenvolvimento</h3>
+              <p class="t20 pr2 mb15 pr5">
+                Esse jogo foi desenvolvido na terceira semana do curso de
+                desenvolvimento web da IronHack,atividade com o objetivo de
+                treinar as ferramentas até o momento apreendidas, nós escolhemos
+                criar um jogo baseado no boardgame Bang!
+              </p>
 
-              <form onsubmit="return false">
-                <fieldset>
-                  <input
-                    class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="inputName1" required type="text" placeholder="Digite o nome do primeiro jogador" />
-                  <input
-                    class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="inputName2" required type="text" placeholder="Digite o nome do segundo jogador" />
-                  <input
-                    class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="inputName3" required type="text" placeholder="Digite o nome do terceiro jogador" />
-                  <input
-                    class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="inputName4" required type="text" placeholder="Digite o nome do quarto jogador" />
+              <p class="ff2 t20 w800">
+                <a href="https://github.com/stroligo/bang" target="_blank">
+                  Siga o projeto no github
+                  <i class="fa fa-github" aria-hidden="true"></i>
+                </a>
+              </p>
+            </div>
 
-                  <button class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400" type="submit"
-                    id="btnStart">
-                    Jogar!!
-                  </button>
-                </fieldset>
-              </form>
+            <div class="col-xs-12 col-md-6">
+              <p class="t20 mb1">
+                Caso queira colaborar com o projeto, entre em contato:
+              </p>
+              <div class="form-group">
+                <input type="text" id="name" name="fname" placeholder="nome" />
+                <input type="email" id="email" placeholder="email" />
+                <textarea
+                  id="mensagem"
+                  placeholder="mensagem"
+                  rows="2"
+                ></textarea>
+
+                <input type="button" value="ENVIAR" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Rodape -->
+      <div class="bgmarrom tcbranco t14 ff2">
+        <div class="container-fluid wrap">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 pt1 pb1 invisible-responsive">
+              © Bang! O jogo
+            </div>
+            <div class="col-xs-12 pt1 tc mb1 visible-responsive">
+              © Bang! O jogo
+            </div>
+            <!-- Responsivo -->
+            <div class="col-xs-12 col-md-6 pt1 pb1 tr invisible-responsive">
+              Design e code por Anderson e Gabriel
+            </div>
+            <div class="col-xs-12 pb1 tc visible-responsive">
+              Design e code por Anderson e Gabriel
             </div>
           </div>
         </div>
       </div>
-  </div>
-  <article id="gameScreen">
-    <section id="gameScore" class="hide">
-
-      <p>Você tem <span id="points1">xxx</span> tentativas!</p>
-
-      <p>Você tem <span id="points2">xxx</span> tentativas!</p>
-
-      <p>Você tem <span id="points3">xxx</span> tentativas!</p>
-
-      <p>Você tem <span id="points4">xxx</span> tentativas!</p>
-
-
-      <div id="board" class="board"></div>
-
-      <div id="players">
-
-        <div class="player player1">
-          <ul class="Role">
-          </ul>
-          <ul class="HP">
-            <li>Vida1</li>
-            <li>Vida2</li>
-            <li>Vida3</li>
-            <li>Vida4</li>
-            <li>Vida5</li>
-          </ul>
-
-          <ul class="Hand">
-          </ul>
-          <p>Olá, <span class="players" id="nameplayer1">nomeDoJogador</span></p>
-        </div>
-
-        <div class="player player2">
-
-          <ul class="Role">
-          </ul>
-          <ul class="HP">
-            <li>Vida1</li>
-            <li>Vida2</li>
-            <li>Vida3</li>
-            <li>Vida4</li>
-            <li>Vida5</li>
-          </ul>
-
-
-          <ul class="Hand">
-          </ul>
-          <p>Olá, <span class="players" id="nameplayer2">nomeDoJogador</span></p>
-
-        </div>
-        <div class="player player3">
-
-
-          <ul class="Role">
-          </ul>
-          <ul class="HP">
-            <li>Vida1</li>
-            <li>Vida2</li>
-            <li>Vida3</li>
-            <li>Vida4</li>
-            <li>Vida5</li>
-          </ul>
-
-          <ul class="Hand">
-          </ul>
-          <p>Olá, <span s id="nameplayer3">nomeDoJogador</span></p>
-        </div>
-
-        <div class="player player4">
-
-
-          <ul class="Role">
-          </ul>
-          <ul class="HP">
-            <li>Vida1</li>
-            <li>Vida2</li>
-            <li>Vida3</li>
-            <li>Vida4</li>
-            <li>Vida5</li>
-          </ul>
-
-          <ul class="Hand">
-          </ul>
-          <p>Olá, <span s id="nameplayer4">nomeDoJogador</span></p>
-        </div>
-
-      </div>
-    </section>
-  </article>
-  <!--Footer-->
-  <footer class="text-white bg-red-800" id="footer">
-    <div class="container mx-auto">
-      <div class="w-full flex flex-col md:flex-row">
-        <div class="flex-1">https://github.com/stroligo/bang</div>
-        <div class="flex-1">MENU</div>
-      </div>
-    </div>
-  </footer>
-  <script src="./src/scripts/Card.js"></script>
-  <script src="./src/scripts/Player.js"></script>
-  <script src="./src/scripts/Game.js"></script>
-  <script src="./src/scripts/selector.js"></script>
-  <script src="./src/scripts/roles/Sheriff.js"></script>
-  <script src="./src/scripts/roles/Renegade.js"></script>
-  <script src="./src/scripts/roles/Outlaw.js"></script>
-  <script src="./src/scripts/deck/Bang.js"></script>
-  <script src="./src/scripts/deck/Beer.js"></script>
-  <script src="./src/scripts/deck/Missed.js"></script>
-  <script src="./src/scripts/Target.js"></script>
-
-
-</body>
-
+    </footer>
+  </body>
 </html>

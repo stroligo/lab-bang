@@ -547,13 +547,9 @@ function selecionarAlvos(pos) {
 
 // IMPRIMIR NO CONSOLE GAME
 
-var consoleGame = document.getElementById("console");
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+var consoleGame = document.querySelectorAll("#player2 .hp li");
+consoleGame[1].innerHTML = "valendo";
+console.log(consoleGame[1].innerHTML);
 
 //SELECTOR.JS
 //capturando todos os elementos de html
