@@ -7548,18 +7548,24 @@ fieldset {
   background-image: url(../assets/bang/cards/_back.png);
   background-size: contain;
 }
+#deck.active {
+  cursor: pointer;
+  border: 2px solid #35220e;
+}
 #deck:hover {
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 #cemitery {
   width: 100px;
   height: 160px;
   border-radius: 10px;
-  background-image: url(../assets/bang/cards/_back.png);
   background-size: contain;
+}
+#cemitery.vazio {
+  background: rgba(0, 0, 0, 0.5);
 }
 #players {
   position: absolute;
@@ -7739,10 +7745,13 @@ fieldset {
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
   background: #dadada;
-  border: 2px solid #35220e;
+  border: 4px solid #35220e;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   z-index: 10;
+}
+.turn:hover {
+  z-index: 9999;
 }
 .turn .infos .badge {
   opacity: 1;

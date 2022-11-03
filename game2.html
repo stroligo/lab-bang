@@ -32,8 +32,11 @@
             <!-- MESA -->
             <div id="area">
               <div id="mesa">
-                <div id="deck"></div>
-                <div id="cemitery"></div>
+                <div class="active" id="deck"></div>
+                <div class="vazio" id="cemitery">
+                  <!--CARTA ADICIONADA AO CEMITERIO -->
+                  <img src="./assets/bang/cards/beer.png" />
+                </div>
               </div>
               <div id="console">
                 <textarea id="console" rows="3"> </textarea>
@@ -42,6 +45,7 @@
             <!-- FIM MESA -->
 
             <!-- ADICIONAR PLAYER -->
+
             <div class="player numero1" id="player1">
               <div class="infos">
                 <div class="flex flex-col foto">
@@ -51,7 +55,7 @@
                 </div>
 
                 <div class="flex flex-col">
-                  <div class="name">Paul Regret</div>
+                  <div class="name">Paul Regent</div>
                   <div class="status">
                     <ul class="hp">
                       <li><i class="fa fa-heart" aria-hidden="true"></i></li>
@@ -69,7 +73,7 @@
                   <li class="card-wrapper" onclick="teste()">
                     <div class="card">
                       <div class="back">
-                        <img src="./assets/bang/cards/bang.png" />
+                        <img src="./assets/bang/cards/beer.png" />
                       </div>
                       <div class="front">
                         <img src="./assets/bang/cards/_back.png" />
@@ -79,18 +83,7 @@
                   <li class="card-wrapper" onclick="teste()">
                     <div class="card">
                       <div class="back">
-                        <img src="./assets/bang/cards/bang.png" />
-                      </div>
-                      <div class="front">
-                        <img src="./assets/bang/cards/_back.png" />
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="card-wrapper bang" onclick="teste()">
-                    <div class="card">
-                      <div class="back">
-                        <img src="./assets/bang/cards/bang.png" />
+                        <img src="./assets/bang/cards/beer.png" />
                       </div>
                       <div class="front">
                         <img src="./assets/bang/cards/_back.png" />
@@ -101,7 +94,7 @@
                   <li class="card-wrapper" onclick="teste()">
                     <div class="card">
                       <div class="back">
-                        <img src="./assets/bang/cards/bang.png" />
+                        <img src="./assets/bang/cards/missed.png" />
                       </div>
                       <div class="front">
                         <img src="./assets/bang/cards/_back.png" />
