@@ -57,8 +57,8 @@ class Game {
       for (let i = 0; i < element.hp; i++)
         element.ComprarCartas(this.deck.shift(), 0)
     });
-    
-    document.getElementById("console").value+="Cartas Foram distribuidas\n"
+
+    document.getElementById("console").value += "Cartas Foram distribuidas\n"
     //iniciando a partida
     const inicio = this.role[2].id
     console.log(this.role[1].id);
@@ -115,33 +115,45 @@ class Game {
     if (id == "player7") return this.role[6]
   }
 
+  precisaComprar(event) {
+
+    if (document.getElementsByClassName("active").deck) {
+      document.getElementById("console").value += "Você precisa comprar\n";
+      return true;
+    }
+    return false;
+  }
   beer(event) {
-    this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
+    if (!this.precisaComprar()) this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
+
   }
 
 
   bang(event) {
+    if (!this.precisaComprar()) {
 
-    const atual = this.buscaObjeto(document.querySelector(".turn").id)
-    document.querySelectorAll(`#player${atual.anterior},#player${atual.proximo}`).
-      forEach((element => element.classList.add("target")))
+      const atual = this.buscaObjeto(document.querySelector(".turn").id)
+      document.querySelectorAll(`#player${atual.anterior},#player${atual.proximo}`).
+        forEach((element => element.classList.add("target")))
 
-    console.log("selecione um alvo")
-    const alvos = document.querySelectorAll(".target");
-    alvos.forEach(alvos => alvos.addEventListener("click", event => this.alvosAction(event)));
-    document.getElementById("console").value+="Selecione um alvo\n"
+      document.getElementById("console").value += "Selecione um alvo\n"
+      const alvos = document.querySelectorAll(".target");
+      alvos.forEach(alvos => alvos.addEventListener("click", event => this.alvosAction(event)));
+    }
+
   }
 
   alvosAction(event) {
     const id = (event.currentTarget["id"])
     if (document.querySelector(`#${id} .missed`))
-    document.getElementById("console").value+="Voce escapou por pouco\n";
-      else {
+      document.getElementById("console").value += "Voce escapou por pouco\n";
+    else {
       buscaObjeto(id).setHP(-1);
-      document.getElementById("console").value+="Voce foi baleado\n"
-  }
+      document.getElementById("console").value += "Voce foi baleado\n"
+    }
     document.querySelector(".target").classList.remove("target");
     document.querySelector(".target").classList.remove("target");
+
 
   }
 
