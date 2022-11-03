@@ -1,4 +1,4 @@
-//ACARD.JS
+//CARD.JS
 class Card {
   constructor(name, classe, id, ataque, defesa, vida) {
     this.name = name;
@@ -7,8 +7,7 @@ class Card {
     this.ataque = ataque;
     this.defesa = defesa;
     this.vida = vida;
-
-    const li = document.createElement('li'); 
+    const li = document.createElement('li');
     li.id = this.id;
     li.classList.add("card-wrapper");
     const board = document.getElementById("deck");
@@ -22,22 +21,13 @@ class Card {
     </div>
     </div>
         `;
-     li.innerHTML = row;
+    li.innerHTML = row;
     board.appendChild(li);
-    document.getElementById(this.id).classList.add(this.classe,this.name , "hidden");
+    document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
   }
 
   getId() {
     return this.id;
-  }
-
-  
-
-  selecionarAlvos([...array]) {
-    for (let i of array) {
-      // @ts-ignore
-      document.getElementById(i).classList.add("alvos");
-    }
   }
 
 

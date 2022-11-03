@@ -56,7 +56,7 @@ class Player extends Card {
     this.spot = value;
   }
 
-  getSpot(value) {
+  getSpot() {
     return this.spot;
   }
 
@@ -70,7 +70,7 @@ class Player extends Card {
       console.log("Voce foi atingido")
       }  
     if (value > 0) {
-      const node = vida.lastChild;
+      const node = vida;
      const clone = node.cloneNode(true);
       vida.appendChild(clone);
         }    
