@@ -90,16 +90,7 @@ var Card = /*#__PURE__*/function () {
     }
   }]);
   return Card;
-}(); // IMPRIMIR NO CONSOLE GAME
-var consoleGame = document.getElementById("console");
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
-consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
-
-// CLASSE
+}(); // CLASSE
 // HEAD
 // @ts-check
 var Game = /*#__PURE__*/function () {
@@ -275,14 +266,14 @@ var Game = /*#__PURE__*/function () {
       );
       const idCarta1 = cartasId[0];
       const idCarta2 = cartasId[1];
-        if (
+       if (
         this.deck.find((element) => element.id == idCarta1).tipo ===
         this.deck.findLast((element) => element.id == idCarta2).tipo
       ) {
         console.log("Cartas são iguais!!");
         // criar um indicador de que as cartas já foram viradas
         for (let i of cartasId) document.getElementById(i).classList.add("turn");
-          // checar o status do jogo
+         // checar o status do jogo
         this.checkStatus();
       } else {
         console.log("Cartas são diferentes!");
@@ -292,15 +283,15 @@ var Game = /*#__PURE__*/function () {
         // desvirar as duas cartas
         setTimeout(() => {
           console.log("Fechando as cartas selecionadas");
-            for (let i of cartasId) {
+           for (let i of cartasId) {
             document
               .getElementById(i)
               .classList.remove("selecionado", "cardFront");
-              //alterando o fundo para carta de verso
+             //alterando o fundo para carta de verso
             document.getElementById(i).src = this.verso;
             //alterando o alt para carta de verso
             document.getElementById(i).alt = "carta virada";
-              document.getElementById(i).classList.add("cardBack");
+             document.getElementById(i).classList.add("cardBack");
           }
           //checar o status do jogo
           this.checkStatus();
@@ -325,10 +316,10 @@ var Game = /*#__PURE__*/function () {
       if (this.points === 0) {
         console.log("Você perdeu por pontos");
         alert(`${this.numero}, você não tem mais pontos! Tente novamente`);
-          const board = document.querySelector("#board");
+         const board = document.querySelector("#board");
         board.classList.add("hide");
       }
-        // ainda existem cartas para serem viradas -> ganhou
+       // ainda existem cartas para serem viradas -> ganhou
       const cardsTurn = document.querySelectorAll(".turn");
       if (cardsTurn.length === this.deck.length) {
         console.log("Venceu!!");
@@ -345,29 +336,29 @@ var Game = /*#__PURE__*/function () {
           this.verso = verso;
           this.source = `../../static/assets/img/${name}.svg `;
         }
-          buscarAlvosProximos() {
+         buscarAlvosProximos() {
           const spot = document.querySelector(".selecionado").id;
           const proximo = (spot % 4) + 1;
           let anterior;
           spot == 1 ? (anterior = 4) : (anterior = spot - 1);
           return [anterior, proximo];
         }
-          buscarAlvoSiProprio() {
+         buscarAlvoSiProprio() {
           return document.querySelector(".selecionado").id;
         }
-          buscarAlvoTodos() {
+         buscarAlvoTodos() {
           const spot =
             document.getElementsByClassName("numero selecionado")[0].id;
           return [...document.getElementsByClassName("numero")]
             .map((element) => element.id)
             .filter((element) => element != spot);
         }
-          selecionarAlvos([...array]) {
+         selecionarAlvos([...array]) {
           for (let i of array) {
             document.getElementById(i).classList.add("alvos");
           }
         }
-          atacar([array]) {}
+         atacar([array]) {}
       }
       class Cardnumero2 extends Card2 {
         constructor(name, hp, range, pseudoname, id) {
@@ -386,35 +377,35 @@ var Game = /*#__PURE__*/function () {
         constructor(name, id) {
           super(name, "action", id);
         }
-          buscarAlvosProximos() {
+         buscarAlvosProximos() {
           const spot = document.querySelector(".selecionado").id;
           const proximo = (spot % 4) + 1;
           let anterior;
           spot == 1 ? (anterior = 4) : (anterior = spot - 1);
           return [anterior, proximo];
         }
-          buscarAlvoSiProprio() {
+         buscarAlvoSiProprio() {
           return document.querySelector(".selecionado").id;
         }
-          buscarAlvoTodos() {
+         buscarAlvoTodos() {
           const spot =
             document.getElementsByClassName("numero selecionado")[0].id;
           return [...document.getElementsByClassName("numero")]
             .map((element) => element.id)
             .filter((element) => element != spot);
         }
-          selecionarAlvos([...array]) {
+         selecionarAlvos([...array]) {
           for (let i of array) {
             document.getElementById(i).classList.add("alvos");
           }
         }
-          atacar([array]) {}
+         atacar([array]) {}
       }
-        class Bang2 extends CardAction2 {
+       class Bang2 extends CardAction2 {
         constructor(name, id) {
           super(name, id);
         }
-          buscarAlvos() {
+         buscarAlvos() {
           return super.buscarAlvosProximos();
         }*/
     }
@@ -512,8 +503,61 @@ var Player = /*#__PURE__*/function (_Card) {
     }
   }]);
   return Player;
-}(Card); //SELECTOR.JS
+}(Card); //TARGET.JS
+//recebe posicao,  analisar o range, ver posicao do alvos, usa carta
+//buscar na mesa
+function buscarAlvosProximos(spot) {
+  // @ts-ignore
+  //const spot = (document.querySelector(".selecionado").id)*1;
+  var total = document.getElementsByClassName("player").length;
+  var proximo = spot % 4 + 1;
+  var anterior;
+  spot == 1 ? anterior = total : anterior = spot - 1;
+  var anterior2 = document.getElementById("players").children[anterior - 1].children[0];
+  var proximo2 = document.getElementById("players").children[proximo - 1].children[0];
+  return [anterior2, proximo2];
+}
+
+// @ts-ignore
+function buscarAlvoSiProprio(spot) {
+  // @ts-ignore
+  return spot;
+}
+
+//function buscarAlvoTodos(spot) {
+// const spot = document.getElementsByClassName("player selecionado")[0].id;
+// return [...document.getElementsByClassName("player")]
+// .map((element) => element.id)
+//.filter((element) => element != spot);
+//}
+
+function selecionarAlvos(pos) {
+  //marcar anterior e proximo
+  pos[0].childNodes.forEach(function (element, index) {
+    if (index != 0)
+      //primeiro elemento é text, depois começa os li
+      pos[0].children[index - 1].classList.add("target turn");
+  });
+  pos[1].childNodes.forEach(function (element, index) {
+    if (index != 0)
+      //primeiro elemento é text, depois começa os li
+      pos[1].children[index - 1].classList.add("target turn");
+  });
+}
+
+// IMPRIMIR NO CONSOLE GAME
+
+var consoleGame = document.getElementById("console");
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Gabriel Atacou Ciclano \n";
+consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
+
+//SELECTOR.JS
 //capturando todos os elementos de html
+
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
 var playerName = document.getElementById("name");
@@ -557,47 +601,5 @@ function settingUpGame(game) {
     return missed.addEventListener("click", function (event) {
       return game.missed(event);
     });
-  });
-}
-//TARGET.JS
-//recebe posicao,  analisar o range, ver posicao do alvos, usa carta
-//buscar na mesa
-
-function buscarAlvosProximos(spot) {
-  // @ts-ignore
-  //const spot = (document.querySelector(".selecionado").id)*1;
-  var total = document.getElementsByClassName("player").length;
-  var proximo = spot % 4 + 1;
-  var anterior;
-  spot == 1 ? anterior = total : anterior = spot - 1;
-  var anterior2 = document.getElementById("players").children[anterior - 1].children[0];
-  var proximo2 = document.getElementById("players").children[proximo - 1].children[0];
-  return [anterior2, proximo2];
-}
-
-// @ts-ignore
-function buscarAlvoSiProprio(spot) {
-  // @ts-ignore
-  return spot;
-}
-
-//function buscarAlvoTodos(spot) {
-// const spot = document.getElementsByClassName("player selecionado")[0].id;
-// return [...document.getElementsByClassName("player")]
-// .map((element) => element.id)
-//.filter((element) => element != spot);
-//}
-
-function selecionarAlvos(pos) {
-  //marcar anterior e proximo
-  pos[0].childNodes.forEach(function (element, index) {
-    if (index != 0)
-      //primeiro elemento é text, depois começa os li
-      pos[0].children[index - 1].classList.add("target turn");
-  });
-  pos[1].childNodes.forEach(function (element, index) {
-    if (index != 0)
-      //primeiro elemento é text, depois começa os li
-      pos[1].children[index - 1].classList.add("target turn");
   });
 }
