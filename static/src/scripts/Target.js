@@ -1,7 +1,7 @@
 //TARGET.JS
 //recebe posicao,  analisar o range, ver posicao do alvos, usa carta
 //buscar na mesa
-// @ts-check
+
 function buscarAlvosProximos(spot) {
     // @ts-ignore
     //const spot = (document.querySelector(".selecionado").id)*1;

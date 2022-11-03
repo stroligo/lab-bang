@@ -1,21 +1,17 @@
 // CLASSE
 // HEAD
-
 class Game {
 
   constructor(name) {
     this.name = name;
 
     const jogadores = [
-      // @ts-ignore
-      (document.getElementById("nameplayer1").innerHTML =
-        document.getElementById("inputName1").value),
-      (document.getElementById("nameplayer2").innerHTML =
-        document.getElementById("inputName2").value),
-      (document.getElementById("nameplayer3").innerHTML =
-        document.getElementById("inputName3").value),
-      (document.getElementById("nameplayer4").innerHTML =
-        document.getElementById("inputName4").value),
+
+      document.getElementsByClassName("name")[0].innerText,
+      document.getElementsByClassName("name")[1].innerText,
+      document.getElementsByClassName("name")[2].innerText,
+      document.getElementsByClassName("name")[3].innerText
+
     ];
 
     //renderDeck(jogadores);
@@ -23,30 +19,21 @@ class Game {
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
-    const player1 = new Sheriff("sheriff", jogadores[0], "player1");
-    const player2 = new Renegade("renegade", jogadores[1], "player2");
-    const player3 = new Outlaw("outlaw", jogadores[2], "player3");
-    const player4 = new Outlaw("outlaw", jogadores[3], "player4");
-<<<<<<< HEAD
-    this.roles = [player1, player2, player3, player4];
-    renderDeck(this.roles);
-
-    this.deck = [];
-
-    this.roles.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
-=======
-    this.deck = [player1, player2, player3, player4];
+    const numero1 = new Sheriff("sheriff", jogadores[0], "numero1");
+    const numero2 = new Renegade("renegade", jogadores[1], "numero2");
+    const numero3 = new Outlaw("outlaw", jogadores[2], "numero3");
+    const numero4 = new Outlaw("outlaw", jogadores[3], "numero4");
+    this.deck = [numero1, numero2, numero3, numero4];
     //renderDeck(this.deck);
     this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
-    
-    this.role = [player1, player2, player3, player4];
+
+    this.role = [numero1, numero2, numero3, numero4];
 
     this.role.forEach(element => {
       element.ComprarCartas(this.deck.shift(), 2)
     });
 
     this.deck = []
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
 
     for (let i = 5; i <= 30; i = i + 3) {
       this.deck.push(new Bang("bang", i));
@@ -54,49 +41,23 @@ class Game {
       this.deck.push(new Missed("missed", i + 2));
     }
 
-    renderDeck(this.deck);
+   // renderDeck(this.deck);
     //compra inicial de cartas
 
-<<<<<<< HEAD
-    this.roles.forEach((element) => {
-      element.ComprarCartas(this.deck.shift(), 0);
-    });
-
-    this.roles.forEach((element) => {
+    this.role.forEach((element) => {
       //element.ComprarCartas(this.roles.shift(),0)
       for (let i = 0; i < element.hp; i++)
         element.ComprarCartas(this.deck.shift(), 2);
-=======
-
-    this.role.forEach(element => {
-      //element.ComprarCartas(this.roles.shift(),0)
-      for (let i = 0; i < element.hp; i++)
-        element.ComprarCartas(this.deck.shift(), 0)
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
     });
 
     console.log("Cartas Foram distribuidas");
 
-<<<<<<< HEAD
-    const inicio = this.roles[0].id;
-    console.log(this.roles[0].pseudoname);
-    console.log("Selecionado");
-    document.getElementById(inicio).classList.add("selecionado");
-=======
     //iniciando a partida
     const inicio = this.role[0].id
     console.log(this.role[0].pseudoname);
     console.log("Selecionado");
     document.getElementById(inicio).classList.add("turn");
 
->>>>>>> adb0900c7e27912726efab0d4ee246ccead48a4c
-  }
-
-  renderDeck() {
-    console.log("randomizar o deck ->> EMBARALHAR -> shufle");
-    this.deck.sort(() => {
-      return Math.random() - 0.5;
-    });
   }
 
   partida() {
@@ -129,37 +90,37 @@ class Game {
   //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
   turn(event) {
     //const game1 = new Game("game");
- 
+
     const idCarta = event.currentTarget["id"];
-    alert(idCarta+"Selecionada");
+    alert(idCarta + "Selecionada");
     let objeto;
-    if (idCarta == "player1") objeto=this.role[0]
-    if (idCarta == "player2") objeto=this.role[1]
-    if (idCarta == "player3") objeto=this.role[2]
-    if (idCarta == "player4") objeto=this.role[3]
-    if (idCarta == "player5") objeto=this.role[4]
-    if (idCarta == "player6") objeto=this.role[5]
-    if (idCarta == "player7") objeto=this.role[6]
-   
-     
+    if (idCarta == "numero1") objeto = this.role[0]
+    if (idCarta == "numero2") objeto = this.role[1]
+    if (idCarta == "numero3") objeto = this.role[2]
+    if (idCarta == "numero4") objeto = this.role[3]
+    if (idCarta == "numero5") objeto = this.role[4]
+    if (idCarta == "numero6") objeto = this.role[5]
+    if (idCarta == "numero7") objeto = this.role[6]
+
+
     objeto.ComprarCartas(this.deck.shift(), 0)
-    objeto.ComprarCartas(this.deck.shift(), 0) 
-   
+    objeto.ComprarCartas(this.deck.shift(), 0)
+
 
     //const spot1 = this.role[0].getStpot(idCarta, this.role) //trocar para metodo estatico futuramente
-    const spot = objeto.spot    
+    const spot = objeto.spot
     const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
     //buscando cartas da mão
 
-   
+
     li.childNodes.forEach((element, index) => {
       if (index != 0)  //primeiro elemento é text, depois começa os li
         li.children[index - 1].classList.add("turn")
     });
 
-       
+
     //selecionarAlvos(buscarAlvosProximos(spot))
-   
+
 
     //const carta1 = this.deck.find(element => element.selecionado);
     //const carta2 = this.deck.findLast(element => element.selecionado);
@@ -335,12 +296,3 @@ class Game {
 }
 
 
-function renderDeck(array) {
-  console.log("randomizar o deck ->> EMBARALHAR -> shufle");
-  array.sort(() => {
-    return Math.random() - 0.5;
-  });
-}
-function teste() {
-  console.log("BANNNG!!!");
-}

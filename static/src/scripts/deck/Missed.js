@@ -1,5 +1,5 @@
 //ESQUIVA.JS
-// @ts-check
+
 class Missed extends Card {
   constructor(name, id, atack = 0, defesa =1, vida = 0) {
     super(name, 'cards', id, atack, defesa, vida);

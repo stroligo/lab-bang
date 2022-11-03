@@ -43,7 +43,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 //ACARD.JS
-// @ts-check
 var Card = /*#__PURE__*/function () {
   function Card(name, classe, id, ataque, defesa, vida) {
     _classCallCheck(this, Card);
@@ -55,14 +54,14 @@ var Card = /*#__PURE__*/function () {
     this.vida = vida;
     this.frente = "./assets/bang/".concat(classe, "/").concat(name, ".png");
     //this.verso = `./assets/bang/${classe}/_back.png`;
-    var board = document.getElementById("board");
+    var board = document.getElementById("deck");
     //const li = document.createElement("li"); 
     var imgFront = document.createElement("img"); // <img />
     imgFront.id = this.id;
     imgFront.src = this.frente;
     imgFront.className = "show cardFront";
     board.appendChild(imgFront);
-    document.getElementById(this.id).classList.add(this.classe, "deck");
+    document.getElementById(this.id).classList.add(this.classe, "card");
   }
   _createClass(Card, [{
     key: "getId",
@@ -92,32 +91,29 @@ var Card = /*#__PURE__*/function () {
   return Card;
 }(); // CLASSE
 // HEAD
-// @ts-check
 var Game = /*#__PURE__*/function () {
   function Game(name) {
     var _this = this;
     _classCallCheck(this, Game);
     this.name = name;
-    var jogadores = [
-    // @ts-ignore
-    document.getElementById("nameplayer1").innerHTML = document.getElementById("inputName1").value, document.getElementById("nameplayer2").innerHTML = document.getElementById("inputName2").value, document.getElementById("nameplayer3").innerHTML = document.getElementById("inputName3").value, document.getElementById("nameplayer4").innerHTML = document.getElementById("inputName4").value];
+    var jogadores = [document.getElementsByClassName("name")[0].innerText, document.getElementsByClassName("name")[1].innerText, document.getElementsByClassName("name")[2].innerText, document.getElementsByClassName("name")[3].innerText];
 
     //renderDeck(jogadores);
 
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
-    var player1 = new Sheriff("sheriff", jogadores[0], "player1");
-    var player2 = new Renegade("renegade", jogadores[1], "player2");
-    var player3 = new Outlaw("outlaw", jogadores[2], "player3");
-    var player4 = new Outlaw("outlaw", jogadores[3], "player4");
-    this.deck = [player1, player2, player3, player4];
+    var numero1 = new Sheriff("sheriff", jogadores[0], "numero1");
+    var numero2 = new Renegade("renegade", jogadores[1], "numero2");
+    var numero3 = new Outlaw("outlaw", jogadores[2], "numero3");
+    var numero4 = new Outlaw("outlaw", jogadores[3], "numero4");
+    this.deck = [numero1, numero2, numero3, numero4];
     //renderDeck(this.deck);
     this.deck.forEach(function (element, index) {
       return element.setSpot(index + 1);
     }); //.setSpot())
 
-    this.role = [player1, player2, player3, player4];
+    this.role = [numero1, numero2, numero3, numero4];
     this.role.forEach(function (element) {
       element.ComprarCartas(_this.deck.shift(), 2);
     });
@@ -127,13 +123,14 @@ var Game = /*#__PURE__*/function () {
       this.deck.push(new Beer("beer", i + 1));
       this.deck.push(new Missed("missed", i + 2));
     }
-    renderDeck(this.deck);
+
+    // renderDeck(this.deck);
     //compra inicial de cartas
 
     this.role.forEach(function (element) {
       //element.ComprarCartas(this.roles.shift(),0)
       for (var _i = 0; _i < element.hp; _i++) {
-        element.ComprarCartas(_this.deck.shift(), 0);
+        element.ComprarCartas(_this.deck.shift(), 2);
       }
     });
     console.log("Cartas Foram distribuidas");
@@ -145,14 +142,6 @@ var Game = /*#__PURE__*/function () {
     document.getElementById(inicio).classList.add("turn");
   }
   _createClass(Game, [{
-    key: "renderDeck",
-    value: function renderDeck() {
-      console.log("randomizar o deck ->> EMBARALHAR -> shufle");
-      this.deck.sort(function () {
-        return Math.random() - 0.5;
-      });
-    }
-  }, {
     key: "partida",
     value: function partida() {
       //const idCarta = event.currentTarget["id"];
@@ -186,13 +175,13 @@ var Game = /*#__PURE__*/function () {
       var idCarta = event.currentTarget["id"];
       alert(idCarta + "Selecionada");
       var objeto;
-      if (idCarta == "player1") objeto = this.role[0];
-      if (idCarta == "player2") objeto = this.role[1];
-      if (idCarta == "player3") objeto = this.role[2];
-      if (idCarta == "player4") objeto = this.role[3];
-      if (idCarta == "player5") objeto = this.role[4];
-      if (idCarta == "player6") objeto = this.role[5];
-      if (idCarta == "player7") objeto = this.role[6];
+      if (idCarta == "numero1") objeto = this.role[0];
+      if (idCarta == "numero2") objeto = this.role[1];
+      if (idCarta == "numero3") objeto = this.role[2];
+      if (idCarta == "numero4") objeto = this.role[3];
+      if (idCarta == "numero5") objeto = this.role[4];
+      if (idCarta == "numero6") objeto = this.role[5];
+      if (idCarta == "numero7") objeto = this.role[6];
       objeto.ComprarCartas(this.deck.shift(), 0);
       objeto.ComprarCartas(this.deck.shift(), 0);
 
@@ -250,8 +239,8 @@ var Game = /*#__PURE__*/function () {
       // setar todas cartas como não selecionadas
       //this.deck.forEach(element, index => element.selecionado = false)
       setTimeout((event) => {
+        // @ts-ignore
         for (let i of cartasId)
-          // @ts-ignore
           document.getElementById(i).classList.remove("selecionado");
       }, 1500);
       }
@@ -361,16 +350,7 @@ var Game = /*#__PURE__*/function () {
     }
   }]);
   return Game;
-}();
-function renderDeck(array) {
-  console.log("randomizar o deck ->> EMBARALHAR -> shufle");
-  array.sort(function () {
-    return Math.random() - 0.5;
-  });
-}
-
-//APLAYER.JS
-// @ts-check
+}(); //APLAYER.JS
 var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
@@ -402,8 +382,8 @@ var Player = /*#__PURE__*/function (_Card) {
       }
       if (tipo == 0) {
         // document.getElementById(carta.id).className = "apagar"
-        document.getElementsByClassName(this.id)[0].children[2].appendChild(document.createElement("li"));
-        document.getElementsByClassName(this.id)[0].children[2].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true));
+        document.getElementsByClassName(this.id)[0].children[1].appendChild(document.createElement("li"));
+        document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true));
         //document.getElementsByClassName("apagar")[0].remove();
         document.getElementById(carta.id).remove();
       }
@@ -426,7 +406,6 @@ var Player = /*#__PURE__*/function (_Card) {
   return Player;
 }(Card); //SELECTOR.JS
 //capturando todos os elementos de html
-// @ts-check
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
 var playerName = document.getElementById("name");
@@ -436,20 +415,20 @@ var board = document.getElementById("board");
 addEventListener("submit", function () {
   var game1 = new Game("game");
   // startScreen desapareça
-  // @ts-ignore
-  startScreen.classList.add("hide");
+
+  //startScreen.classList.add("hide");
   // mostrar o gameScores
-  // @ts-ignore
-  gameScore.className = "show";
-  game1.renderDeck();
+
+  //gameScore.className = "show";
+  //game1.renderDeck();
   settingUpGame(game1);
 });
 function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
-  var turn = document.querySelectorAll(".turn");
-  turn.forEach(function (turn) {
-    return turn.addEventListener("click", function (event) {
+  var card = document.querySelectorAll(".card");
+  card.forEach(function (card) {
+    return card.addEventListener("click", function (event) {
       return game.turn(event);
     });
   });
@@ -458,7 +437,7 @@ function settingUpGame(game) {
 //TARGET.JS
 //recebe posicao,  analisar o range, ver posicao do alvos, usa carta
 //buscar na mesa
-// @ts-check
+
 function buscarAlvosProximos(spot) {
   // @ts-ignore
   //const spot = (document.querySelector(".selecionado").id)*1;
