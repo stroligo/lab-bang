@@ -7213,6 +7213,53 @@ section {
 .hide {
   display: none !important;
 }
+.perfil_dev .foto_perfil {
+  background: olivedrab;
+}
+.perfil_dev .foto_perfil figure {
+  background: purple;
+  max-height: 260px;
+  overflow: hidden;
+}
+.perfil_dev .foto_perfil img {
+  max-width: 210px;
+  max-height: 205px;
+}
+@media only screen and (max-width: 47em) {
+  .perfil_dev .foto_perfil img {
+    max-width: 170px;
+  }
+}
+.perfil_dev .shared {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 2rem;
+  background: #f19103;
+  border-radius: 0 1rem 1rem 0;
+}
+.perfil_dev .shared hr {
+  font-weight: 800;
+  border-top: 2px solid #35220e;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.perfil_dev .shared ul {
+  font-weight: 800;
+  font-size: 1em;
+}
+@media screen and (min-width: 27.77777778em) {
+  .perfil_dev .shared ul {
+    font-size: calc(1em + (0.11111111 * ((100vw - 27.77777778em) / 52.22222222)));
+  }
+}
+@media screen and (min-width: 80em) {
+  .perfil_dev .shared ul {
+    font-size: 1.11111111em;
+  }
+}
+.perfil_dev .shared ul li {
+  margin-bottom: 0.5rem;
+}
 .base {
   background: url(../assets/bang/theme/floor.png);
   background-size: cover;
