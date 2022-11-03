@@ -1,25 +1,25 @@
 //OUTLAW.JS
 // @ts-check
 class Outlaw extends Player {
-  constructor(name, pseudoname, id) {
-    super(name, pseudoname, id);
+  constructor(name, classe,  id, pseudoname) {
+    super(name, classe, id, pseudoname);
   }
 }
 
 //RENEAGADE.JS
 // @ts-check
 class Renegade extends Player {
-  constructor(name, pseudoname, id) {
-    super(name, pseudoname, id); 
+  constructor(name, classe,  id, pseudoname) {
+    super(name, classe, id, pseudoname);
   }
-}
+  }
 
 //SHERIFF.JS
 // @ts-check
 class Sheriff extends Player {
-  constructor(name, pseudoname, id) {
-    super(name, pseudoname, id);
-  }
+  constructor(name, classe,  id, pseudoname) {
+    super(name, classe, id, pseudoname);
+    }
 }
 
 "use strict";
@@ -32,6 +32,9 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -52,16 +55,14 @@ var Card = /*#__PURE__*/function () {
     this.ataque = ataque;
     this.defesa = defesa;
     this.vida = vida;
-    this.frente = "./assets/bang/".concat(classe, "/").concat(name, ".png");
-    //this.verso = `./assets/bang/${classe}/_back.png`;
+    var li = document.createElement('li');
+    li.id = this.id;
+    li.classList.add("card-wrapper");
     var board = document.getElementById("deck");
-    //const li = document.createElement("li"); 
-    var imgFront = document.createElement("img"); // <img />
-    imgFront.id = this.id;
-    imgFront.src = this.frente;
-    imgFront.className = "show cardFront";
-    board.appendChild(imgFront);
-    document.getElementById(this.id).classList.add(this.classe, "card", "hidden");
+    var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
+    li.innerHTML = row;
+    board.appendChild(li);
+    document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
   }
   _createClass(Card, [{
     key: "getId",
@@ -100,6 +101,7 @@ consoleGame.innerHTML += " Fulano Atacou Ciclano \n";
 
 // CLASSE
 // HEAD
+// @ts-check
 var Game = /*#__PURE__*/function () {
   function Game(name) {
     var _this = this;
@@ -107,20 +109,20 @@ var Game = /*#__PURE__*/function () {
     this.name = name;
     var jogadores = [document.getElementsByClassName("name")[0].innerText, document.getElementsByClassName("name")[1].innerText, document.getElementsByClassName("name")[2].innerText, document.getElementsByClassName("name")[3].innerText];
 
-    //renderDeck(jogadores);
+    //this.renderDeck();
 
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
-    var numero1 = new Sheriff("sheriff", jogadores[0], "numero1");
-    var numero2 = new Renegade("renegade", jogadores[1], "numero2");
-    var numero3 = new Outlaw("outlaw", jogadores[2], "numero3");
-    var numero4 = new Outlaw("outlaw", jogadores[3], "numero4");
-    this.roles = [numero1, numero2, numero3, numero4];
+    var numero1 = new Sheriff("roles", "outlaw", "player1", jogadores[0]);
+    var numero2 = new Renegade("roles", "renegade", "player2", jogadores[1]);
+    var numero3 = new Outlaw("roles", "sheriff", "player3", jogadores[2]);
+    var numero4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
+    this.role = [numero1, numero2, numero3, numero4];
     //renderDeck(this.roles);
 
     this.deck = [];
-    this.roles.forEach(function (element, index) {
+    this.role.forEach(function (element, index) {
       return element.setSpot(index + 1);
     }); //.setSpot())
 
@@ -135,9 +137,9 @@ var Game = /*#__PURE__*/function () {
     });
     this.deck = [];
     for (var i = 5; i <= 30; i = i + 3) {
-      this.deck.push(new Bang("bang", i));
-      this.deck.push(new Beer("beer", i + 1));
-      this.deck.push(new Missed("missed", i + 2));
+      this.deck.push(new Bang("cards", "bang", i));
+      this.deck.push(new Beer("cards", "beer", i + 1));
+      this.deck.push(new Missed("cards", "missed", i + 2));
     }
 
     // renderDeck(this.deck);
@@ -152,9 +154,9 @@ var Game = /*#__PURE__*/function () {
     console.log("Cartas Foram distribuidas");
 
     //iniciando a partida
-    var inicio = this.role[0].id;
-    console.log(this.role[0].pseudoname);
-    console.log("Selecionado");
+    var inicio = this.role[1].id;
+    console.log(this.role[1].id);
+    console.log(this.role[1]);
     document.getElementById(inicio).classList.add("turn");
   }
   _createClass(Game, [{
@@ -188,6 +190,51 @@ var Game = /*#__PURE__*/function () {
         }
       }
     }
+  }, {
+    key: "buscaObjeto",
+    value: function buscaObjeto(id) {
+      var objeto;
+      if (id == "player1") return this.role[1];
+      if (id == "player2") return this.role[1];
+      if (id == "player3") return this.role[2];
+      if (id == "player4") return this.role[3];
+      if (id == "player5") return this.role[4];
+      if (id == "player6") return this.role[5];
+      if (id == "player7") return this.role[6];
+    }
+  }, {
+    key: "beer",
+    value: function beer(event) {
+      this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
+      element.ComprarCartas(this.deck.shift(), 0);
+    }
+  }, {
+    key: "alvos",
+    value: function alvos(event) {
+      alert("selecionado");
+    }
+  }, {
+    key: "bang",
+    value: function bang(event) {
+      var playerAtual = document.getElementsByClassName("turn")[0].id;
+      var spot = this.buscaObjeto(playerAtual).getSpot();
+      var totalPlayers = document.getElementsByClassName("player").length;
+      var proximo = spot % totalPlayers + 1;
+      var anterior;
+      spot == 1 ? anterior = total : anterior = spot - 1;
+      document.getElementById("players").children[anterior - 1].classList.add("target");
+      document.getElementById("players").children[proximo - 1].classList.add("target");
+      console.log("selecione um alvo");
+      var alvos = document.getElementsByClassName("target");
+      _toConsumableArray(alvos).forEach(function (alvos) {
+        return alvos.addEventListener("click", function (event) {
+          return game.alvos(event);
+        });
+      });
+    }
+  }, {
+    key: "missed",
+    value: function missed(event) {}
 
     //nessa etapa iremos configurar os turnos de cada jogador
     //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
@@ -196,21 +243,21 @@ var Game = /*#__PURE__*/function () {
     value: function turn(event) {
       //const game1 = new Game("game");
 
-      var idCarta = event.currentTarget["id"];
-      alert(idCarta + "Selecionada");
+      var playerAtual = document.getElementsByClassName("turn")[0].id;
       var objeto;
-      if (idCarta == "numero1") objeto = this.role[0];
-      if (idCarta == "numero2") objeto = this.role[1];
-      if (idCarta == "numero3") objeto = this.role[2];
-      if (idCarta == "numero4") objeto = this.role[3];
-      if (idCarta == "numero5") objeto = this.role[4];
-      if (idCarta == "numero6") objeto = this.role[5];
-      if (idCarta == "numero7") objeto = this.role[6];
+      if (playerAtual == "player1") objeto = this.role[0];
+      if (playerAtual == "player2") objeto = this.role[1];
+      if (playerAtual == "player3") objeto = this.role[2];
+      if (playerAtual == "player4") objeto = this.role[3];
+      if (playerAtual == "player5") objeto = this.role[4];
+      if (playerAtual == "player6") objeto = this.role[5];
+      if (playerAtual == "player7") objeto = this.role[6];
+      console.log("comprando");
       objeto.ComprarCartas(this.deck.shift(), 0);
       objeto.ComprarCartas(this.deck.shift(), 0);
 
       //const spot1 = this.role[0].getStpot(idCarta, this.role) //trocar para metodo estatico futuramente
-      var spot = objeto.spot;
+      //const spot = objeto.spot
       //const li = document.getElementById(idCarta).parentNode.parentNode.nextElementSibling.nextElementSibling;
       //buscando cartas da mão
 
@@ -389,13 +436,13 @@ function onMouseenterOrMouseleaveCard(e) {
 var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
-  function Player(name, pseudoname, id) {
+  function Player(name, classe, id, pseudoname) {
     var _this2;
-    var hp = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
-    var range = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
-    var spot = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
+    var hp = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 5;
+    var range = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
+    var spot = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
     _classCallCheck(this, Player);
-    _this2 = _super.call(this, name, "roles", id);
+    _this2 = _super.call(this, name, classe, id);
     _this2.pseudoname = pseudoname;
     _this2.hp = hp;
     _this2.range = range;
@@ -406,21 +453,32 @@ var Player = /*#__PURE__*/function (_Card) {
   _createClass(Player, [{
     key: "ComprarCartas",
     value: function ComprarCartas(carta, tipo) {
+      var copia = carta;
       this.hand.push(carta);
       console.log("".concat(this.pseudoname, " comprou uma carta"));
+      console.log("id da classe player" + this.id);
+      console.log("name" + this.name);
+      console.log("classe" + this.classe);
       if (tipo == 2) {
-        //role
+        //role  
 
-        document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("li"));
-        document.getElementsByClassName(this.id)[0].children[0].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden");
-        document.getElementById(carta.id).remove();
+        //document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("lia"))
+        document.getElementById(this.id).children[0].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
+        document.getElementById(copia.id).remove();
       }
       if (tipo == 0) {
         // document.getElementById(carta.id).className = "apagar"
-        document.getElementsByClassName(this.id)[0].children[1].appendChild(document.createElement("li"));
-        document.getElementsByClassName(this.id)[0].children[1].lastElementChild.appendChild(document.getElementById(carta.id).cloneNode(true)).classList.remove("hidden");
+        //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
+        document.getElementById(this.id).children[1].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
         //document.getElementsByClassName("apagar")[0].remove();
-        document.getElementById(carta.id).remove();
+        document.getElementById(copia.id).remove();
+      }
+      if (tipo == 3) {
+        // document.getElementById(carta.id).className = "apagar"
+        //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
+        document.getElementById(this.id).children[1].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
+        //document.getElementsByClassName("apagar")[0].remove();
+        document.getElementById(copia.id).remove();
       }
     }
 
@@ -433,9 +491,24 @@ var Player = /*#__PURE__*/function (_Card) {
       this.spot = value;
     }
   }, {
+    key: "getSpot",
+    value: function getSpot(value) {
+      return this.spot;
+    }
+  }, {
     key: "setHP",
     value: function setHP(value) {
-      this.hp = this.hp;
+      this.hp += value;
+      var vida = document.getElementsByClassName("turn")[0].children[0].children[1].children[1].children[0].children[0];
+      if (value < 0) {
+        vida.children[0].remove();
+        console.log("Voce foi atingido");
+      }
+      if (value > 0) {
+        var node = vida.lastChild;
+        var clone = node.cloneNode(true);
+        vida.appendChild(clone);
+      }
     }
   }]);
   return Player;
@@ -462,13 +535,30 @@ function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
   var card = document.querySelectorAll(".card");
+  var beer = document.querySelectorAll(".beer");
+  var bang = document.querySelectorAll(".bang");
+  var missed = document.querySelectorAll(".missed");
   card.forEach(function (card) {
     return card.addEventListener("click", function (event) {
       return game.turn(event);
     });
   });
+  beer.forEach(function (beer) {
+    return beer.addEventListener("click", function (event) {
+      return game.beer(event);
+    });
+  });
+  bang.forEach(function (bang) {
+    return bang.addEventListener("click", function (event) {
+      return game.bang(event);
+    });
+  });
+  missed.forEach(function (missed) {
+    return missed.addEventListener("click", function (event) {
+      return game.missed(event);
+    });
+  });
 }
-
 //TARGET.JS
 //recebe posicao,  analisar o range, ver posicao do alvos, usa carta
 //buscar na mesa

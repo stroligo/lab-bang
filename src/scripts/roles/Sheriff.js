@@ -1,7 +1,7 @@
 //SHERIFF.JS
 // @ts-check
 class Sheriff extends Player {
-  constructor(name, pseudoname, id) {
-    super(name, pseudoname, id);
-  }
+  constructor(name, classe,  id, pseudoname) {
+    super(name, classe, id, pseudoname);
+    }
 }

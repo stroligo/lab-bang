@@ -7929,7 +7929,10 @@ fieldset {
   padding: 1rem;
 }
 .hidden {
-  display: inline;
+  border: 1px;
+}
+.roles2 {
+  display: none;
 }
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
