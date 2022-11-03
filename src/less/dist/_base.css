@@ -2277,6 +2277,15 @@ a:not([href="#"]):not([href=""]) {
   top: calc(50% - 7px);
   right: 20px;
 }
+.btn-jogar {
+  color: #35220e;
+  background-color: #eae8db;
+}
+.btn-jogar li:hover,
+.btn-jogar a:hover,
+.btn-jogar ul:hover {
+  color: #35220e;
+}
 .btn {
   font-family: "Sora", sans-serif;
   font-weight: 800;
