@@ -35,13 +35,13 @@ class Game {
     this.deck = [];
     this.deck = [player1, player2, player3, player4];
 
-    for (let i = 0; i < 4; i++)
+    for (let i = 0; i < 40; i++)
       this.deck.push(new Bang("cards", "bang", i + 4));
 
-    for (let i = 0; i < 1; i++)
+    for (let i = 0; i < 10; i++)
       this.deck.push(new Missed("cards", "missed", i + 44));
 
-    for (let i = 0; i < 1; i++)
+    for (let i = 0; i < 10; i++)
       this.deck.push(new Beer("cards", "beer", i + 54));
 
     //compra inicial de cartas
@@ -52,9 +52,15 @@ class Game {
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
+<<<<<<< HEAD
     for (let i = 0; i < 7; i++) {
       this.comprarDeck();
     }
+=======
+      for (let i = 0; i < 20; i++) {
+        this.comprarDeck()
+      }
+>>>>>>> d0ed45ff0ac340c5db9e413ead68b45200d05fb4
 
     //);
   }
