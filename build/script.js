@@ -345,11 +345,24 @@ var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var button = document.getElementsByClassName("fechar")[0];
+// Porximo Turno
 
 // When the user clicks on the button, open the modal
 // MODIFICADO PARA JA ABRIR O MODAL
-modal.style.display = "block";
-btn.onclick = function () {};
+
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+var btnproxTurno = document.getElementById("proxTurno");
+var tply = document.getElementById("players");
+var ply1 = document.getElementById("player1");
+var ply2 = document.getElementById("player2");
+var ply3 = document.getElementById("player3");
+var ply4 = document.getElementById("player4");
+btnproxTurno.onclick = function () {
+  ply1.classList.remove("turn");
+  ply2.classList.add("turn");
+};
 
 // When the user clicks on <span> (x), close the modal
 button.onclick = function () {
@@ -362,21 +375,6 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
-
-/* var p1 = document.querySelector("#player1 .infos .name");
-var p2 = document.querySelector("#player2 .infos .name");
-var p3 = document.querySelector("#player3 .infos .name");
-var p4 = document.querySelector("#player4 .infos .name");
-
-var i1 = document.querySelector("#inputName1");
-var i2 = document.querySelector("#inputName1");
-var i3 = document.querySelector("#inputName1");
-var i4 = document.querySelector("#inputName1");
-
-p1.innerHTML = i1.innerHTML;
-p2.innerHTML = i2.innerHTML;
-p2.innerHTML = i3.innerHTML;
-p2.innerHTML = i4.innerHTML; */
 
 //SELECTOR.JS
 //capturando todos os elementos de html
