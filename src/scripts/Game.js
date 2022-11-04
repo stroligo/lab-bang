@@ -26,24 +26,24 @@ class Game {
 
     //renderDeck(this.roles);
 
-    this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
+   // this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
     this.role.forEach((element) => element.setAnteriorProximo());
 
     //Setando Xerife
     //const inicio = this.role[2].id
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
-    this.deck = [player1, player2, player3, player4];
-   for (let k =0; k<8;k++){
-    for (let i = 0; i < 3; i++)
+    //this.deck = [player1, player2, player3, player4];
+   
+    for (let i = 0; i < 12; i++)
       this.deck.push(new Bang("cards", "bang", i + 4));
 
-    for (let i = 0; i < 1; i++)
-      this.deck.push(new Missed("cards", "missed", i + 44));
+    for (let i = 0; i < 4; i++)
+      this.deck.push(new Missed("cards", "missed", i + 12));
 
-    for (let i = 0; i < 1; i++)
-      this.deck.push(new Beer("cards", "beer", i + 54));
-    }
+    for (let i = 0; i < 4; i++)
+      this.deck.push(new Beer("cards", "beer", i + 16));
+    
     //compra inicial de cartas
 
     //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
@@ -66,7 +66,7 @@ class Game {
          this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
          const remover = document.querySelector("#deck ul li");
          const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
-         inserir.appendChild(remover);
+         inserir.appendChild(remover).classList.remove("hidden");
        }
   }
 
@@ -145,7 +145,8 @@ class Game {
   }
 
   bang(event) {
-    if (!this.precisaComprar()) {
+   // if (!this.precisaComprar()) {
+      
       const atual = this.buscaObjeto(document.querySelector(".turn").id);
       document
         .querySelectorAll(`#player${atual.anterior},#player${atual.proximo}`)
@@ -156,11 +157,12 @@ class Game {
       alvos.forEach((alvos) =>
         alvos.addEventListener("click", (event) => this.alvosAction(event))
       );
-    }
+   // }
   }
 
   alvosAction(event) {
     const id = event.currentTarget["id"];
+    
     if (document.querySelector(`#${id} .missed`))
       document.getElementById("console").value += "Voce escapou por pouco\n";
     else {
@@ -175,16 +177,7 @@ class Game {
 
   //nessa etapa iremos configurar os turnos de cada jogador
   //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
-  turn(event) {
-    //const game1 = new Game("game");
-
-    const playerAtual = document.getElementsByClassName("turn")[2].id;
-    let objeto;
-
-    //console.log("comprando");
-    //objeto.ComprarCartas(this.deck.shift(), 0)
-    //objeto.ComprarCartas(this.deck.shift(), 0)
-  }
+  
 }
 
 function onMouseenterOrMouseleaveCard(e) {

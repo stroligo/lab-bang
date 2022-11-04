@@ -32,35 +32,26 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 //CARD.JS
-var Card = /*#__PURE__*/function () {
-  function Card(name, classe, id) {
-    _classCallCheck(this, Card);
-    this.name = name;
-    this.classe = classe;
-    this.id = id;
-    if (name != "roles") {
-      var li = document.createElement("li");
-      li.id = this.id;
-      li.classList.add("card-wrapper");
-      var _board = document.getElementById("deck").children[0];
-      var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
-      li.innerHTML = row;
-      _board.appendChild(li);
-      document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
-    }
+var Card = /*#__PURE__*/_createClass(function Card(name, classe, id) {
+  _classCallCheck(this, Card);
+  this.name = name;
+  this.classe = classe;
+  this.id = id;
+  if (name != "roles") {
+    var li = document.createElement("li");
+    li.id = this.id;
+    li.classList.add("card-wrapper", "hidden");
+    var _board = document.getElementById("deck").children[0];
+    var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
+    li.innerHTML = row;
+    _board.appendChild(li);
+    document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
   }
-  _createClass(Card, [{
-    key: "getId",
-    value: function getId() {
-      return this.id;
-    }
-  }]);
-  return Card;
-}(); // CLASSE
+}); // CLASSE
 // HEAD
 var Game = /*#__PURE__*/function () {
   function Game(name) {
@@ -81,9 +72,7 @@ var Game = /*#__PURE__*/function () {
 
     //renderDeck(this.roles);
 
-    this.role.forEach(function (element, index) {
-      return element.setSpot(index + 1);
-    }); //.setSpot())
+    // this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
     this.role.forEach(function (element) {
       return element.setAnteriorProximo();
     });
@@ -92,15 +81,16 @@ var Game = /*#__PURE__*/function () {
     //const inicio = this.role[2].id
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
-    this.deck = [player1, player2, player3, player4];
-    for (var i = 0; i < 40; i++) {
+    //this.deck = [player1, player2, player3, player4];
+
+    for (var i = 0; i < 12; i++) {
       this.deck.push(new Bang("cards", "bang", i + 4));
     }
-    for (var _i = 0; _i < 10; _i++) {
-      this.deck.push(new Missed("cards", "missed", _i + 44));
+    for (var _i = 0; _i < 4; _i++) {
+      this.deck.push(new Missed("cards", "missed", _i + 12));
     }
-    for (var _i2 = 0; _i2 < 10; _i2++) {
-      this.deck.push(new Beer("cards", "beer", _i2 + 54));
+    for (var _i2 = 0; _i2 < 4; _i2++) {
+      this.deck.push(new Beer("cards", "beer", _i2 + 16));
     }
 
     //compra inicial de cartas
@@ -111,13 +101,35 @@ var Game = /*#__PURE__*/function () {
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
-    for (var _i3 = 0; _i3 < 20; _i3++) {
-      this.comprarDeck();
-    }
 
-    //);
+    for (var _i3 = 0; _i3 < 20; _i3++) {
+      var _atual = document.querySelector(".turn");
+      if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
+      _atual.classList.remove("turn");
+
+      // if (this.precisaComprar())
+      var playerAtual = document.querySelector(".turn").id;
+      var cartaExcluir = this.deck.shift();
+      this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+      var remover = document.querySelector("#deck ul li");
+      var inserir = document.querySelector("#".concat(playerAtual, " > div.hand > ul"));
+      inserir.appendChild(remover).classList.remove("hidden");
+    }
   }
   _createClass(Game, [{
+    key: "comprarDeck",
+    value: function comprarDeck() {
+      // if (this.precisaComprar())
+      {
+        var playerAtual = document.querySelector(".turn").id;
+        var cartaExcluir = this.deck.shift();
+        this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+        var remover = document.querySelector("#deck ul li");
+        var inserir = document.querySelector("#".concat(playerAtual, " > div.hand > ul"));
+        inserir.appendChild(remover);
+      }
+    }
+  }, {
     key: "renderDeck",
     value: function renderDeck() {
       console.log("randomizar o deck ->> EMBARALHAR -> shufle");
@@ -172,18 +184,6 @@ var Game = /*#__PURE__*/function () {
       return false;
     }
   }, {
-    key: "comprarDeck",
-    value: function comprarDeck() {
-      if (this.precisaComprar()) {
-        var playerAtual = document.querySelector(".turn").id;
-        var cartaExcluir = this.deck.shift();
-        this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
-        var remover = document.querySelector("#deck ul li");
-        var inserir = document.querySelector("#".concat(playerAtual, " > div.hand > ul"));
-        inserir.appendChild(remover);
-      }
-    }
-  }, {
     key: "beer",
     value: function beer(event) {
       if (!this.precisaComprar()) this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
@@ -192,19 +192,20 @@ var Game = /*#__PURE__*/function () {
     key: "bang",
     value: function bang(event) {
       var _this = this;
-      if (!this.precisaComprar()) {
-        var atual = this.buscaObjeto(document.querySelector(".turn").id);
-        document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
-          return element.classList.add("target");
+      // if (!this.precisaComprar()) {
+
+      var atual = this.buscaObjeto(document.querySelector(".turn").id);
+      document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
+        return element.classList.add("target");
+      });
+      document.getElementById("console").value += "Selecione um alvo\n";
+      var alvos = document.querySelectorAll(".target");
+      alvos.forEach(function (alvos) {
+        return alvos.addEventListener("click", function (event) {
+          return _this.alvosAction(event);
         });
-        document.getElementById("console").value += "Selecione um alvo\n";
-        var alvos = document.querySelectorAll(".target");
-        alvos.forEach(function (alvos) {
-          return alvos.addEventListener("click", function (event) {
-            return _this.alvosAction(event);
-          });
-        });
-      }
+      });
+      // }
     }
   }, {
     key: "alvosAction",
@@ -220,18 +221,6 @@ var Game = /*#__PURE__*/function () {
 
     //nessa etapa iremos configurar os turnos de cada jogador
     //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
-  }, {
-    key: "turn",
-    value: function turn(event) {
-      //const game1 = new Game("game");
-
-      var playerAtual = document.getElementsByClassName("turn")[2].id;
-      var objeto;
-
-      //console.log("comprando");
-      //objeto.ComprarCartas(this.deck.shift(), 0)
-      //objeto.ComprarCartas(this.deck.shift(), 0)
-    }
   }]);
   return Game;
 }();
@@ -246,6 +235,45 @@ function onMouseenterOrMouseleaveCard(e) {
   }
   _$this.removeClass("reverse");
 }
+
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var button = document.getElementsByClassName("fechar")[0];
+// Porximo Turno
+
+// When the user clicks on the button, open the modal
+// MODIFICADO PARA JA ABRIR O MODAL
+
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+var btnproxTurno = document.getElementById("proxTurno");
+var totalPlayers = document.getElementsByClassName("player").length;
+var tply = document.getElementById("players");
+var ply1 = document.getElementById("player1");
+var ply2 = document.getElementById("player2");
+var ply3 = document.getElementById("player3");
+var ply4 = document.getElementById("player4");
+btnproxTurno.onclick = function () {
+  atual = document.querySelector(".turn");
+  if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
+  atual.classList.remove("turn");
+};
+
+// When the user clicks on <span> (x), close the modal
+button.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 //APLAYER.JS
 var Player = /*#__PURE__*/function (_Card) {
@@ -306,79 +334,10 @@ var Player = /*#__PURE__*/function (_Card) {
         document.getElementById("console").value += "Voce ganhou vida\n";
       }
     }
-  }, {
-    key: "ComprarCartas",
-    value: function ComprarCartas(carta, tipo) {
-      var copia = carta;
-      this.hand.push(carta);
-      console.log("".concat(this.pseudoname, " comprou uma carta"));
-      console.log("id da classe player" + this.id);
-      console.log("name" + this.name);
-      console.log("classe" + this.classe);
-      if (tipo == 2) {
-        //role
-
-        //document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("lia"))
-        document.getElementById(this.id).children[0].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
-        document.getElementById(copia.id).remove();
-      }
-      if (tipo == 0) {
-        // document.getElementById(carta.id).className = "apagar"
-        //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
-        document.getElementById(this.id).children[1].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
-        //document.getElementsByClassName("apagar")[0].remove();
-        document.getElementById(copia.id).remove();
-      }
-      if (tipo == 3) {
-        // document.getElementById(carta.id).className = "apagar"
-        //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
-        document.getElementById(this.id).children[1].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
-        //document.getElementsByClassName("apagar")[0].remove();
-        document.getElementById(copia.id).remove();
-      }
-    }
   }]);
   return Player;
-}(Card); // Get the modal
-var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-var button = document.getElementsByClassName("fechar")[0];
-// Porximo Turno
-
-// When the user clicks on the button, open the modal
-// MODIFICADO PARA JA ABRIR O MODAL
-
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-var btnproxTurno = document.getElementById("proxTurno");
-var tply = document.getElementById("players");
-var ply1 = document.getElementById("player1");
-var ply2 = document.getElementById("player2");
-var ply3 = document.getElementById("player3");
-var ply4 = document.getElementById("player4");
-btnproxTurno.onclick = function () {
-  ply1.classList.remove("turn");
-  ply2.classList.add("turn");
-};
-
-// When the user clicks on <span> (x), close the modal
-button.onclick = function () {
-  modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//SELECTOR.JS
+}(Card); //SELECTOR.JS
 //capturando todos os elementos de html
-
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
 var playerName = document.getElementById("name");
@@ -393,10 +352,10 @@ addEventListener("submit", function () {
 function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
-  document.querySelectorAll(".name")[0].innerText += "" + document.getElementById("inputName1").value.split(" ")[0];
-  document.querySelectorAll(".name")[1].innerText += "" + document.getElementById("inputName2").value.split(" ")[0];
-  document.querySelectorAll(".name")[2].innerText += "" + document.getElementById("inputName3").value.split(" ")[0];
-  document.querySelectorAll(".name")[3].innerText += "" + document.getElementById("inputName4").value.split(" ")[0];
+  document.querySelectorAll(".name")[0].innerText += "|" + document.getElementById("inputName1").value.split(" ")[0];
+  document.querySelectorAll(".name")[1].innerText += "|" + document.getElementById("inputName2").value.split(" ")[0];
+  document.querySelectorAll(".name")[2].innerText += "|" + document.getElementById("inputName3").value.split(" ")[0];
+  document.querySelectorAll(".name")[3].innerText += "|" + document.getElementById("inputName4").value.split(" ")[0];
   document.getElementById("console").value += "Cartas Foram distribuidas\n";
   var card = document.querySelectorAll(".card");
   var beer = document.querySelectorAll(".beer");
@@ -407,11 +366,7 @@ function settingUpGame(game) {
       return game.comprarDeck(event);
     });
   });
-  card.forEach(function (card) {
-    return card.addEventListener("click", function (event) {
-      return game.turn(event);
-    });
-  });
+  // card.forEach(card => card.addEventListener("click", event => game.turn(event)));
   beer.forEach(function (beer) {
     return beer.addEventListener("click", function (event) {
       return game.beer(event);

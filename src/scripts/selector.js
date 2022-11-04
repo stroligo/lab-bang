@@ -28,7 +28,7 @@ function settingUpGame(game) {
   const bang = document.querySelectorAll(".bang")
   const deck = document.querySelectorAll("#deck");
   deck.forEach(deck => deck.addEventListener("click", event => game.comprarDeck(event)));
-  card.forEach(card => card.addEventListener("click", event => game.turn(event)));
+ // card.forEach(card => card.addEventListener("click", event => game.turn(event)));
   beer.forEach(beer => beer.addEventListener("click", event => game.beer(event)));
  bang.forEach(bang => bang.addEventListener("click", event => game.bang(event)));
   

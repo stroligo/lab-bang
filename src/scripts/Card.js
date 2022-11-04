@@ -7,7 +7,7 @@ class Card {
     if (name != "roles") {
       const li = document.createElement("li");
       li.id = this.id;
-      li.classList.add("card-wrapper");
+      li.classList.add("card-wrapper","hidden");
       const board = document.getElementById("deck").children[0];
       const row = `      
     <div class="card">
@@ -23,13 +23,11 @@ class Card {
       board.appendChild(li);
       document
         .getElementById(this.id)
-        .classList.add(this.classe, this.name, "hiddden");
+        .classList.add(this.classe, this.name, "hidden");
     }
   
-  
+
   }
 
-  getId() {
-    return this.id;
-  }
+
 }

@@ -59,64 +59,7 @@ class Player extends Card {
     }
   }
 
-  comprarDeck(carta) {
-   // if (this.precisaComprar())
-     {
-      const playerAtual = document.querySelector(".turn").id;
-      const cartaExcluir = this.deck.shift();
-      this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
-      const remover = document.querySelector("#deck ul li");
-      const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
-      inserir.appendChild(remover);
-    }
-  }
+ 
 
-  ComprarCartas2(carta, tipo) {
-    const copia = carta;
-    this.hand.push(carta);
-
-    console.log(`${this.pseudoname} comprou uma carta`);
-    console.log("id da classe player" + this.id);
-    console.log("name" + this.name);
-    console.log("classe" + this.classe);
-
-    if (tipo == 2) {
-      //role
-
-      //document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("lia"))
-      document
-        .getElementById(this.id)
-        .children[0].lastElementChild.appendChild(
-          document.getElementById(copia.id).cloneNode(true)
-        )
-        .classList.remove("hidden");
-      document.getElementById(copia.id).remove();
-    }
-
-    if (tipo == 0) {
-      // document.getElementById(carta.id).className = "apagar"
-      //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
-      document
-        .getElementById(this.id)
-        .children[1].lastElementChild.appendChild(
-          document.getElementById(copia.id).cloneNode(true)
-        )
-        .classList.remove("hidden");
-      //document.getElementsByClassName("apagar")[0].remove();
-      document.getElementById(copia.id).remove();
-    }
-
-    if (tipo == 3) {
-      // document.getElementById(carta.id).className = "apagar"
-      //document.getElementsByClassName(this.id)[0].children[1].children[0].appendChild(document.createElement("li"))
-      document
-        .getElementById(this.id)
-        .children[1].lastElementChild.appendChild(
-          document.getElementById(copia.id).cloneNode(true)
-        )
-        .classList.remove("hidden");
-      //document.getElementsByClassName("apagar")[0].remove();
-      document.getElementById(copia.id).remove();
-    }
-  }
+  
 }
