@@ -4,12 +4,12 @@ class Card {
     this.name = name;
     this.classe = classe;
     this.id = id;
-    if (name!="roles") {
-    const li = document.createElement('li');
-    li.id = this.id;
-    li.classList.add("card-wrapper");
-    const board = document.getElementById("deck").children[0]
-    const row = `      
+    if (name != "roles") {
+      const li = document.createElement("li");
+      li.id = this.id;
+      li.classList.add("card-wrapper");
+      const board = document.getElementById("deck").children[0];
+      const row = `      
     <div class="card">
     <div class="back">
     <img src="./assets/bang/${name}/${classe}.png" />
@@ -19,14 +19,15 @@ class Card {
     </div>
     </div>
         `;
-    li.innerHTML = row;
-    board.appendChild(li);
-    document.getElementById(this.id).classList.add(this.classe, this.name, "hiddden");}
+      li.innerHTML = row;
+      board.appendChild(li);
+      document
+        .getElementById(this.id)
+        .classList.add(this.classe, this.name, "hidden");
+    }
   }
 
   getId() {
     return this.id;
   }
-
-
 }

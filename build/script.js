@@ -43,14 +43,14 @@ var Card = /*#__PURE__*/function () {
     this.classe = classe;
     this.id = id;
     if (name != "roles") {
-      var li = document.createElement('li');
+      var li = document.createElement("li");
       li.id = this.id;
       li.classList.add("card-wrapper");
       var _board = document.getElementById("deck").children[0];
       var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
       li.innerHTML = row;
       _board.appendChild(li);
-      document.getElementById(this.id).classList.add(this.classe, this.name, "hiddden");
+      document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
     }
   }
   _createClass(Card, [{
@@ -107,7 +107,7 @@ var Game = /*#__PURE__*/function () {
 
     //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
     //document.querySelectorAll(".player")[1].classList.add("turn") //setando active para todos
-    document.querySelectorAll(".player")[2].classList.add("turn"); //setando active para todos
+    document.querySelectorAll(".player")[0].classList.add("turn"); //setando active para todos
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
@@ -163,7 +163,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "precisaComprar",
     value: function precisaComprar(event) {
-      var textArea = document.getElementById('console');
+      var textArea = document.getElementById("console");
       textArea.scrollTop = textArea.scrollHeight;
       if (document.getElementsByClassName("turn").deck) {
         document.getElementById("console").value += "Compre uma carta\n";
@@ -237,15 +237,16 @@ var Game = /*#__PURE__*/function () {
 }();
 function onMouseenterOrMouseleaveCard(e) {
   var _$this = $(this);
-  if (windowWidth < 1000 || _$this.hasClass('reverse-clicked')) {
+  if (windowWidth < 1000 || _$this.hasClass("reverse-clicked")) {
     return;
   }
-  if (e.type === 'mouseenter') {
-    _$this.addClass('reverse');
+  if (e.type === "mouseenter") {
+    _$this.addClass("reverse");
     return;
   }
-  _$this.removeClass('reverse');
+  _$this.removeClass("reverse");
 }
+
 //APLAYER.JS
 var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
@@ -315,7 +316,7 @@ var Player = /*#__PURE__*/function (_Card) {
       console.log("name" + this.name);
       console.log("classe" + this.classe);
       if (tipo == 2) {
-        //role  
+        //role
 
         //document.getElementsByClassName(this.id)[0].children[0].appendChild(document.createElement("lia"))
         document.getElementById(this.id).children[0].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
@@ -394,10 +395,10 @@ addEventListener("submit", function () {
 function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
-  document.querySelectorAll(".name")[0].innerText += "|" + document.getElementById("inputName1").value.split(" ")[0];
-  document.querySelectorAll(".name")[1].innerText += "|" + document.getElementById("inputName2").value.split(" ")[0];
-  document.querySelectorAll(".name")[2].innerText += "|" + document.getElementById("inputName3").value.split(" ")[0];
-  document.querySelectorAll(".name")[3].innerText += "|" + document.getElementById("inputName4").value.split(" ")[0];
+  document.querySelectorAll(".name")[0].innerText += "" + document.getElementById("inputName1").value.split(" ")[0];
+  document.querySelectorAll(".name")[1].innerText += "" + document.getElementById("inputName2").value.split(" ")[0];
+  document.querySelectorAll(".name")[2].innerText += "" + document.getElementById("inputName3").value.split(" ")[0];
+  document.querySelectorAll(".name")[3].innerText += "" + document.getElementById("inputName4").value.split(" ")[0];
   document.getElementById("console").value += "Cartas Foram distribuidas\n";
   var card = document.querySelectorAll(".card");
   var beer = document.querySelectorAll(".beer");
