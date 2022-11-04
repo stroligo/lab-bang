@@ -5,7 +5,7 @@ var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var button = document.getElementsByClassName("fechar")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
@@ -13,15 +13,18 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+button.onclick = function () {
   modal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it
-addEventListener("submit", () => {
-  document.getElementById("myModal").style.display = "none";
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
-});
-addEventListener("load", () => {
-  document.getElementById("console").value+="Sejam bem Vindos seu primeiro desafio\n é descobrir como  inicia\n o jogo BANG." 
-});
+/* #player4 .infos .name
+#player4 .infos .name
+#player4 .infos .name
+#player4 .infos .name */

@@ -1,37 +1,33 @@
 <script src="./src/scripts/modal.js"></script>
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
+<button class="btn ml1 mt1" id="myBtn">Iniciar</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <h3 class="mb2">Nome dos jogadores:</h3>
     <form onsubmit="return false">
-      <fieldset>
+      <div class="form-group">
         <input
-          class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="inputName1"
           required=""
           type="text"
           placeholder="Digite o nome do primeiro jogador"
         />
         <input
-          class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="inputName2"
           required=""
           type="text"
           placeholder="Digite o nome do segundo jogador"
         />
         <input
-          class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="inputName3"
           required=""
           type="text"
           placeholder="Digite o nome do terceiro jogador"
         />
         <input
-          class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="inputName4"
           required=""
           type="text"
@@ -39,13 +35,14 @@
         />
 
         <button
-          class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
+          class="btn fechar mt1"
           type="submit"
           id="btnStart"
+          onclick="&times;"
         >
           Jogar!!
         </button>
-      </fieldset>
+      </div>
     </form>
   </div>
 </div>

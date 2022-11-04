@@ -1989,6 +1989,14 @@ a:not([href="#"]):not([href=""]) {
     margin-top: 2rem;
   }
 }
+.form-group input[type="text"] {
+  background-color: #fff;
+  color: #35220e;
+  margin-bottom: 0.5rem;
+  border: 1px solid #35220e;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
 .form-group input[type="button"] {
   font-family: "Sora", sans-serif;
   font-weight: 800;
@@ -4493,7 +4501,7 @@ section {
   /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 30%;
   /* Could be more or less, depending on screen size */
 }
 /* The Close Button */

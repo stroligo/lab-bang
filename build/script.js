@@ -163,26 +163,36 @@ var Game = /*#__PURE__*/function () {
       if (id == "player7") return this.role[6];
     }
   }, {
+    key: "precisaComprar",
+    value: function precisaComprar(event) {
+      if (document.getElementsByClassName("active").deck) {
+        document.getElementById("console").value += "Você precisa comprar\n";
+        return true;
+      }
+      return false;
+    }
+  }, {
     key: "beer",
     value: function beer(event) {
-      this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
+      if (!this.precisaComprar()) this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
     }
   }, {
     key: "bang",
     value: function bang(event) {
       var _this2 = this;
-      var atual = this.buscaObjeto(document.querySelector(".turn").id);
-      document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
-        return element.classList.add("target");
-      });
-      console.log("selecione um alvo");
-      var alvos = document.querySelectorAll(".target");
-      alvos.forEach(function (alvos) {
-        return alvos.addEventListener("click", function (event) {
-          return _this2.alvosAction(event);
+      if (!this.precisaComprar()) {
+        var atual = this.buscaObjeto(document.querySelector(".turn").id);
+        document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
+          return element.classList.add("target");
         });
-      });
-      document.getElementById("console").value += "Selecione um alvo\n";
+        document.getElementById("console").value += "Selecione um alvo\n";
+        var alvos = document.querySelectorAll(".target");
+        alvos.forEach(function (alvos) {
+          return alvos.addEventListener("click", function (event) {
+            return _this2.alvosAction(event);
+          });
+        });
+      }
     }
   }, {
     key: "alvosAction",
@@ -323,8 +333,40 @@ var Player = /*#__PURE__*/function (_Card) {
     }
   }]);
   return Player;
-}(Card); //SELECTOR.JS
+}(Card); // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var button = document.getElementsByClassName("fechar")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+button.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+/* #player4 .infos .name
+#player4 .infos .name
+#player4 .infos .name
+#player4 .infos .name */
+
+//SELECTOR.JS
 //capturando todos os elementos de html
+
 var gameScreen = document.getElementById("gameScreen");
 var gameScore = document.getElementById("gameScore");
 var playerName = document.getElementById("name");
