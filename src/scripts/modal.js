@@ -5,9 +5,6 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var button = document.getElementsByClassName("fechar")[0];
 
-console.log(p1);
-
-console.log(p1);
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
   modal.style.display = "block";
