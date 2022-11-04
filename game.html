@@ -10,7 +10,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="language" content="pt-br" />
-    <title>BANG!</title>
+    <title>GAME - BANG!</title>
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -25,10 +25,11 @@
     <script src="https://use.fontawesome.com/b2a7cc2637.js"></script>
   </head>
   <body class="base">
+    <!--
     <button class="btn ml1 mt1" id="myBtn">Iniciar</button>
-
+ -->
     <!-- START GAME MODAL -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal block">
       <!-- Modal content -->
       <div class="modal-content">
         <h3 class="mb2">Nome dos jogadores:</h3>
@@ -184,9 +185,6 @@
                       <ul class="hp">
                         <li><i class="fa fa-heart" aria-hidden="true"></i></li>
                         <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
                       </ul>
                     </div>
                   </div>
@@ -194,26 +192,6 @@
 
                 <div class="hand">
                   <ul>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/_back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/_back.png" />
-                        </div>
-                      </div>
-                    </li>
                     <li class="card-wrapper">
                       <div class="card bang" onclick="bang(new)">
                         <div class="back">
@@ -238,6 +216,26 @@
                       <div class="card missed" onclick="bang(new)">
                         <div class="back">
                           <img src="./assets/bang/cards/missed.png" />
+                        </div>
+                        <div class="front">
+                          <img src="./assets/bang/cards/_back.png" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="card-wrapper">
+                      <div class="card missed" onclick="bang(new)">
+                        <div class="back">
+                          <img src="./assets/bang/cards/missed.png" />
+                        </div>
+                        <div class="front">
+                          <img src="./assets/bang/cards/_back.png" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="card-wrapper">
+                      <div class="card bang" onclick="bang(new)">
+                        <div class="back">
+                          <img src="./assets/bang/cards/bang.png" />
                         </div>
                         <div class="front">
                           <img src="./assets/bang/cards/_back.png" />
