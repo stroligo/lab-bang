@@ -93,13 +93,13 @@ var Game = /*#__PURE__*/function () {
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
     this.deck = [player1, player2, player3, player4];
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 40; i++) {
       this.deck.push(new Bang("cards", "bang", i + 4));
     }
-    for (var _i = 0; _i < 1; _i++) {
+    for (var _i = 0; _i < 10; _i++) {
       this.deck.push(new Missed("cards", "missed", _i + 44));
     }
-    for (var _i2 = 0; _i2 < 1; _i2++) {
+    for (var _i2 = 0; _i2 < 10; _i2++) {
       this.deck.push(new Beer("cards", "beer", _i2 + 54));
     }
 
@@ -111,7 +111,7 @@ var Game = /*#__PURE__*/function () {
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
-    for (var _i3 = 0; _i3 < 7; _i3++) {
+    for (var _i3 = 0; _i3 < 20; _i3++) {
       this.comprarDeck();
     }
 

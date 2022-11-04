@@ -52,15 +52,9 @@ class Game {
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
-<<<<<<< HEAD
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 20; i++) {
       this.comprarDeck();
     }
-=======
-      for (let i = 0; i < 20; i++) {
-        this.comprarDeck()
-      }
->>>>>>> d0ed45ff0ac340c5db9e413ead68b45200d05fb4
 
     //);
   }
