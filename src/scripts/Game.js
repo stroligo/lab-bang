@@ -34,16 +34,16 @@ class Game {
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
     this.deck = [player1, player2, player3, player4];
-
-    for (let i = 0; i < 40; i++)
+   for (let k =0; k<8;k++){
+    for (let i = 0; i < 3; i++)
       this.deck.push(new Bang("cards", "bang", i + 4));
 
-    for (let i = 0; i < 10; i++)
+    for (let i = 0; i < 1; i++)
       this.deck.push(new Missed("cards", "missed", i + 44));
 
-    for (let i = 0; i < 10; i++)
+    for (let i = 0; i < 1; i++)
       this.deck.push(new Beer("cards", "beer", i + 54));
-
+    }
     //compra inicial de cartas
 
     //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
@@ -52,11 +52,34 @@ class Game {
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
     //this.role.forEach((element, index) => {
-    for (let i = 0; i < 20; i++) {
-      this.comprarDeck();
-    }
 
-    //);
+    for (let i=0; i < 20; i++)
+  {
+    const atual = document.querySelector(".turn");
+    if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn")
+    else document.querySelector(".turn").nextElementSibling.classList.add("turn")
+    atual.classList.remove("turn")
+      
+      // if (this.precisaComprar())
+        const playerAtual = document.querySelector(".turn").id;
+          const cartaExcluir = this.deck.shift();
+         this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+         const remover = document.querySelector("#deck ul li");
+         const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
+         inserir.appendChild(remover);
+       }
+  }
+
+  comprarDeck() {
+    // if (this.precisaComprar())
+    {
+      const playerAtual = document.querySelector(".turn").id;
+      const cartaExcluir = this.deck.shift();
+      this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+      const remover = document.querySelector("#deck ul li");
+      const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
+      inserir.appendChild(remover);
+    }
   }
 
   renderDeck() {
@@ -114,16 +137,7 @@ class Game {
     return false;
   }
 
-  comprarDeck() {
-    if (this.precisaComprar()) {
-      const playerAtual = document.querySelector(".turn").id;
-      const cartaExcluir = this.deck.shift();
-      this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
-      const remover = document.querySelector("#deck ul li");
-      const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
-      inserir.appendChild(remover);
-    }
-  }
+  
 
   beer(event) {
     if (!this.precisaComprar())
@@ -155,6 +169,8 @@ class Game {
     }
     document.querySelector(".target").classList.remove("target");
     document.querySelector(".target").classList.remove("target");
+
+
   }
 
   //nessa etapa iremos configurar os turnos de cada jogador

@@ -59,7 +59,19 @@ class Player extends Card {
     }
   }
 
-  ComprarCartas(carta, tipo) {
+  comprarDeck(carta) {
+   // if (this.precisaComprar())
+     {
+      const playerAtual = document.querySelector(".turn").id;
+      const cartaExcluir = this.deck.shift();
+      this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+      const remover = document.querySelector("#deck ul li");
+      const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
+      inserir.appendChild(remover);
+    }
+  }
+
+  ComprarCartas2(carta, tipo) {
     const copia = carta;
     this.hand.push(carta);
 

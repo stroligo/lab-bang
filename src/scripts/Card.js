@@ -23,8 +23,10 @@ class Card {
       board.appendChild(li);
       document
         .getElementById(this.id)
-        .classList.add(this.classe, this.name, "hidden");
+        .classList.add(this.classe, this.name, "hiddden");
     }
+  
+  
   }
 
   getId() {

@@ -1,425 +1,211 @@
 <!DOCTYPE html>
 <html lang="pt_br">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="language" content="pt-br" />
-    <title>GAME - BANG!</title>
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="stylesheet" href="./build/style.css" />
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="language" content="pt-br" />
+  <title>GAME - BANG!</title>
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&family=Sora:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://use.fontawesome.com/b2a7cc2637.js"></script>
-  </head>
-  <body class="base">
-    <button class="btn ml1 mt1" id="myBtn">Iniciar</button>
-    <div>
-      <button class="btn ml1 mt1" id="proxTurno">Proximo Turno</button>
+  <link rel="stylesheet" href="./build/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&family=Sora:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://use.fontawesome.com/b2a7cc2637.js"></script>
+</head>
+
+<body class="base">
+  <button class="btn ml1 mt1" id="myBtn">Iniciar</button>
+  <div>
+    <button class="btn ml1 mt1" id="proxTurno">Proximo Turno</button>
+  </div>
+
+  <!-- START GAME MODAL -->
+  <div id="myModal" class="modal block">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <h3 class="mb2">Nome dos jogadores:</h3>
+      <form onsubmit="return false">
+        <div class="form-group">
+          <input id="inputName1" required="" type="text" placeholder="Digite o nome do primeiro jogador" />
+          <input id="inputName2" required="" type="text" placeholder="Digite o nome do segundo jogador" />
+          <input id="inputName3" required="" type="text" placeholder="Digite o nome do terceiro jogador" />
+          <input id="inputName4" required="" type="text" placeholder="Digite o nome do quarto jogador" />
+
+          <button class="btn fechar mt1" type="submit" id="btnStart">
+            Jogar!!
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- START GAME MODAL -->
-    <div id="myModal" class="modal block">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <h3 class="mb2">Nome dos jogadores:</h3>
-        <form onsubmit="return false">
-          <div class="form-group">
-            <input
-              id="inputName1"
-              required=""
-              type="text"
-              placeholder="Digite o nome do primeiro jogador"
-            />
-            <input
-              id="inputName2"
-              required=""
-              type="text"
-              placeholder="Digite o nome do segundo jogador"
-            />
-            <input
-              id="inputName3"
-              required=""
-              type="text"
-              placeholder="Digite o nome do terceiro jogador"
-            />
-            <input
-              id="inputName4"
-              required=""
-              type="text"
-              placeholder="Digite o nome do quarto jogador"
-            />
-
-            <button class="btn fechar mt1" type="submit" id="btnStart">
-              Jogar!!
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div id="mainContent" data-page="">
-      <main id="game">
-        <div id="background">
-          <div class="container-fluid wrap">
-            <!-- MESA -->
-            <div id="area">
-              <div id="mesa">
-                <div class="active" id="deck"><ul></ul></div>
-                <div class="vazio" id="cemitery">
-                  <ul>
-                    <!--CARTA ADICIONADA AO CEMITERIO 
+  <div id="mainContent" data-page="">
+    <main id="game">
+      <div id="background">
+        <div class="container-fluid wrap">
+          <!-- MESA -->
+          <div id="area">
+            <div id="mesa">
+              <div class="active" id="deck">
+                <ul></ul>
+              </div>
+              <div class="vazio" id="cemitery">
+                <ul>
+                  <!--CARTA ADICIONADA AO CEMITERIO 
                     <img src="./assets/bang/cards/beer.png" />
                     -->
-                  </ul>
-                </div>
-              </div>
-              <div id="">
-                <textarea id="console" rows="3"> </textarea>
+                </ul>
               </div>
             </div>
-
-            <!-- FIM MESA -->
-
-            <!-- ADICIONAR PLAYER -->
-            <div id="players">
-              <div class="player numero1" id="player1">
-                <div class="infos">
-                  <div class="flex flex-col foto">
-                    <img src="./assets/bang/profile_picture/1.png" />
-
-                    <div class="badge outlaw"></div>
-                  </div>
-
-                  <div class="flex flex-col">
-                    <div class="name"></div>
-                    <div class="status">
-                      <ul class="hp">
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hand">
-                  <ul>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card beer" onclick="bang()">
-                        <div class="back">
-                          <img src="./assets/bang/cards/beer.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card missed" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/missed.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="player numero2" id="player2">
-                <div class="infos">
-                  <div class="flex flex-col foto">
-                    <img src="./assets/bang/profile_picture/2.png" />
-
-                    <div class="badge renegade"></div>
-                  </div>
-
-                  <div class="flex flex-col">
-                    <div class="name"></div>
-                    <div class="status">
-                      <ul class="hp">
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hand">
-                  <ul>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card beer" onclick="bang()">
-                        <div class="back">
-                          <img src="./assets/bang/cards/beer.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card missed" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/missed.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card missed" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/missed.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="player numero3" id="player3">
-                <div class="infos">
-                  <div class="flex flex-col foto">
-                    <img src="./assets/bang/profile_picture/3.png" />
-
-                    <div class="badge sheriff"></div>
-                  </div>
-
-                  <div class="flex flex-col">
-                    <div class="name"></div>
-                    <div class="status">
-                      <ul class="hp">
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hand">
-                  <ul>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card beer" onclick="bang()">
-                        <div class="back">
-                          <img src="./assets/bang/cards/beer.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card missed" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/missed.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="player numero4" id="player4">
-                <div class="infos">
-                  <div class="flex flex-col foto">
-                    <img src="./assets/bang/profile_picture/4.png" />
-
-                    <div class="badge deputy"></div>
-                  </div>
-
-                  <div class="flex flex-col">
-                    <div class="name"></div>
-                    <div class="status">
-                      <ul class="hp">
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hand">
-                  <ul>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card bang" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/bang.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card beer" onclick="bang()">
-                        <div class="back">
-                          <img src="./assets/bang/cards/beer.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="card-wrapper">
-                      <div class="card missed" onclick="bang(new)">
-                        <div class="back">
-                          <img src="./assets/bang/cards/missed.png" />
-                        </div>
-                        <div class="front">
-                          <img src="./assets/bang/cards/back.png" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div id="">
+              <textarea id="console" rows="3"> </textarea>
             </div>
-            <!-- FIM ADICIONAR PLAYER -->
           </div>
-        </div>
-      </main>
-    </div>
 
-    <script src="./src/scripts/modal.js"></script>
-    <script src="./src/scripts/Card.js"></script>
-    <script src="./src/scripts/Player.js"></script>
-    <script src="./src/scripts/Game.js"></script>
-    <script src="./src/scripts/selector.js"></script>
-    <script src="./src/scripts/roles/Sheriff.js"></script>
-    <script src="./src/scripts/roles/Renegade.js"></script>
-    <script src="./src/scripts/roles/Outlaw.js"></script>
-    <script src="./src/scripts/deck/Bang.js"></script>
-    <script src="./src/scripts/deck/Beer.js"></script>
-    <script src="./src/scripts/deck/Missed.js"></script>
-  </body>
+          <!-- FIM MESA -->
+
+          <!-- ADICIONAR PLAYER -->
+          <div id="players">
+            <div class="player numero1" id="player1">
+              <div class="infos">
+                <div class="flex flex-col foto">
+                  <img src="./assets/bang/profile_picture/1.png" />
+
+                  <div class="badge outlaw"></div>
+                </div>
+
+                <div class="flex flex-col">
+                  <div class="name"></div>
+                  <div class="status">
+                    <ul class="hp">
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hand">
+                <ul>
+
+
+                </ul>
+              </div>
+            </div>
+
+            <div class="player numero2" id="player2">
+              <div class="infos">
+                <div class="flex flex-col foto">
+                  <img src="./assets/bang/profile_picture/2.png" />
+
+                  <div class="badge renegade"></div>
+                </div>
+
+                <div class="flex flex-col">
+                  <div class="name"></div>
+                  <div class="status">
+                    <ul class="hp">
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hand">
+                <ul>
+
+                </ul>
+              </div>
+            </div>
+
+            <div class="player numero3" id="player3">
+              <div class="infos">
+                <div class="flex flex-col foto">
+                  <img src="./assets/bang/profile_picture/3.png" />
+
+                  <div class="badge sheriff"></div>
+                </div>
+
+                <div class="flex flex-col">
+                  <div class="name"></div>
+                  <div class="status">
+                    <ul class="hp">
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hand">
+                <ul>
+                  
+                </ul>
+              </div>
+            </div>
+
+            <div class="player numero4" id="player4">
+              <div class="infos">
+                <div class="flex flex-col foto">
+                  <img src="./assets/bang/profile_picture/4.png" />
+
+                  <div class="badge deputy"></div>
+                </div>
+
+                <div class="flex flex-col">
+                  <div class="name"></div>
+                  <div class="status">
+                    <ul class="hp">
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hand">
+                <ul>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- FIM ADICIONAR PLAYER -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./src/scripts/modal.js"></script>
+  <script src="./src/scripts/Card.js"></script>
+  <script src="./src/scripts/Player.js"></script>
+  <script src="./src/scripts/Game.js"></script>
+  <script src="./src/scripts/selector.js"></script>
+  <script src="./src/scripts/roles/Sheriff.js"></script>
+  <script src="./src/scripts/roles/Renegade.js"></script>
+  <script src="./src/scripts/roles/Outlaw.js"></script>
+  <script src="./src/scripts/deck/Bang.js"></script>
+  <script src="./src/scripts/deck/Beer.js"></script>
+  <script src="./src/scripts/deck/Missed.js"></script>
+</body>
+
 </html>

@@ -13,16 +13,20 @@ btn.onclick = function () {
   modal.style.display = "block";
 };
 var btnproxTurno = document.getElementById("proxTurno");
-
+var totalPlayers = document.getElementsByClassName("player").length;
 var tply = document.getElementById("players");
 var ply1 = document.getElementById("player1");
 var ply2 = document.getElementById("player2");
 var ply3 = document.getElementById("player3");
 var ply4 = document.getElementById("player4");
 
+
 btnproxTurno.onclick = function () {
-  ply1.classList.remove("turn");
-  ply2.classList.add("turn");
+atual = document.querySelector(".turn");
+ if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn")
+ else document.querySelector(".turn").nextElementSibling.classList.add("turn")
+ atual.classList.remove("turn")
+   
 };
 
 // When the user clicks on <span> (x), close the modal
