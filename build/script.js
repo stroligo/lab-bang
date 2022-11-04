@@ -1,24 +1,24 @@
 //OUTLAW.JS
 
 class Outlaw extends Player {
-  constructor(name, classe,  id, pseudoname) {
-    super(name, classe, id, pseudoname);
+  constructor(name, classe,  id, pseudoname, rodada, pos) {
+    super(name, classe, id, pseudoname, rodada, pos);
   }
 }
 
 //RENEAGADE.JS
 
 class Renegade extends Player {
-  constructor(name, classe,  id, pseudoname) {
-    super(name, classe, id, pseudoname);
+  constructor(name, classe,  id, pseudoname,rodada, pos) {
+    super(name, classe, id, pseudoname,rodada, pos);
   }
   }
 
 //SHERIFF.JS
 
 class Sheriff extends Player {
-  constructor(name, classe,  id, pseudoname) {
-    super(name, classe, id, pseudoname);
+  constructor(name, classe,  id, pseudoname, rodada, pos) {
+    super(name, classe, id, pseudoname, rodada, pos);
     }
 }
 
@@ -37,22 +37,21 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 //CARD.JS
 var Card = /*#__PURE__*/function () {
-  function Card(name, classe, id, ataque, defesa, vida) {
+  function Card(name, classe, id) {
     _classCallCheck(this, Card);
     this.name = name;
     this.classe = classe;
     this.id = id;
-    this.ataque = ataque;
-    this.defesa = defesa;
-    this.vida = vida;
-    var li = document.createElement('li');
-    li.id = this.id;
-    li.classList.add("card-wrapper");
-    var board = document.getElementById("deck");
-    var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
-    li.innerHTML = row;
-    board.appendChild(li);
-    document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
+    if (name != "roles") {
+      var li = document.createElement('li');
+      li.id = this.id;
+      li.classList.add("card-wrapper");
+      var _board = document.getElementById("deck").children[0];
+      var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
+      li.innerHTML = row;
+      _board.appendChild(li);
+      document.getElementById(this.id).classList.add(this.classe, this.name, "hiddden");
+    }
   }
   _createClass(Card, [{
     key: "getId",
@@ -65,7 +64,6 @@ var Card = /*#__PURE__*/function () {
 // HEAD
 var Game = /*#__PURE__*/function () {
   function Game(name) {
-    var _this = this;
     _classCallCheck(this, Game);
     this.name = name;
     var jogadores = [document.getElementById("inputName1").value, document.getElementById("inputName2").value, document.getElementById("inputName3").value, document.getElementById("inputName4").value];
@@ -75,53 +73,53 @@ var Game = /*#__PURE__*/function () {
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
-    var numero1 = new Sheriff("roles", "outlaw", "player1", jogadores[0]);
-    var numero2 = new Renegade("roles", "renegade", "player2", jogadores[1]);
-    var numero3 = new Outlaw("roles", "sheriff", "player3", jogadores[2]);
-    var numero4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
-    this.role = [numero1, numero2, numero3, numero4];
+    var player1 = new Outlaw("roles", "sheriff", "player3", jogadores[0]);
+    var player2 = new Renegade("roles", "renegade", "player2", jogadores[1]);
+    var player3 = new Sheriff("roles", "outlaw", "player1", jogadores[2]);
+    var player4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
+    this.role = [player1, player2, player3, player4];
+
     //renderDeck(this.roles);
 
-    this.deck = [];
     this.role.forEach(function (element, index) {
       return element.setSpot(index + 1);
     }); //.setSpot())
     this.role.forEach(function (element) {
       return element.setAnteriorProximo();
     });
-    this.deck = [numero1, numero2, numero3, numero4];
-    this.deck.forEach(function (element, index) {
-      return element.setSpot(index + 1);
-    }); //.setSpot())
 
-    this.role = [numero1, numero2, numero3, numero4];
-    this.role.forEach(function (element) {
-      element.ComprarCartas(_this.deck.shift(), 2);
-    });
+    //Setando Xerife
+    //const inicio = this.role[2].id
+    //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
-    for (var i = 5; i <= 30; i = i + 3) {
-      this.deck.push(new Bang("cards", "bang", i));
-      this.deck.push(new Beer("cards", "beer", i + 1));
-      this.deck.push(new Missed("cards", "missed", i + 2));
+    this.deck = [player1, player2, player3, player4];
+    for (var i = 0; i < 4; i++) {
+      this.deck.push(new Bang("cards", "bang", i + 4));
     }
-    this.renderDeck(this.deck); //compra inicial de cartas
+    for (var _i = 0; _i < 1; _i++) {
+      this.deck.push(new Missed("cards", "missed", _i + 44));
+    }
+    for (var _i2 = 0; _i2 < 1; _i2++) {
+      this.deck.push(new Beer("cards", "beer", _i2 + 54));
+    }
 
-    this.role.forEach(function (element) {
-      //element.ComprarCartas(this.roles.shift(),0)
-      for (var _i = 0; _i < element.hp; _i++) {
-        element.ComprarCartas(_this.deck.shift(), 0);
-      }
-    });
-    document.getElementById("console").value += "Cartas Foram distribuidas\n";
-    //iniciando a partida
-    var inicio = this.role[2].id;
-    console.log(this.role[1].id);
-    console.log(this.role[1]);
-    document.getElementById(inicio).classList.add("turn");
+    //compra inicial de cartas
+
+    //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
+    //document.querySelectorAll(".player")[1].classList.add("turn") //setando active para todos
+    document.querySelectorAll(".player")[2].classList.add("turn"); //setando active para todos
+    //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
+
+    //this.role.forEach((element, index) => {
+    for (var _i3 = 0; _i3 < 7; _i3++) {
+      this.comprarDeck();
+    }
+
+    //);
   }
   _createClass(Game, [{
     key: "renderDeck",
-    value: function renderDeck(values) {
+    value: function renderDeck() {
       console.log("randomizar o deck ->> EMBARALHAR -> shufle");
       this.deck.sort(function () {
         return Math.random() - 0.5;
@@ -154,7 +152,7 @@ var Game = /*#__PURE__*/function () {
     key: "buscaObjeto",
     value: function buscaObjeto(id) {
       var objeto;
-      if (id == "player1") return this.role[1];
+      if (id == "player1") return this.role[0];
       if (id == "player2") return this.role[1];
       if (id == "player3") return this.role[2];
       if (id == "player4") return this.role[3];
@@ -165,11 +163,25 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "precisaComprar",
     value: function precisaComprar(event) {
-      if (document.getElementsByClassName("active").deck) {
-        document.getElementById("console").value += "Você precisa comprar\n";
+      var textArea = document.getElementById('console');
+      textArea.scrollTop = textArea.scrollHeight;
+      if (document.getElementsByClassName("turn").deck) {
+        document.getElementById("console").value += "Compre uma carta\n";
         return true;
       }
       return false;
+    }
+  }, {
+    key: "comprarDeck",
+    value: function comprarDeck() {
+      if (this.precisaComprar()) {
+        var playerAtual = document.querySelector(".turn").id;
+        var cartaExcluir = this.deck.shift();
+        this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
+        var remover = document.querySelector("#deck ul li");
+        var inserir = document.querySelector("#".concat(playerAtual, " > div.hand > ul"));
+        inserir.appendChild(remover);
+      }
     }
   }, {
     key: "beer",
@@ -179,7 +191,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "bang",
     value: function bang(event) {
-      var _this2 = this;
+      var _this = this;
       if (!this.precisaComprar()) {
         var atual = this.buscaObjeto(document.querySelector(".turn").id);
         document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
@@ -189,7 +201,7 @@ var Game = /*#__PURE__*/function () {
         var alvos = document.querySelectorAll(".target");
         alvos.forEach(function (alvos) {
           return alvos.addEventListener("click", function (event) {
-            return _this2.alvosAction(event);
+            return _this.alvosAction(event);
           });
         });
       }
@@ -213,15 +225,8 @@ var Game = /*#__PURE__*/function () {
     value: function turn(event) {
       //const game1 = new Game("game");
 
-      var playerAtual = document.getElementsByClassName("turn")[0].id;
+      var playerAtual = document.getElementsByClassName("turn")[2].id;
       var objeto;
-      if (playerAtual == "player1") objeto = this.role[0];
-      if (playerAtual == "player2") objeto = this.role[1];
-      if (playerAtual == "player3") objeto = this.role[2];
-      if (playerAtual == "player4") objeto = this.role[3];
-      if (playerAtual == "player5") objeto = this.role[4];
-      if (playerAtual == "player6") objeto = this.role[5];
-      if (playerAtual == "player7") objeto = this.role[6];
 
       //console.log("comprando");
       //objeto.ComprarCartas(this.deck.shift(), 0)
@@ -245,23 +250,27 @@ function onMouseenterOrMouseleaveCard(e) {
 var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
-  function Player(name, classe, id, pseudoname) {
-    var _this3;
-    var hp = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 5;
-    var range = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 1;
-    var spot = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
-    var anterior = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 0;
-    var proximo = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 0;
+  function Player(name, classe, id, rodada, pseudoname) {
+    var _this2;
+    var hp = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 5;
+    var range = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
+    var spot = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 1;
+    var anterior = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 0;
+    var proximo = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : 0;
+    var compras = arguments.length > 10 && arguments[10] !== undefined ? arguments[10] : 0;
+    var pos = arguments.length > 11 && arguments[11] !== undefined ? arguments[11] : 0;
     _classCallCheck(this, Player);
-    _this3 = _super.call(this, name, classe, id);
-    _this3.pseudoname = pseudoname;
-    _this3.hp = hp;
-    _this3.range = range;
-    _this3.spot = spot;
-    _this3.anterior = anterior;
-    _this3.proximo = proximo;
-    _this3.hand = [];
-    return _this3;
+    _this2 = _super.call(this, name, classe, id);
+    _this2.rodada = rodada;
+    _this2.pseudoname = pseudoname;
+    _this2.hp = hp;
+    _this2.range = range;
+    _this2.spot = spot;
+    _this2.anterior = anterior;
+    _this2.proximo = proximo;
+    _this2.hand = [];
+    _this2.pos = pos;
+    return _this2;
   }
   _createClass(Player, [{
     key: "setAnteriorProximo",
@@ -269,6 +278,32 @@ var Player = /*#__PURE__*/function (_Card) {
       var totalPlayers = document.getElementsByClassName("player").length;
       this.proximo = this.spot % totalPlayers + 1;
       this.spot == 1 ? this.anterior = totalPlayers : this.anterior = this.spot - 1;
+    }
+  }, {
+    key: "setSpot",
+    value: function setSpot(value) {
+      this.spot = value;
+    }
+  }, {
+    key: "getSpot",
+    value: function getSpot() {
+      return this.spot;
+    }
+  }, {
+    key: "setHP",
+    value: function setHP(value) {
+      this.hp += value;
+      var vida = document.querySelector(".turn .hp");
+      if (value < 0) {
+        vida.children[0].remove();
+        document.getElementById("console").value += "Voce foi atingido\n";
+      }
+      if (value > 0) {
+        var node = vida.children[0];
+        var clone = node.cloneNode(true);
+        vida.appendChild(clone);
+        document.getElementById("console").value += "Voce ganhou vida\n";
+      }
     }
   }, {
     key: "ComprarCartas",
@@ -299,36 +334,6 @@ var Player = /*#__PURE__*/function (_Card) {
         document.getElementById(this.id).children[1].lastElementChild.appendChild(document.getElementById(copia.id).cloneNode(true)).classList.remove("hidden");
         //document.getElementsByClassName("apagar")[0].remove();
         document.getElementById(copia.id).remove();
-      }
-    }
-
-    //getStpot(id, role) {
-    //return role.filter(element => element.id == id)[0].spot
-    //}
-  }, {
-    key: "setSpot",
-    value: function setSpot(value) {
-      this.spot = value;
-    }
-  }, {
-    key: "getSpot",
-    value: function getSpot() {
-      return this.spot;
-    }
-  }, {
-    key: "setHP",
-    value: function setHP(value) {
-      this.hp += value;
-      var vida = document.querySelector(".turn .hp");
-      if (value < 0) {
-        vida.children[0].remove();
-        document.getElementById("console").value += "Voce foi atingido\n";
-      }
-      if (value > 0) {
-        var node = vida.children[0];
-        var clone = node.cloneNode(true);
-        vida.appendChild(clone);
-        document.getElementById("console").value += "Voce ganhou vida\n";
       }
     }
   }]);
@@ -383,14 +388,26 @@ var board = document.getElementById("board");
 //adicionar o event listener do submit
 addEventListener("submit", function () {
   var game1 = new Game("game");
+  game1.renderDeck();
   settingUpGame(game1);
 });
 function settingUpGame(game) {
   // capturar todas as cardsBack
   // adicionar a ela um eventlistener
+  document.querySelectorAll(".name")[0].innerText += "|" + document.getElementById("inputName1").value.split(" ")[0];
+  document.querySelectorAll(".name")[1].innerText += "|" + document.getElementById("inputName2").value.split(" ")[0];
+  document.querySelectorAll(".name")[2].innerText += "|" + document.getElementById("inputName3").value.split(" ")[0];
+  document.querySelectorAll(".name")[3].innerText += "|" + document.getElementById("inputName4").value.split(" ")[0];
+  document.getElementById("console").value += "Cartas Foram distribuidas\n";
   var card = document.querySelectorAll(".card");
   var beer = document.querySelectorAll(".beer");
   var bang = document.querySelectorAll(".bang");
+  var deck = document.querySelectorAll("#deck");
+  deck.forEach(function (deck) {
+    return deck.addEventListener("click", function (event) {
+      return game.comprarDeck(event);
+    });
+  });
   card.forEach(function (card) {
     return card.addEventListener("click", function (event) {
       return game.turn(event);

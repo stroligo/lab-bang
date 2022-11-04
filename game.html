@@ -25,54 +25,6 @@
     <script src="https://use.fontawesome.com/b2a7cc2637.js"></script>
   </head>
   <body class="base">
-    <!-- AREA JOGO -->
-    <button class="btn ml1 mt1" id="myBtn">Iniciar</button>
-
-    <!-- START GAME MODAL -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <h3 class="mb2">Nome dos jogadores:</h3>
-        <form onsubmit="return false">
-          <div class="form-group">
-            <input
-              id="inputName1"
-              required=""
-              type="text"
-              placeholder="Digite o nome do primeiro jogador"
-            />
-            <input
-              id="inputName2"
-              required=""
-              type="text"
-              placeholder="Digite o nome do segundo jogador"
-            />
-            <input
-              id="inputName3"
-              required=""
-              type="text"
-              placeholder="Digite o nome do terceiro jogador"
-            />
-            <input
-              id="inputName4"
-              required=""
-              type="text"
-              placeholder="Digite o nome do quarto jogador"
-            />
-
-            <button
-              class="btn fechar mt1"
-              type="submit"
-              id="btnStart"
-              onclick="&times;"
-            >
-              Jogar!!
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <div id="mainContent" data-page="">
       <main id="game">
         <div id="background">
@@ -80,16 +32,19 @@
             <!-- MESA -->
             <div id="area">
               <div id="mesa">
-                <div class="active" id="deck"></div>
+                <div class="active" id="deck"><ul></ul></div>
                 <div class="vazio" id="cemitery">
-                  <!--CARTA ADICIONADA AO CEMITERIO -->
-                  <img src="./assets/bang/cards/beer.png" />
+                  <ul>
+                    <!--CARTA ADICIONADA AO CEMITERIO -->
+                    <img src="./assets/bang/cards/beer.png" />
+                  </ul>
                 </div>
               </div>
               <div id="">
                 <textarea id="console" rows="3"> </textarea>
               </div>
             </div>
+
             <!-- FIM MESA -->
 
             <!-- ADICIONAR PLAYER -->
@@ -148,7 +103,7 @@
                 </div>
               </div>
 
-              <div class="player numero3" id="player3">
+              <div class="player numero3 turn" id="player3">
                 <div class="infos">
                   <div class="flex flex-col foto">
                     <img src="./assets/bang/profile_picture/3.png" />
@@ -207,7 +162,60 @@
         </div>
       </main>
     </div>
+    <div class="w-full md:w-3/5 py-6 text-center">
+      <div
+        class="container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto"
+      >
+        <!-- Add margin if you want to see some of the overlay behind the modal-->
+        <div class="content py-4 text-left px-6 text-black">
+          <!--Title-->
+          <div class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold">Quantos Jogadores?</p>
+          </div>
 
+          <form onsubmit="return false">
+            <fieldset>
+              <input
+                class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="inputName1"
+                required=""
+                type="text"
+                placeholder="Digite o nome do primeiro jogador"
+              />
+              <input
+                class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="inputName2"
+                required=""
+                type="text"
+                placeholder="Digite o nome do segundo jogador"
+              />
+              <input
+                class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="inputName3"
+                required=""
+                type="text"
+                placeholder="Digite o nome do terceiro jogador"
+              />
+              <input
+                class="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="inputName4"
+                required=""
+                type="text"
+                placeholder="Digite o nome do quarto jogador"
+              />
+
+              <button
+                class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
+                type="submit"
+                id="btnStart"
+              >
+                Jogar!!
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
     <script src="./src/scripts/modal.js"></script>
     <script src="./src/scripts/Card.js"></script>
     <script src="./src/scripts/Player.js"></script>
