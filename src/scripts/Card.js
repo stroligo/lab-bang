@@ -1,16 +1,14 @@
 //CARD.JS
 class Card {
-  constructor(name, classe, id, ataque, defesa, vida) {
+  constructor(name, classe, id) {
     this.name = name;
     this.classe = classe;
     this.id = id;
-    this.ataque = ataque;
-    this.defesa = defesa;
-    this.vida = vida;
+    if (name!="roles") {
     const li = document.createElement('li');
     li.id = this.id;
     li.classList.add("card-wrapper");
-    const board = document.getElementById("deck");
+    const board = document.getElementById("deck").children[0]
     const row = `      
     <div class="card">
     <div class="back">
@@ -23,7 +21,7 @@ class Card {
         `;
     li.innerHTML = row;
     board.appendChild(li);
-    document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
+    document.getElementById(this.id).classList.add(this.classe, this.name, "hiddden");}
   }
 
   getId() {

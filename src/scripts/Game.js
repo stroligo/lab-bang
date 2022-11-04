@@ -18,63 +18,63 @@ class Game {
     this.cemytery = []; //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
-    const numero1 = new Sheriff("roles", "outlaw", "player1", jogadores[0]);
-    const numero2 = new Renegade("roles", "renegade", "player2", jogadores[1]);
-    const numero3 = new Outlaw("roles", "sheriff", "player3", jogadores[2]);
-    const numero4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
+const player1 = new Outlaw("roles", "sheriff", "player3", jogadores[0]);
+const player2 = new Renegade("roles", "renegade", "player2", jogadores[1]);
+const player3 =  new Sheriff("roles", "outlaw", "player1", jogadores[2]);
+const player4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
 
-    this.role = [numero1, numero2, numero3, numero4];
+
+    this.role = [player1,player2,player3, player4];
+   
+    
+   
+    
     //renderDeck(this.roles);
 
-    this.deck = [];
-
-    this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
+      this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
     this.role.forEach(element => element.setAnteriorProximo());
 
-    this.deck = [numero1, numero2, numero3, numero4];
 
-    this.deck.forEach((element, index) => element.setSpot(index + 1))//.setSpot())
+    //Setando Xerife
+    //const inicio = this.role[2].id
+    //document.getElementById(inicio).classList.add("turn");
+    this.deck= [];
+    this.deck = [player1,player2,player3, player4];
 
-    this.role = [numero1, numero2, numero3, numero4];
+    for (let i = 0; i < 4; i++)
+      this.deck.push(new Bang("cards", "bang", i + 4));
 
-    this.role.forEach(element => {
-      element.ComprarCartas(this.deck.shift(), 2)
-    });
+    for (let i = 0; i < 1; i++)
+      this.deck.push(new Missed("cards", "missed", i + 44));
 
-    this.deck = []
+    for (let i = 0; i < 1; i++)
+      this.deck.push(new Beer("cards", "beer", i + 54));
 
-    for (let i = 5; i <= 30; i = i + 3) {
-      this.deck.push(new Bang("cards", "bang", i));
-      this.deck.push(new Beer("cards", "beer", i + 1));
-      this.deck.push(new Missed("cards", "missed", i + 2));
-    }
+    //compra inicial de cartas
 
-    this.renderDeck(this.deck);    //compra inicial de cartas
+    //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
+    //document.querySelectorAll(".player")[1].classList.add("turn") //setando active para todos
+    document.querySelectorAll(".player")[2].classList.add("turn") //setando active para todos
+    //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
 
-    this.role.forEach(element => {
-      //element.ComprarCartas(this.roles.shift(),0)
-      for (let i = 0; i < element.hp; i++)
-        element.ComprarCartas(this.deck.shift(), 0)
-    });
+    //this.role.forEach((element, index) => {
+      for (let i = 0; i < 7; i++) {
+        this.comprarDeck()
+      }
 
-    document.getElementById("console").value += "Cartas Foram distribuidas\n"
-    //iniciando a partida
-    const inicio = this.role[2].id
-    console.log(this.role[1].id);
-    console.log(this.role[1]);
-    document.getElementById(inicio).classList.add("turn");
-
+    
+    //);
 
   }
 
-  renderDeck(values) {
+  renderDeck() {
     console.log("randomizar o deck ->> EMBARALHAR -> shufle")
     this.deck.sort(() => {
       return Math.random() - 0.5;
     });
-
   }
+
   partida() {
     //const idCarta = event.currentTarget["id"];
     console.log(idCarta);
@@ -106,7 +106,7 @@ class Game {
 
   buscaObjeto(id) {
     let objeto;
-    if (id == "player1") return this.role[1]
+    if (id == "player1") return this.role[0]
     if (id == "player2") return this.role[1]
     if (id == "player3") return this.role[2]
     if (id == "player4") return this.role[3]
@@ -115,19 +115,38 @@ class Game {
     if (id == "player7") return this.role[6]
   }
 
+
+
   precisaComprar(event) {
 
-    if (document.getElementsByClassName("active").deck) {
-      document.getElementById("console").value += "Você precisa comprar\n";
+    var textArea = document.getElementById('console');
+    textArea.scrollTop = textArea.scrollHeight;
+
+    if (document.getElementsByClassName("turn").deck) {
+      document.getElementById("console").value += "Compre uma carta\n";
       return true;
     }
     return false;
   }
+
+
+  comprarDeck() {
+    if (this.precisaComprar()) {
+      const playerAtual = document.querySelector(".turn").id
+      const cartaExcluir = this.deck.shift();
+      this.buscaObjeto(playerAtual).hand.push(cartaExcluir)
+      const remover = document.querySelector("#deck ul li");
+      const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`)
+      inserir.appendChild(remover)
+
+    }
+  }
+
+
   beer(event) {
     if (!this.precisaComprar()) this.buscaObjeto(document.getElementsByClassName("turn")[0].id).setHP(+1);
 
   }
-
 
   bang(event) {
     if (!this.precisaComprar()) {
@@ -163,16 +182,10 @@ class Game {
   turn(event) {
     //const game1 = new Game("game");
 
-    const playerAtual = document.getElementsByClassName("turn")[0].id;
+    const playerAtual = document.getElementsByClassName("turn")[2].id;
     let objeto;
 
-    if (playerAtual == "player1") objeto = this.role[0]
-    if (playerAtual == "player2") objeto = this.role[1]
-    if (playerAtual == "player3") objeto = this.role[2]
-    if (playerAtual == "player4") objeto = this.role[3]
-    if (playerAtual == "player5") objeto = this.role[4]
-    if (playerAtual == "player6") objeto = this.role[5]
-    if (playerAtual == "player7") objeto = this.role[6]
+
 
     //console.log("comprando");
     //objeto.ComprarCartas(this.deck.shift(), 0)
