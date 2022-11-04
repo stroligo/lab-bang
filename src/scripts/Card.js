@@ -15,7 +15,7 @@ class Card {
     <img src="./assets/bang/${name}/${classe}.png" />
     </div>
     <div class="front">
-    <img src="./assets/bang/cards/_back.png" />
+    <img src="./assets/bang/cards/back.png" />
     </div>
     </div>
         `;

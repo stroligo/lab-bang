@@ -46,7 +46,7 @@ var Card = /*#__PURE__*/_createClass(function Card(name, classe, id) {
     li.id = this.id;
     li.classList.add("card-wrapper", "hidden");
     var _board = document.getElementById("deck").children[0];
-    var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/_back.png\" />\n    </div>\n    </div>\n        ");
+    var row = "      \n    <div class=\"card\">\n    <div class=\"back\">\n    <img src=\"./assets/bang/".concat(name, "/").concat(classe, ".png\" />\n    </div>\n    <div class=\"front\">\n    <img src=\"./assets/bang/cards/back.png\" />\n    </div>\n    </div>\n        ");
     li.innerHTML = row;
     _board.appendChild(li);
     document.getElementById(this.id).classList.add(this.classe, this.name, "hidden");
