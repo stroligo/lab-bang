@@ -41,13 +41,13 @@ const player4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
     this.deck= [];
     this.deck = [player1,player2,player3, player4];
 
-    for (let i = 0; i < 4; i++)
+    for (let i = 0; i < 40; i++)
       this.deck.push(new Bang("cards", "bang", i + 4));
 
-    for (let i = 0; i < 1; i++)
+    for (let i = 0; i < 10; i++)
       this.deck.push(new Missed("cards", "missed", i + 44));
 
-    for (let i = 0; i < 1; i++)
+    for (let i = 0; i < 10; i++)
       this.deck.push(new Beer("cards", "beer", i + 54));
 
     //compra inicial de cartas
@@ -59,7 +59,7 @@ const player4 = new Outlaw("roles", "outlaw", "player4", jogadores[3]);
 
 
     //this.role.forEach((element, index) => {
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 20; i++) {
         this.comprarDeck()
       }
 
