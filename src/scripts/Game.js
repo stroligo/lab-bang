@@ -43,6 +43,15 @@ class Game {
 
     for (let i = 0; i < 4; i++)
       this.deck.push(new Beer("cards", "beer", i + 16));
+
+      for (let i = 0; i < 12; i++)
+      this.deck.push(new Bang("cards", "bang", i + 4));
+
+    for (let i = 0; i < 4; i++)
+      this.deck.push(new Missed("cards", "missed", i + 12));
+
+    for (let i = 0; i < 4; i++)
+      this.deck.push(new Beer("cards", "beer", i + 16));
     
     //compra inicial de cartas
 
@@ -78,7 +87,7 @@ class Game {
       this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
       const remover = document.querySelector("#deck ul li");
       const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
-      inserir.appendChild(remover);
+      inserir.appendChild(remover).classList.remove("hidden");
     }
   }
 

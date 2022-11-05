@@ -92,6 +92,15 @@ var Game = /*#__PURE__*/function () {
     for (var _i2 = 0; _i2 < 4; _i2++) {
       this.deck.push(new Beer("cards", "beer", _i2 + 16));
     }
+    for (var _i3 = 0; _i3 < 12; _i3++) {
+      this.deck.push(new Bang("cards", "bang", _i3 + 4));
+    }
+    for (var _i4 = 0; _i4 < 4; _i4++) {
+      this.deck.push(new Missed("cards", "missed", _i4 + 12));
+    }
+    for (var _i5 = 0; _i5 < 4; _i5++) {
+      this.deck.push(new Beer("cards", "beer", _i5 + 16));
+    }
 
     //compra inicial de cartas
 
@@ -102,7 +111,7 @@ var Game = /*#__PURE__*/function () {
 
     //this.role.forEach((element, index) => {
 
-    for (var _i3 = 0; _i3 < 20; _i3++) {
+    for (var _i6 = 0; _i6 < 20; _i6++) {
       var _atual = document.querySelector(".turn");
       if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
       _atual.classList.remove("turn");
@@ -126,7 +135,7 @@ var Game = /*#__PURE__*/function () {
         this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
         var remover = document.querySelector("#deck ul li");
         var inserir = document.querySelector("#".concat(playerAtual, " > div.hand > ul"));
-        inserir.appendChild(remover);
+        inserir.appendChild(remover).classList.remove("hidden");
       }
     }
   }, {
