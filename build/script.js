@@ -193,7 +193,7 @@ var Game = /*#__PURE__*/function () {
     value: function bang(event) {
       var _this = this;
       // if (!this.precisaComprar()) {
-
+      proxTurno.disabled = true;
       var atual = this.buscaObjeto(document.querySelector(".turn").id);
       document.querySelectorAll("#player".concat(atual.anterior, ",#player").concat(atual.proximo)).forEach(function (element) {
         return element.classList.add("target");
@@ -217,6 +217,7 @@ var Game = /*#__PURE__*/function () {
       }
       document.querySelector(".target").classList.remove("target");
       document.querySelector(".target").classList.remove("target");
+      proxTurno.disabled = false;
     }
 
     //nessa etapa iremos configurar os turnos de cada jogador

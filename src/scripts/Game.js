@@ -146,7 +146,8 @@ class Game {
 
   bang(event) {
    // if (!this.precisaComprar()) {
-      
+      proxTurno.disabled=true;
+
       const atual = this.buscaObjeto(document.querySelector(".turn").id);
       document
         .querySelectorAll(`#player${atual.anterior},#player${atual.proximo}`)
@@ -171,6 +172,7 @@ class Game {
     }
     document.querySelector(".target").classList.remove("target");
     document.querySelector(".target").classList.remove("target");
+    proxTurno.disabled=false
 
 
   }

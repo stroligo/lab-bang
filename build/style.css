@@ -7180,7 +7180,7 @@ section {
   width: 100px;
   height: 160px;
   border-radius: 10px;
-  background-image: url(../assets/bang/cards/_back.png);
+  background-image: url(../assets/bang/cards/back.png);
   background-size: contain;
 }
 #deck.active {
