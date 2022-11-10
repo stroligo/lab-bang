@@ -22,10 +22,11 @@ var ply2 = document.getElementById("player2");
 
 
 btnproxTurno.onclick = function () {
-const atual = document.querySelector(".turn");
- if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn")
- else document.querySelector(".turn").nextElementSibling.classList.add("turn")
- atual.classList.remove("turn")
+//const atual = document.querySelector(".turn");
+// if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn")
+ //else document.querySelector(".turn").nextElementSibling.classList.add("turn")
+ //atual.classList.remove("turn")
+ game.trocaturno();
    
 };
 

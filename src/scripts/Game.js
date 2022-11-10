@@ -14,7 +14,7 @@ class Game {
 
     //this.renderDeck();
 
-    this.cemytery = []; //toda carta usada vai para o cemiterio
+     //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
     //const player1 = new Outlaw("roles", "sheriff", "player3", jogadores[0]);
@@ -34,12 +34,14 @@ class Game {
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
     //this.deck = [player1, player2, player3, player4];
-
-    for (let i = 1; i <= 100; i++) {
+    this.compras = 0;
+    for (let i = 1; i <= 1000; i++) {
       let x = aleatorio()
-      if (x <= 3) this.deck.push(new Bang("cards", "bang", i));
-      if (x == 4) this.deck.push(new Missed("cards", "missed", i));
-      if (x == 5) this.deck.push(new Beer("cards", "beer", i));
+      if (x <= 13) this.deck.push(new Bang("cards", "bang", i))
+      else
+        if (x <= 21) this.deck.push(new Missed("cards", "missed", i))
+        else
+          if (x <= 22) this.deck.push(new Beer("cards", "beer", i));
     }
     //for (let i = 0; i < 12; i++)
     //this.deck.push(new Bang("cards", "bang", i + 4));
@@ -86,13 +88,15 @@ class Game {
 
   comprarDeck() {
     if (this.precisaComprar()) {
-
+      
       const playerAtual = document.querySelector(".turn").id;
       const cartaExcluir = this.deck.shift();
       this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
       const remover = document.querySelector("#deck ul li");
       const inserir = document.querySelector(`#${playerAtual} > div.hand > ul`);
       inserir.appendChild(remover).classList.remove("hidden");
+      this.compras++;
+      console.log(this.deck.role(0));
     }
   }
 
@@ -115,12 +119,17 @@ class Game {
   }
 
   precisaComprar() {
+   
     const playerAtual = document.querySelector(".turn").id;
     var textArea = document.getElementById("console");
     textArea.scrollTop = textArea.scrollHeight;
-    if (this.buscaObjeto(playerAtual).getHP() <= this.buscaObjeto(playerAtual).hand.length) {
-      document.getElementById("console").value += "Você só pode comprar carta até a quantidade de vidas\n";
-     return false;
+    if (this.buscaObjeto(playerAtual).getHP() + 2 <= this.buscaObjeto(playerAtual).hand.length) {
+      document.getElementById("console").value += "Você só pode comprar carta até a quantidade de vidas + 2\n";
+      return false;
+    }
+    if (this.compras == 2) {
+      document.getElementById("console").value += "Você só pode comprar até 2 cartas por turno\n";
+      return false;
     }
     return true;
   }
@@ -175,7 +184,7 @@ class Game {
   }
 
   trocaTurno() {
-
+    this.compras = 0;
     const atual = document.querySelector(".turn").id;
     if (atual === "player1") {
       player1.classList.remove("turn");
@@ -221,20 +230,21 @@ class Game {
           this.role[0].setHP(-1)
         }
       if (this.role[0].getHP() === 0) {
-        alert(this.role[1].getPseudoname() + "Ganhou")
-        alert(this.role[0].getPseudoname() + "Perdeu")
         document.getElementById("player1").remove()
+        alert(this.role[1].getPseudoname() + "Ganhou")
+        alert(this.role[0].getPseudoname() + "Perdeu")        
+        reload();
       }
 
-     
-      }
-      player1.classList.remove("target");
-      player2.classList.remove("target");
 
-      if (this.role[1].getHP() === 0) {
-        alert(this.role[0].getPseudoname() + " Ganhou")
-        alert(this.role[1].getPseudoname() + " Perdeu")
-        document.getElementById("player2").remove()
+    }
+    player1.classList.remove("target");
+    player2.classList.remove("target");
+
+    if (this.role[1].getHP() === 0) {
+      alert(this.role[0].getPseudoname() + " Ganhou")
+      alert(this.role[1].getPseudoname() + " Perdeu")
+      document.getElementById("player2").remove()
 
     }
 
@@ -246,8 +256,8 @@ class Game {
     //if (player2.classList.contains("turn")) player2.removeEventListener("click", this.trocaTurno());
 
 
-   
-    //this.trocaTurno();
+
+
 
 
   }
@@ -259,7 +269,7 @@ class Game {
 
 
 function aleatorio() {
-  return Math.floor(Math.random() * 5 + 1);
+  return Math.floor(Math.random() * 22 + 1);
 }
 
 function renderDeck(array) {
