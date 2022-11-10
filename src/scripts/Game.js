@@ -14,7 +14,7 @@ class Game {
 
     //this.renderDeck();
 
-     //toda carta usada vai para o cemiterio
+    //toda carta usada vai para o cemiterio
     //(name, pseudoname, id)
 
     //const player1 = new Outlaw("roles", "sheriff", "player3", jogadores[0]);
@@ -23,15 +23,6 @@ class Game {
     const player2 = new Outlaw("roles", "outlaw", "player2", jogadores[1]);
 
     this.role = [player1, player2];
-
-    //renderDeck(this.roles);
-
-    // this.role.forEach((element, index) => element.setSpot(index + 1)); //.setSpot())
-    //this.role.forEach((element) => element.setAnteriorProximo());
-
-    //Setando Xerife
-    //const inicio = this.role[2].id
-    //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
     //this.deck = [player1, player2, player3, player4];
     this.compras = 0;
@@ -43,40 +34,17 @@ class Game {
         else
           if (x <= 22) this.deck.push(new Beer("cards", "beer", i));
     }
-    //for (let i = 0; i < 12; i++)
-    //this.deck.push(new Bang("cards", "bang", i + 4));
-
-    //for (let i = 0; i < 4; i++)
-    //this.deck.push(new Missed("cards", "missed", i + 12));
-
-    //for (let i = 0; i < 4; i++)
-    //this.deck.push(new Beer("cards", "beer", i + 16));
-
-    //for (let i = 0; i < 12; i++)
-    //this.deck.push(new Bang("cards", "bang", i + 4));
-
-    //for (let i = 0; i < 4; i++)
-    //this.deck.push(new Missed("cards", "missed", i + 12));
-
-    //for (let i = 0; i < 4; i++)
-    //this.deck.push(new Beer("cards", "beer", i + 16));
-
-    //compra inicial de cartas
 
     //document.querySelectorAll(".player")[0].classList.add("turn") //setando active para todos
     //document.querySelectorAll(".player")[1].classList.add("turn") //setando active para todos
     document.querySelectorAll(".player")[0].classList.add("turn"); //setando active para todos
     //document.querySelectorAll(".player")[3].classList.add("turn") //setando active para todos
 
-    //this.role.forEach((element, index) => {
-
     for (let i = 0; i < 10; i++) {
       const atual = document.querySelector(".turn");
       if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn")
       else document.querySelector(".turn").nextElementSibling.classList.add("turn")
       atual.classList.remove("turn")
-
-      // if (this.precisaComprar())
       const playerAtual = document.querySelector(".turn").id;
       const cartaExcluir = this.deck.shift();
       this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
@@ -88,7 +56,7 @@ class Game {
 
   comprarDeck() {
     if (this.precisaComprar()) {
-      
+
       const playerAtual = document.querySelector(".turn").id;
       const cartaExcluir = this.deck.shift();
       this.buscaObjeto(playerAtual).hand.push(cartaExcluir);
@@ -119,7 +87,7 @@ class Game {
   }
 
   precisaComprar() {
-   
+
     const playerAtual = document.querySelector(".turn").id;
     var textArea = document.getElementById("console");
     textArea.scrollTop = textArea.scrollHeight;
@@ -144,11 +112,6 @@ class Game {
     carta.remove();
     this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != carta.id)
     console.log(carta.id)
-
-
-
-
-
   }
 
   bang(event) {
@@ -159,7 +122,6 @@ class Game {
     const carta = (event.currentTarget);
     carta.remove();
     this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != carta.id)
-
 
     if (atual === "player1")
       document.getElementById("player2").classList.add("target");
@@ -175,7 +137,6 @@ class Game {
 
     this.alvosAction();
 
-
     //const alvos = document.querySelectorAll(".target");
     //alvos.forEach((alvos) =>
     // alvos.addEventListener("click", (event) => this.alvosAction(event))
@@ -189,7 +150,6 @@ class Game {
     if (atual === "player1") {
       player1.classList.remove("turn");
       player2.classList.add("turn");
-
     }
 
     if (atual === "player2") {
@@ -203,7 +163,6 @@ class Game {
 
   alvosAction() {
     document.getElementById("console").value += "Tiro disparado\n";
-    //console.log(event.currentTarget)
     const alvo = document.querySelector(".target");
     const atual = alvo.id;
 
@@ -216,8 +175,6 @@ class Game {
       document.getElementById(cartaId).remove()
       this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != cartaId)
       console.log(this.role[1])
-
-
     }
     else {
       if (atual === "player2") {
@@ -232,7 +189,7 @@ class Game {
       if (this.role[0].getHP() === 0) {
         document.getElementById("player1").remove()
         alert(this.role[1].getPseudoname() + "Ganhou")
-        alert(this.role[0].getPseudoname() + "Perdeu")        
+        alert(this.role[0].getPseudoname() + "Perdeu")
         reload();
       }
 
@@ -245,28 +202,9 @@ class Game {
       alert(this.role[0].getPseudoname() + " Ganhou")
       alert(this.role[1].getPseudoname() + " Perdeu")
       document.getElementById("player2").remove()
-
     }
-
-    //document.querySelector(".target").removeEventListener("click", (event) => this.trocaTurno(event))
-    //alvos.forEach((alvos) =>
-    //alvos.removeEventListener("click", (event) => this.trocaTurno(event))
-    //);
-    //if (player1.classList.contains("turn")) player1.removeEventListener("click", this.trocaTurno());
-    //if (player2.classList.contains("turn")) player2.removeEventListener("click", this.trocaTurno());
-
-
-
-
-
-
   }
-
-  //nessa etapa iremos configurar os turnos de cada jogador
-  //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
-
 }
-
 
 function aleatorio() {
   return Math.floor(Math.random() * 22 + 1);
