@@ -34,21 +34,13 @@ class Game {
     //document.getElementById(inicio).classList.add("turn");
     this.deck = [];
     //this.deck = [player1, player2, player3, player4];
-
-    this.deck.push(new Bang("cards", "bang", 1));
-    this.deck.push(new Bang("cards", "bang", 2));
-    this.deck.push(new Bang("cards", "bang", 3));
-    this.deck.push(new Bang("cards", "bang", 4));
-    this.deck.push(new Bang("cards", "bang", 5));
-    this.deck.push(new Missed("cards", "missed", 6));
-    this.deck.push(new Missed("cards", "missed", 7));
-    this.deck.push(new Missed("cards", "missed", 8));
-    this.deck.push(new Beer("cards", "beer", 9));
-    this.deck.push(new Beer("cards", "beer", 10));
-    console.log (this.deck);
-    this.deck = renderDeck (this.deck);
-
-
+   
+   for (let i=1; i <= 100; i++) {
+      let x = aleatorio()
+      if (x<=3) this.deck.push(new Bang("cards", "bang", i));
+      if (x==4) this.deck.push(new Missed("cards", "missed", i));
+      if (x==5) this.deck.push(new Beer("cards", "beer", i));
+   }
     //for (let i = 0; i < 12; i++)
     //this.deck.push(new Bang("cards", "bang", i + 4));
 
@@ -238,7 +230,7 @@ class Game {
     
     player1.classList.remove("target");
     player2.classList.remove("target");
-    this.trocaTurno();
+    //this.trocaTurno();
 
 
   }
@@ -248,15 +240,10 @@ class Game {
 
 }
 
-// Algoritmo de embaralhamento de Fisher–Yates
-function embaralhar(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
 
+function aleatorio() {
+   return Math.floor(Math.random() * 5 + 1);
+}
 
 function renderDeck(array) {
   console.log("randomizar o deck ->> EMBARALHAR -> shufle");
