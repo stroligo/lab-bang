@@ -38,8 +38,16 @@ class Player extends Card {
     this.spot = value;
   }
 
+  getPseudoname() {
+    return this.pseudoname;
+  }
+
   getSpot() {
     return this.spot;
+  }
+
+  getHP() {
+    return this.hp;
   }
 
   setHP(value) {
@@ -47,8 +55,15 @@ class Player extends Card {
     const vida = document.querySelector(".turn .hp");
 
     if (value < 0) {
-      vida.children[0].remove();
-     // document.getElementById("console").value += "Voce foi atingido\n";
+
+      if (this.id === "player1")
+        document.querySelector("#player1 .hp li").remove();
+
+      if (this.id === "player2")
+        document.querySelector("#player2 .hp li").remove();
+
+      // vida.children[0].remove();
+      // document.getElementById("console").value += "Voce foi atingido\n";
     }
     if (value > 0) {
       const node = vida.children[0];
@@ -56,13 +71,7 @@ class Player extends Card {
       vida.appendChild(clone);
     }
 
-    if (this.hp == 0) {
 
-      document.getElementById("console").value += this.pseudoname;
-      document.getElementById("console").value += "morreu\n";
-      alert(this.pseudoname+" morreu")
-      
-    }
 
   }
 
