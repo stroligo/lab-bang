@@ -10,7 +10,7 @@ const board = document.getElementById("board");
 //adicionar o event listener do submit
 addEventListener("submit", () => {
   const game1 = new Game("game");
-  game1.renderDeck();
+  //game1.renderDeck();
   settingUpGame(game1);
 
 });

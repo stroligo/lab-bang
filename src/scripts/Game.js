@@ -45,6 +45,8 @@ class Game {
     this.deck.push(new Missed("cards", "missed", 8));
     this.deck.push(new Beer("cards", "beer", 9));
     this.deck.push(new Beer("cards", "beer", 10));
+    console.log (this.deck);
+    this.deck = renderDeck (this.deck);
 
 
     //for (let i = 0; i < 12; i++)
@@ -141,7 +143,7 @@ class Game {
     carta.remove();
     this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != carta.id)
     console.log(carta.id)
-    console.log(this.role[0])
+   
 
 
 
@@ -151,8 +153,13 @@ class Game {
   bang(event) {
     // if (!this.precisaComprar()) {
     //proxTurno.disabled = true;
-
-    const atual = document.querySelector(".turn").id;
+  
+    const atual = document.querySelector(".turn").id
+    this.buscaObjeto(atual).setHP(+1);
+    const carta = (event.currentTarget);
+    carta.remove();
+    this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != carta.id)
+   
 
     if (atual === "player1")
       document.getElementById("player2").classList.add("target");
@@ -165,6 +172,7 @@ class Game {
 
     document.getElementById("console").value += "Alvo selecionado\n";
     //proxTurno.disabled = false
+    
     this.alvosAction();
 
 
@@ -176,6 +184,7 @@ class Game {
   }
 
   trocaTurno() {
+    
     const atual = document.querySelector(".turn").id;
     if (atual === "player1") {
       player1.classList.remove("turn");
@@ -197,11 +206,12 @@ class Game {
     //console.log(event.currentTarget)
     const alvo = document.querySelector(".target");
     const atual = alvo.id;
-    alert(atual)
+    
     //const id = event.currentTarget["id"];
     
     if (this.buscaObjeto(atual).hand.filter(element => element.classe == "missed")[0] !== undefined){
       document.getElementById("console").value += "Voce escapou por pouco\n";
+      document.getElementById("console").value += "Carta missed descartada";
       const cartaId = this.buscaObjeto(atual).hand.filter(element => element.classe == "missed")[0].id;
       document.getElementById(cartaId).remove()
       this.buscaObjeto(atual).hand = this.buscaObjeto(atual).hand.filter(element => element.id != cartaId)
@@ -214,15 +224,18 @@ class Game {
       document.querySelector("#player2 .hp li").remove();
       if (atual === "player1")
       document.querySelector("#player1 .hp li").remove();
-      this.buscaObjeto(atual).setHP(-1);
     }
+    this.buscaObjeto(atual).setHP(-1);
+
 
     //document.querySelector(".target").removeEventListener("click", (event) => this.trocaTurno(event))
     //alvos.forEach((alvos) =>
     //alvos.removeEventListener("click", (event) => this.trocaTurno(event))
     //);
-    if (player1.classList.contains("turn")) player1.removeEventListener("click", this.trocaTurno());
-    if (player2.classList.contains("turn")) player2.removeEventListener("click", this.trocaTurno());
+    //if (player1.classList.contains("turn")) player1.removeEventListener("click", this.trocaTurno());
+    //if (player2.classList.contains("turn")) player2.removeEventListener("click", this.trocaTurno());
+
+    
     player1.classList.remove("target");
     player2.classList.remove("target");
     this.trocaTurno();
@@ -233,6 +246,23 @@ class Game {
   //nessa etapa iremos configurar os turnos de cada jogador
   //ncompra carta; usa carta; uso bang; descartas cartas acima[cemytery]; fim de turno;
 
+}
+
+// Algoritmo de embaralhamento de Fisher–Yates
+function embaralhar(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+
+function renderDeck(array) {
+  console.log("randomizar o deck ->> EMBARALHAR -> shufle");
+  array.sort(() => {
+    return Math.random() - 0.5;
+  });
 }
 
 function onMouseenterOrMouseleaveCard(e) {

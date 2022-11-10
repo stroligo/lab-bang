@@ -5,14 +5,13 @@ class Player extends Card {
     name,
     classe,
     id,
-    rodada,
     pseudoname,
+    rodada,
     hp = 5,
     range = 1,
     spot = 1,
     anterior = 0,
     proximo = 0,
-    compras = 0,
     pos = 0
   ) {
     super(name, classe, id);
@@ -49,26 +48,25 @@ class Player extends Card {
 
     if (value < 0) {
       vida.children[0].remove();
-      document.getElementById("console").value += "Voce foi atingido\n";
+     // document.getElementById("console").value += "Voce foi atingido\n";
     }
     if (value > 0) {
       const node = vida.children[0];
       const clone = node.cloneNode(true);
       vida.appendChild(clone);
-      document.getElementById("console").value += "Voce ganhou vida\n";
     }
 
-   if (this.hp == 0 ) {
+    if (this.hp == 0) {
 
-         document.getElementById("console").value += this.pseudoname; 
-         document.getElementById("console").value += "morreu\n";
-
-         
-        }
+      document.getElementById("console").value += this.pseudoname;
+      document.getElementById("console").value += "morreu\n";
+      alert(this.pseudoname+" morreu")
+      
+    }
 
   }
 
- 
 
-  
+
+
 }
