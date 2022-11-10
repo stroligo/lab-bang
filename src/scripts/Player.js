@@ -57,6 +57,15 @@ class Player extends Card {
       vida.appendChild(clone);
       document.getElementById("console").value += "Voce ganhou vida\n";
     }
+
+   if (this.hp == 0 ) {
+
+         document.getElementById("console").value += this.pseudoname; 
+         document.getElementById("console").value += "morreu\n";
+
+         
+        }
+
   }
 
  

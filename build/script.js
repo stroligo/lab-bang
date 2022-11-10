@@ -112,9 +112,9 @@ var Game = /*#__PURE__*/function () {
     //this.role.forEach((element, index) => {
 
     for (var _i6 = 0; _i6 < 20; _i6++) {
-      var _atual = document.querySelector(".turn");
+      var atual = document.querySelector(".turn");
       if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
-      _atual.classList.remove("turn");
+      atual.classList.remove("turn");
 
       // if (this.precisaComprar())
       var playerAtual = document.querySelector(".turn").id;
@@ -145,29 +145,6 @@ var Game = /*#__PURE__*/function () {
       this.deck.sort(function () {
         return Math.random() - 0.5;
       });
-    }
-  }, {
-    key: "partida",
-    value: function partida() {
-      //const idCarta = event.currentTarget["id"];
-      console.log(idCarta);
-      if (document.getElementById(idCarta).classList.contains("turn", "selecionado")) {
-        console.log("Carta já foi selecionada");
-      } else {
-        document.getElementById(idCarta).src = this.deck.find(function (element) {
-          return element.id == idCarta;
-        }).source;
-        document.getElementById(idCarta).alt = this.deck.find(function (element) {
-          return element.id == idCarta;
-        }).alt;
-        document.getElementById(idCarta).classList.add("selecionado", "cardFront");
-        document.getElementById(idCarta).classList.remove("cardBack");
-        if (document.querySelectorAll(".selecionado").length === 2) {
-          //if (this.deck.filter(element => element.selecionado).length === 2)
-          console.log("Duas cartas foram viradas. Vamos compara-las");
-          this.checkPair();
-        }
-      }
     }
   }, {
     key: "buscaObjeto",
@@ -217,14 +194,27 @@ var Game = /*#__PURE__*/function () {
       // }
     }
   }, {
+    key: "trocaTurno",
+    value: function trocaTurno() {
+      var atual = document.querySelector(".turn");
+      if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
+      atual.classList.remove("turn");
+    }
+  }, {
     key: "alvosAction",
     value: function alvosAction(event) {
+      var _this2 = this;
+      var alvos = document.querySelectorAll(".target");
       var id = event.currentTarget["id"];
       if (document.querySelector("#".concat(id, " .missed"))) document.getElementById("console").value += "Voce escapou por pouco\n";else {
         buscaObjeto(id).setHP(-1);
         document.getElementById("console").value += "Voce foi baleado\n";
       }
-      document.querySelector(".target").classList.remove("target");
+      alvos.forEach(function (alvos) {
+        return alvos.removeEventListener("click", function (event) {
+          return _this2.trocaTurno(event);
+        });
+      });
       document.querySelector(".target").classList.remove("target");
       proxTurno.disabled = false;
     }
@@ -268,7 +258,7 @@ var ply2 = document.getElementById("player2");
 var ply3 = document.getElementById("player3");
 var ply4 = document.getElementById("player4");
 btnproxTurno.onclick = function () {
-  atual = document.querySelector(".turn");
+  var atual = document.querySelector(".turn");
   if (document.querySelector(".turn").nextElementSibling == null) ply1.classList.add("turn");else document.querySelector(".turn").nextElementSibling.classList.add("turn");
   atual.classList.remove("turn");
 };
@@ -290,7 +280,7 @@ var Player = /*#__PURE__*/function (_Card) {
   _inherits(Player, _Card);
   var _super = _createSuper(Player);
   function Player(name, classe, id, rodada, pseudoname) {
-    var _this2;
+    var _this3;
     var hp = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 5;
     var range = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1;
     var spot = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 1;
@@ -299,17 +289,17 @@ var Player = /*#__PURE__*/function (_Card) {
     var compras = arguments.length > 10 && arguments[10] !== undefined ? arguments[10] : 0;
     var pos = arguments.length > 11 && arguments[11] !== undefined ? arguments[11] : 0;
     _classCallCheck(this, Player);
-    _this2 = _super.call(this, name, classe, id);
-    _this2.rodada = rodada;
-    _this2.pseudoname = pseudoname;
-    _this2.hp = hp;
-    _this2.range = range;
-    _this2.spot = spot;
-    _this2.anterior = anterior;
-    _this2.proximo = proximo;
-    _this2.hand = [];
-    _this2.pos = pos;
-    return _this2;
+    _this3 = _super.call(this, name, classe, id);
+    _this3.rodada = rodada;
+    _this3.pseudoname = pseudoname;
+    _this3.hp = hp;
+    _this3.range = range;
+    _this3.spot = spot;
+    _this3.anterior = anterior;
+    _this3.proximo = proximo;
+    _this3.hand = [];
+    _this3.pos = pos;
+    return _this3;
   }
   _createClass(Player, [{
     key: "setAnteriorProximo",
